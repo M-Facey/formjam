@@ -1,18 +1,44 @@
-# Vue 3 + TypeScript + Vite
+# FormJam: A Simple Form App
 
-This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
+This is a simple app created using Vue 3 and Pocketbase. The rest of the docs will be added at a later date.
 
-## Recommended IDE Setup
+## :computer: The Tech I Used
 
-- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+### Front end
 
-## Type Support For `.vue` Imports in TS
+    - Vue 3 with Typescript
+    - TailwindCSS
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
+### Back end
 
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
+    - Pocketbase (v0.18.9)
 
-1. Disable the built-in TypeScript Extension
-   1. Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-   2. Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
+## :hammer_and_wrench: How To Run
+
+First, navigate to root folder of the project and run the following commands.
+
+### Install the dependencies
+
+```sh
+pnpm install
+```
+
+### Run dev mode
+
+```sh
+pnpm dev
+```
+
+### Type-check and run build for production
+
+```sh
+pnpm build
+```
+
+### Run production preview
+
+```sh
+pnpm preview
+```
+
+:warning: **Please Note**: More commands are to be added for the running tests. This will be done at a later date.
