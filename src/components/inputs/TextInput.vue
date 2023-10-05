@@ -2,6 +2,9 @@
 import { ref } from "vue";
 import { TextPropType, TextEmitType } from "../../types/inputs";
 
+import IconEyeClose from "../icons/EyeClose.vue";
+import IconEyeOpen from "../icons/EyeOpen.vue";
+
 withDefaults(defineProps<TextPropType>(), {
   placeholder: "",
   isOptional: false,
@@ -35,13 +38,26 @@ function toggleShowPassword() {
       />
       <button
         v-if="type === 'password'"
-        class="absolute top-1/2 right-2 -translate-y-1/2 bg-white hover:bg-gray-300 px-1 py-1 text-sm text-black rounded"
+        class="absolute top-1/2 right-2 -translate-y-1/2 bg-white hover:bg-gray-200 px-1 py-0.5 text-sm text-neutral-600 rounded-md"
         @click="toggleShowPassword"
       >
-        {{ showPassword ? "Hide" : "Show" }}
+        <IconEyeClose
+          v-show="showPassword && type === 'password'"
+          class="eye-icon w-7 h-7"
+        />
+        <IconEyeOpen
+          v-show="!showPassword && type === 'password'"
+          class="eye-icon w-7 h-7"
+        />
       </button>
     </div>
     <slot name="error-message" />
     <slot name="description" />
   </div>
 </template>
+
+<style>
+.eye-icon {
+  stroke-width: 1.5px;
+}
+</style>
