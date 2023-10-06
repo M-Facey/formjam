@@ -11,9 +11,7 @@ const searchParam = ref("");
 
 <template>
   <header class="bg-neutral-100 border-b border-neutral-200 px-6 py-3">
-    <div
-      class="w-full max-w-[1000px] flex items-center justify-between mx-auto"
-    >
+    <div class="container flex items-center justify-between">
       <RouterLink to="/" class="flex items-center gap-x-2">
         <img src="../../assets/vue.svg" class="max-h-[30px]" />
         <p class="text-2xl text-neutral-700">
