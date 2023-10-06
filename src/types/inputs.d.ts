@@ -1,3 +1,5 @@
+import { Component } from "vue";
+
 export type TextPropType = {
   id: string;
   type: "text" | "password";
@@ -32,4 +34,18 @@ export type CheckboxPropType = {
 
 export type CheckboxEmitType = {
   (e: "update:modelValue", value: boolean): void;
+};
+
+export type DropdownPropType = {
+  selectOption: {
+    name: string;
+    value: string;
+    icon?: Component;
+  };
+  options: {
+    name: string;
+    value: string;
+    icon?: Component;
+  }[];
+  isSearchable?: string;
 };
