@@ -4,10 +4,12 @@ import { TextPropType, TextEmitType } from "../../types/inputs";
 
 import IconEyeClose from "../icons/EyeClose.vue";
 import IconEyeOpen from "../icons/EyeOpen.vue";
+import IconSearch from "../icons/Search.vue";
 
 withDefaults(defineProps<TextPropType>(), {
   placeholder: "",
   isOptional: false,
+  isSearchable: false,
 });
 
 defineEmits<TextEmitType>();
@@ -31,11 +33,18 @@ function toggleShowPassword() {
         :class="{
           'px-4 py-3': type !== 'password',
           'pl-4 pr-14 py-3': type === 'password',
+          'pl-10 pr-4 py-3': isSearchable,
         }"
         @input="
           $emit('update:modelValue', ($event.target as HTMLInputElement).value)
         "
       />
+
+      <IconSearch
+        v-if="isSearchable"
+        class="search-icon absolute top-1/2 left-3 -translate-y-1/2 w-5 h-5"
+      />
+
       <button
         v-if="type === 'password'"
         class="absolute top-1/2 right-2 -translate-y-1/2 bg-white hover:bg-gray-200 px-1 py-0.5 text-sm text-neutral-600 rounded-md"
@@ -57,7 +66,8 @@ function toggleShowPassword() {
 </template>
 
 <style>
-.eye-icon {
+.eye-icon,
+.search-icon {
   stroke-width: 1.5px;
 }
 </style>

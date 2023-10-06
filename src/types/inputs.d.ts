@@ -4,6 +4,7 @@ export type TextPropType = {
   placeholder?: string;
   modelValue: string;
   isOptional?: boolean;
+  isSearchable?: boolean;
 };
 
 export type TextEmitType = {
