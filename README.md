@@ -6,12 +6,13 @@ This is a simple app created using Vue 3 and Pocketbase. The rest of the docs wi
 
 ### Front end
 
-    - Vue 3 with Typescript
-    - TailwindCSS
+- Vue 3 with Typescript
+    - Vue Router: for routing
+- TailwindCSS
 
 ### Back end
 
-    - Pocketbase (v0.18.9)
+- Pocketbase (v0.18.9)
 
 ## :hammer_and_wrench: How To Run
 
