@@ -12,21 +12,21 @@ defineEmits<ButtonEmitType>();
 </script>
 
 <template>
-  <button
-    class="flex items-center bg-sky-500 hover:bg-sky-400 px-3 py-2 text-neutral-900 rounded"
-    :class="{
-      'w-fit': size === 'compact',
-      'w-full': size === 'expand',
-      'justify-start': align === 'left',
-      'justify-end': align === 'right',
-      'justify-center': align === 'center',
-      'flex-row-reverse': reverseOrder,
-    }"
-    @click="$emit('triggerEvent')"
-  >
-    <div v-if="!loading">
+  <button @click="$emit('triggerEvent')">
+    <div
+      v-if="!loading"
+      class="flex items-center bg-sky-500 hover:bg-sky-400 px-3 py-2 text-neutral-900 rounded"
+      :class="{
+        'w-fit': size === 'compact',
+        'w-full': size === 'expand',
+        'justify-start': align === 'left',
+        'justify-end': align === 'right',
+        'justify-center': align === 'center',
+        'flex-row-reverse': reverseOrder,
+      }"
+    >
       <slot name="icon" />
-      <p>
+      <p v-if="text">
         {{ text }}
       </p>
     </div>
