@@ -21,7 +21,9 @@ function submitForm() {
 
 <template>
   <div>
-    <h2 class="text-4xl text-center font-bold pb-10">Sign Up to FormJAM</h2>
+    <h2 class="text-4xl text-center font-bold pb-10">
+      Sign Up to <RouterLink to="/" class="text-white/70">FormJAM</RouterLink>
+    </h2>
 
     <div class="flex flex-col gap-y-2">
       <TextInput
