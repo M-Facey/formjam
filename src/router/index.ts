@@ -6,6 +6,8 @@ import AuthPage from "../pages/auth.vue";
 import Login from "../components/auth/Login.vue";
 import Signup from "../components/auth/Signup.vue";
 
+import DashboardPage from "../pages/dashboard.vue";
+
 import NotFoundPage from "../pages/404.vue";
 import ErrorPage from "../pages/error.vue";
 
@@ -39,6 +41,14 @@ export default createRouter({
           component: Signup,
         },
       ],
+    },
+    {
+      path: "/dashboard",
+      name: "Dashboard",
+      component: DashboardPage,
+      meta: {
+        layout: "AppLayout",
+      },
     },
     {
       path: "/error",
