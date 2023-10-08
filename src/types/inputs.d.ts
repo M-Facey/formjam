@@ -49,3 +49,9 @@ export type DropdownPropType = {
   }[];
   isSearchable?: string;
 };
+
+export type TogglePropType = {
+  id: string;
+  label: string;
+  modelValue: boolean;
+};
