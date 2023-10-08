@@ -27,11 +27,13 @@ const searchParam = ref("");
         v-model="searchParam"
       />
       <div class="flex gap-x-2">
-        <XButton text="Create Form" :has-icon="false" class="font-medium">
-          <template #icon>
-            <IconAdd class="w-6 h-6 mr-2" />
-          </template>
-        </XButton>
+        <RouterLink to="/form/create">
+          <XButton text="Create Form" :has-icon="false" class="font-medium">
+            <template #icon>
+              <IconAdd class="w-6 h-6 mr-2" />
+            </template>
+          </XButton>
+        </RouterLink>
 
         <XButton text="" :has-icon="false" class="font-medium">
           <template #icon>
