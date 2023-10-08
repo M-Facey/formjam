@@ -21,7 +21,7 @@ function toggleDropdown() {
         <Component
           v-if="selectOption.icon"
           :is="selectOption.icon"
-          class="w-5 h-5"
+          class="dropdown-icons w-5 h-5"
         />
         {{ selectOption.name }}
       </p>
@@ -31,14 +31,21 @@ function toggleDropdown() {
     <Transition name="slide-fade">
       <div
         v-if="showDropdown"
-        class="absolute top-full translate-y-2 w-full flex flex-col bg-neutral-50 border border-neutral-200 rounded-md"
+        class="absolute top-full translate-y-2 w-full flex flex-col bg-neutral-50 border border-neutral-200 rounded-md z-10"
       >
         <p
           v-for="option in options"
-          class="hover:bg-neutral-200 px-3 py-1.5 cursor-pointer select-none"
+          class="flex items-center gap-x-3 hover:bg-neutral-200 px-3 py-1.5 cursor-pointer select-none"
           @click="toggleDropdown"
         >
-          {{ option.name }}
+          <component
+            v-if="option.icon"
+            :is="option.icon"
+            class="dropdown-icons w-5 h-5"
+          />
+          <span>
+            {{ option.name }}
+          </span>
         </p>
       </div>
     </Transition>
@@ -58,5 +65,9 @@ function toggleDropdown() {
 .slide-fade-leave-to {
   transform: translateY(20px);
   opacity: 0;
+}
+
+.dropdown-icons {
+  stroke-width: 1.5px;
 }
 </style>
