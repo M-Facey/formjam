@@ -8,6 +8,8 @@ import Signup from "../components/auth/Signup.vue";
 
 import DashboardPage from "../pages/dashboard.vue";
 
+import CreateFormPage from "../pages/form/create.vue";
+
 import NotFoundPage from "../pages/404.vue";
 import ErrorPage from "../pages/error.vue";
 
@@ -47,7 +49,15 @@ export default createRouter({
       name: "Dashboard",
       component: DashboardPage,
       meta: {
-        layout: "AppLayout",
+        layout: "App",
+      },
+    },
+    {
+      path: "/form/create",
+      name: "Create Form",
+      component: CreateFormPage,
+      meta: {
+        layout: "Form",
       },
     },
     {
