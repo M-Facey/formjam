@@ -2,26 +2,29 @@
 import IconCheck from "../icons/Check.vue";
 import { CheckboxPropType, CheckboxEmitType } from "../../types/inputs";
 
-defineProps<CheckboxPropType>();
+withDefaults(defineProps<CheckboxPropType>(), {
+  id: "",
+});
 defineEmits<CheckboxEmitType>();
 </script>
 
 <template>
-  <div
-    class="w-fit flex items-center gap-x-2 cursor-pointer"
-    @click="$emit('update:modelValue', !modelValue)"
-  >
-    <div
-      class="w-7 h-7 flex items-center justify-center hover:bg-neutral-300/20 border-2 border-neutral-600 rounded-md"
+  <div class="flex items-center gap-x-3">
+    <label
+      class="relative w-6 h-6 flex items-center justify-center hover:bg-neutral-300/20 ring-2 ring-neutral-600 rounded-md"
     >
-      <IconCheck v-if="modelValue" class="icon-check w-5 h-5" />
-    </div>
-    <p class="select-none">{{ text }}</p>
+      <input
+        :id="id"
+        type="checkbox"
+        class="invisible peer"
+        :value="modelValue"
+        @click="$emit('update:modelValue', !modelValue)"
+      />
+      <IconCheck
+        class="icon-check absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 opacity-0 peer-checked:opacity-100"
+      />
+    </label>
+
+    <label :for="id" class="select-none cursor-pointer">{{ text }}</label>
   </div>
 </template>
-
-<style>
-.icon-check {
-  stroke-width: 2px;
-}
-</style>
