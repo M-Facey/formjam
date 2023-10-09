@@ -8,9 +8,9 @@
     <g
       fill="none"
       stroke="currentColor"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      strokeWidth="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="2"
     >
       <path d="M10.585 10.587a2 2 0 0 0 2.829 2.828"></path>
       <path
