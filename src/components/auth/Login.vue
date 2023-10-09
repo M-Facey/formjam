@@ -1,22 +1,35 @@
 <script lang="ts" setup>
 import { ref } from "vue";
+import { useForm } from "vee-validate";
+import * as yup from "yup";
 import TextInput from "../inputs/TextInput.vue";
 import XButton from "../inputs/Button.vue";
 import XCheckbox from "../inputs/Checkbox.vue";
 
-const form = ref({
-  email: "",
-  password: "",
-  rememberMe: false,
+const rememberMe = ref(false);
+
+const { handleSubmit } = useForm({
+  validationSchema: yup.object({
+    email: yup
+      .string()
+      .email("Your email must be valid")
+      .required("Your email is required"),
+    password: yup
+      .string()
+      .required("Your password is required")
+      .min(6, "Your password must contain at least 6 characters")
+      .max(25, "Your password must contain at most 25 characters"),
+  }),
 });
 
 const loading = ref(false);
-function submitForm() {
+
+const onSubmit = handleSubmit(() => {
   loading.value = true;
   setTimeout(() => {
     loading.value = false;
   }, 2000);
-}
+});
 </script>
 
 <template>
@@ -26,25 +39,25 @@ function submitForm() {
     </h2>
 
     <div class="flex flex-col gap-y-2">
-      <TextInput
-        id="login_email"
-        type="text"
-        placeholder="Email"
-        v-model="form.email"
-      >
+      <TextInput name="email" id="login_email" type="text" placeholder="Email">
         <label for="login_email" class="pb-1">Email</label>
       </TextInput>
 
       <TextInput
+        name="password"
         id="login_password"
         type="password"
         placeholder="Password"
-        v-model="form.password"
       >
         <label for="login_password" class="pb-1">Password</label>
       </TextInput>
 
-      <XCheckbox text="Remember me?" v-model="form.rememberMe" class="pt-3" />
+      <XCheckbox
+        id="loginRememberMe"
+        text="Remember me?"
+        v-model="rememberMe"
+        class="pt-3"
+      />
 
       <div class="flex items-center justify-between">
         <p class="text-lg">
@@ -62,7 +75,7 @@ function submitForm() {
             align="center"
             :loading="loading"
             class="font-bold"
-            @trigger-event="submitForm"
+            @trigger-event="onSubmit"
           />
         </div>
       </div>
