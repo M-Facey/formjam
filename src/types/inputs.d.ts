@@ -2,9 +2,10 @@ import { Component } from "vue";
 
 export type TextPropType = {
   id: string;
+  name?: string;
   type: "text" | "password";
   placeholder?: string;
-  modelValue: string;
+  modelValue?: string;
   isOptional?: boolean;
   isSearchable?: boolean;
 };
@@ -27,7 +28,7 @@ export type ButtonEmitType = {
 };
 
 export type CheckboxPropType = {
-  checked?: boolean;
+  id?: string;
   text: string;
   modelValue: boolean;
 };
