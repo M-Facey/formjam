@@ -12,6 +12,12 @@ dist
 dist-ssr
 *.local
 
+# Envs
+.env
+
+# PocketBase
+**/pocketbase
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json

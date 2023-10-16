@@ -8,6 +8,9 @@ dependencies:
   '@vee-validate/yup':
     specifier: ^4.11.8
     version: 4.11.8(vue@3.3.4)
+  pocketbase:
+    specifier: ^0.18.2
+    version: 0.18.2
   vee-validate:
     specifier: ^4.11.8
     version: 4.11.8(vue@3.3.4)
@@ -876,6 +879,10 @@ packages:
     resolution: {integrity: sha512-saLsH7WeYYPiD25LDuLRRY/i+6HaPYr6G1OUlN39otzkSTxKnubR9RTxS3/Kk50s1g2JTgFwWQDQyplC5/SHZg==}
     engines: {node: '>= 6'}
     dev: true
+
+  /pocketbase@0.18.2:
+    resolution: {integrity: sha512-kFtbGiRxEiqtE/GkNkBNgjg7XCaVnzo6t/q1lc2wm7cTBpOyXTTHHN+B27TKlt8H+ZxO3NRxmq5tlVI/U9V9yQ==}
+    dev: false
 
   /postcss-import@15.1.0(postcss@8.4.31):
     resolution: {integrity: sha512-hpr+J05B2FVYUAXHeK1YyI267J/dDDhMU6B6civm8hSY1jYJnBXxzKDKDswzJmtLHryrjhnDjqqp/49t8FALew==}

@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@vee-validate/yup": "^4.11.8",
+    "pocketbase": "^0.18.2",
     "vee-validate": "^4.11.8",
     "vue": "^3.3.4",
     "vue-router": "4",
