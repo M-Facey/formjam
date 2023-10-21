@@ -1,32 +1,47 @@
 <script lang="ts" setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
 
 import IconAdd from "../icons/Add.vue";
-import IconUser from "../icons/User.vue";
-import TextInput from "../inputs/TextInput.vue";
+import IconLogout from "../icons/Logout.vue";
+
+import XTextInput from "../inputs/TextInput.vue";
 import XButton from "../inputs/Button.vue";
 
+import pb from "../../db/pocketBase";
+
 const searchParam = ref("");
+const router = useRouter();
+const loading = ref(false);
+
+async function logout() {
+  loading.value = true;
+  setTimeout(() => {
+    loading.value = false;
+    pb.authStore.clear();
+    router.push({ name: "Login" });
+  }, 1000);
+}
 </script>
 
 <template>
   <header class="bg-neutral-100 border-b border-neutral-200 px-6 py-3">
     <div class="container flex items-center justify-between">
-      <RouterLink to="/" class="flex items-center gap-x-2">
+      <RouterLink to="/" class="flex flex-shrink-0 items-center gap-x-2">
         <img src="../../assets/vue.svg" class="max-h-[30px]" />
         <p class="text-2xl text-neutral-700">
           Form<span class="text-neutral-400 font-bold">JAM</span>
         </p>
       </RouterLink>
 
-      <TextInput
+      <XTextInput
         id="search_input"
         type="text"
         placeholder="Search"
         is-searchable
         v-model="searchParam"
       />
-      <div class="flex gap-x-2">
+      <div class="flex flex-shrink-0 gap-x-2">
         <RouterLink to="/form/create">
           <XButton text="Create Form" :has-icon="false" class="font-medium">
             <template #icon>
@@ -35,9 +50,15 @@ const searchParam = ref("");
           </XButton>
         </RouterLink>
 
-        <XButton text="" :has-icon="false" class="font-medium">
+        <XButton
+          class="font-medium"
+          :has-icon="false"
+          text="Log out"
+          :loading="loading"
+          @trigger-event="logout"
+        >
           <template #icon>
-            <IconUser class="w-6 h-6" />
+            <IconLogout class="w-6 h-6 mr-2" />
           </template>
         </XButton>
       </div>
