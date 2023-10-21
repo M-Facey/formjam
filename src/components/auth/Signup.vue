@@ -1,12 +1,17 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-import TextInput from "../inputs/TextInput.vue";
+import { ref, computed } from "vue";
+import { FormError } from "../../types/form";
+import XTextInput from "../inputs/TextInput.vue";
 import XButton from "../inputs/Button.vue";
+import FormErrorMessage from "../form/FormErrorMessage.vue";
+
+import pb from "../../db/pocketBase";
+import { useRouter } from "vue-router";
 
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 
-const { handleSubmit } = useForm({
+const { values, handleSubmit, resetForm } = useForm({
   validationSchema: yup.object({
     firstName: yup
       .string()
@@ -37,13 +42,53 @@ const { handleSubmit } = useForm({
   }),
 });
 
-const loading = ref(false);
-const submitForm = handleSubmit(() => {
-  loading.value = true;
-  setTimeout(() => {
-    loading.value = false;
-  }, 2000);
+const fullName = computed(() => {
+  return values.firstName + " " + values.lastName;
 });
+
+const router = useRouter();
+const loading = ref(false);
+const submitForm = handleSubmit(
+  async ({ email, password, confirmPassword }) => {
+    loading.value = true;
+    const data = {
+      username: "",
+      email,
+      password,
+      passwordConfirm: confirmPassword,
+      name: fullName.value,
+    };
+
+    try {
+      await pb.collection("users").create(data);
+      resetForm();
+      router.push("/auth/login");
+    } catch (error: any) {
+      const errorResponse = error.data as FormError;
+      let errorFields = Object.keys(errorResponse.data);
+      errorMessage.value = errorResponse.data[errorFields[0]].message;
+      resetErrorMessage();
+    }
+    loading.value = false;
+  }
+);
+
+// error message functions
+const hasErrorMessage = computed(() => {
+  return errorMessage.value !== "";
+});
+const errorMessage = ref("");
+const errorTimoutId = ref(-1);
+function resetErrorMessage() {
+  errorTimoutId.value = setTimeout(() => {
+    errorMessage.value = "";
+  }, 10000);
+}
+
+function closeErrorMessage() {
+  clearTimeout(errorTimoutId.value);
+  errorMessage.value = "";
+}
 </script>
 
 <template>
@@ -53,37 +98,47 @@ const submitForm = handleSubmit(() => {
     </h2>
 
     <div class="flex flex-col gap-y-2">
-      <TextInput
+      <FormErrorMessage
+        v-if="hasErrorMessage"
+        :message="errorMessage"
+        @close-error-message="closeErrorMessage"
+      />
+      <XTextInput
         id="signup_firstname"
         name="firstName"
         type="text"
         placeholder="First Name"
       >
         <label for="signup_firstname" class="pb-1">First Name</label>
-      </TextInput>
-      <TextInput
+      </XTextInput>
+      <XTextInput
         id="signup_lastname"
         name="lastName"
         type="text"
         placeholder="Last Name"
       >
         <label for="signup_lastname" class="pb-1">Last Name</label>
-      </TextInput>
+      </XTextInput>
 
-      <TextInput id="signup_email" name="email" type="text" placeholder="Email">
+      <XTextInput
+        id="signup_email"
+        name="email"
+        type="text"
+        placeholder="Email"
+      >
         <label for="signup_email" class="pb-1">Email</label>
-      </TextInput>
+      </XTextInput>
 
-      <TextInput
+      <XTextInput
         id="signup_pasxsword"
         name="password"
         type="password"
         placeholder="Password"
       >
         <label for="signup_password" class="pb-1">Password</label>
-      </TextInput>
+      </XTextInput>
 
-      <TextInput
+      <XTextInput
         id="signup_confirm_password"
         name="confirmPassword"
         type="password"
@@ -92,7 +147,7 @@ const submitForm = handleSubmit(() => {
         <label for="signup_confirm_password" class="pb-1"
           >Confirm Password</label
         >
-      </TextInput>
+      </XTextInput>
 
       <div class="flex items-center justify-between pt-4">
         <p class="text-lg">
