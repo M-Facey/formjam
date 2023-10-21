@@ -1,10 +1,15 @@
 <script lang="ts" setup>
 import { ref } from "vue";
+import { useRouter } from "vue-router";
+
 import { useForm } from "vee-validate";
 import * as yup from "yup";
-import TextInput from "../inputs/TextInput.vue";
+import pb from "../../db/pocketBase";
+
+import XTextInput from "../inputs/TextInput.vue";
 import XButton from "../inputs/Button.vue";
 import XCheckbox from "../inputs/Checkbox.vue";
+import FormErrorMessage from "../form/FormErrorMessage.vue";
 
 const rememberMe = ref(false);
 
@@ -22,14 +27,32 @@ const { handleSubmit } = useForm({
   }),
 });
 
+const router = useRouter();
 const loading = ref(false);
-
-const onSubmit = handleSubmit(() => {
+const errorMessage = ref("");
+const errorTimeoutId = ref(-1);
+const onSubmit = handleSubmit(async ({ email, password }) => {
   loading.value = true;
-  setTimeout(() => {
-    loading.value = false;
-  }, 2000);
+  try {
+    await pb.collection("users").authWithPassword(email, password);
+    router.push("/dashboard");
+  } catch (error: any) {
+    errorMessage.value = "Failed to authenticate";
+    resetErrorMessage();
+  }
+  loading.value = false;
 });
+
+function resetErrorMessage() {
+  errorTimeoutId.value = setTimeout(() => {
+    errorMessage.value = "";
+  }, 10000);
+}
+
+function closeErrorMessage() {
+  clearTimeout(errorTimeoutId.value);
+  errorMessage.value = "";
+}
 </script>
 
 <template>
@@ -39,18 +62,23 @@ const onSubmit = handleSubmit(() => {
     </h2>
 
     <div class="flex flex-col gap-y-2">
-      <TextInput name="email" id="login_email" type="text" placeholder="Email">
+      <FormErrorMessage
+        v-if="errorMessage"
+        :message="errorMessage"
+        @close-error-message="closeErrorMessage"
+      />
+      <XTextInput name="email" id="login_email" type="text" placeholder="Email">
         <label for="login_email" class="pb-1">Email</label>
-      </TextInput>
+      </XTextInput>
 
-      <TextInput
+      <XTextInput
         name="password"
         id="login_password"
         type="password"
         placeholder="Password"
       >
         <label for="login_password" class="pb-1">Password</label>
-      </TextInput>
+      </XTextInput>
 
       <XCheckbox
         id="loginRememberMe"
