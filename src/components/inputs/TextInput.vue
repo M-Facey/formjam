@@ -29,9 +29,9 @@ function toggleShowPassword() {
 </script>
 
 <template>
-  <div class="flex flex-col">
+  <div class="w-[90%] max-w-[450px] flex flex-col">
     <slot />
-    <div class="w-[450px] relative">
+    <div class="relative">
       <input
         v-if="name"
         :id="id"
@@ -73,11 +73,11 @@ function toggleShowPassword() {
         @click="toggleShowPassword"
       >
         <IconEyeClose
-          v-show="showPassword && type === 'password'"
+          v-show="!showPassword && type === 'password'"
           class="eye-icon w-7 h-7"
         />
         <IconEyeOpen
-          v-show="!showPassword && type === 'password'"
+          v-show="showPassword && type === 'password'"
           class="eye-icon w-7 h-7"
         />
       </button>
