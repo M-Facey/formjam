@@ -48,7 +48,8 @@ export type DropdownPropType = {
     value: string;
     icon?: Component;
   }[];
-  isSearchable?: string;
+  isSearchable?: boolean;
+  showSelectedOption?: boolean;
 };
 
 export type TogglePropType = {
