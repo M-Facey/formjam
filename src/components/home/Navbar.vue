@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import pb from "../../db/pocketBase";
+import { createForm } from "../../utils/form";
 
 import IconAdd from "../icons/Add.vue";
 import IconLogout from "../icons/Logout.vue";
@@ -8,11 +10,14 @@ import IconLogout from "../icons/Logout.vue";
 import XTextInput from "../inputs/TextInput.vue";
 import XButton from "../inputs/Button.vue";
 
-import pb from "../../db/pocketBase";
-
 const searchParam = ref("");
 const router = useRouter();
 const loading = ref(false);
+
+async function gotoCreateFormPage() {
+  const id = await createForm();
+  router.push({ name: "EditForm", params: { formId: id } });
+}
 
 async function logout() {
   loading.value = true;
@@ -42,13 +47,16 @@ async function logout() {
         v-model="searchParam"
       />
       <div class="flex flex-shrink-0 gap-x-2">
-        <RouterLink to="/form/create">
-          <XButton text="Create Form" :has-icon="false" class="font-medium">
-            <template #icon>
-              <IconAdd class="w-6 h-6 mr-2" />
-            </template>
-          </XButton>
-        </RouterLink>
+        <XButton
+          text="Create Form"
+          :has-icon="false"
+          class="font-medium"
+          @trigger-event="gotoCreateFormPage"
+        >
+          <template #icon>
+            <IconAdd class="w-6 h-6 mr-2" />
+          </template>
+        </XButton>
 
         <XButton
           class="font-medium"
