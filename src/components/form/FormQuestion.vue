@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, shallowRef } from "vue";
 import XTextInput from "../inputs/TextInput.vue";
 import XDropdown from "../inputs/Dropdown.vue";
 import XToggle from "../inputs/Toggle.vue";
@@ -24,7 +24,7 @@ const questionConfig = ref({
   required: false,
 });
 
-const questionTypeOptions = ref([
+const questionTypeOptions = shallowRef([
   { name: "Short Text", value: "short-text", icon: IconShortText },
   { name: "Paragraph", value: "paragraph", icon: IconLongText },
   { name: "Multiple Choice", value: "single-choice", icon: IconSelect },
