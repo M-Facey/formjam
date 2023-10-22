@@ -5,9 +5,7 @@ export async function createForm(): Promise<string> {
   const formData = await pb.collection("forms").create({
     title: "Untitled Form",
     description: "",
-    categories: JSON.stringify({
-      category: "",
-    }),
+    view: "list",
     questions: [],
     preview_link: "",
     link: "",
