@@ -1,9 +1,14 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { DropdownPropType } from "../../types/inputs";
-import IconArrowDown from "../icons/ArrowDown.vue";
 
-defineProps<DropdownPropType>();
+import IconArrowDown from "../icons/ArrowDown.vue";
+import IconMenu from "../icons/Menu.vue";
+
+withDefaults(defineProps<DropdownPropType>(), {
+  isSearchable: false,
+  showSelectedOption: true,
+});
 
 const showDropdown = ref(false);
 function toggleDropdown() {
@@ -14,6 +19,7 @@ function toggleDropdown() {
 <template>
   <div class="relative">
     <div
+      v-if="showSelectedOption"
       class="flex items-center justify-between bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 hover:border-neutral-300 px-3 py-2 rounded-md cursor-pointer"
       @click="toggleDropdown"
     >
@@ -28,10 +34,19 @@ function toggleDropdown() {
       <IconArrowDown class="w-6 h-6" :class="{ 'rotate-180': showDropdown }" />
     </div>
 
+    <div
+      v-else
+      class="flex items-center justify-between bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 hover:border-neutral-300 px-1.5 py-1.5 rounded-md cursor-pointer"
+      @click="toggleDropdown"
+    >
+      <IconMenu class="w-6 h-6" />
+    </div>
+
     <Transition name="slide-fade">
       <div
         v-if="showDropdown"
-        class="absolute top-full translate-y-2 w-full flex flex-col bg-neutral-50 border border-neutral-200 rounded-md z-10"
+        class="absolute top-full translate-y-2 right-0 flex flex-col bg-neutral-50 border border-neutral-200 rounded-md z-10"
+        :class="{ 'w-full': showSelectedOption, 'w-max': !showSelectedOption }"
       >
         <p
           v-for="option in options"
