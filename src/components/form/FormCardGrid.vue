@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import type { SanitizedFormType, FormGridEmitType } from "../../types/form";
-import * as dayjs from "dayjs";
+import dayjs from "dayjs";
 
 import FormCard from "./FormCard.vue";
 
@@ -17,9 +17,12 @@ defineEmits<FormGridEmitType>();
       :last-edited="dayjs(form.updated).format('MMM DD, YYYY')"
       :created-at="form.created"
       @delete-form="
-        () => $emit('trigger-event', { id: form.id, name: 'delete', value: null })
+        () =>
+          $emit('trigger-event', { id: form.id, name: 'delete', value: null })
       "
-      @edit-form="() => $emit('trigger-event', {id: form.id, name: 'edit', value: null })"
+      @edit-form="
+        () => $emit('trigger-event', { id: form.id, name: 'edit', value: null })
+      "
     />
   </div>
 </template>
