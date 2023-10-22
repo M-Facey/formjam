@@ -8,7 +8,7 @@ import Login from "../components/auth/Login.vue";
 import Signup from "../components/auth/Signup.vue";
 
 import DashboardPage from "../pages/dashboard.vue";
-import CreateFormPage from "../pages/form/create.vue";
+import EditFormPage from "../pages/form/edit.vue";
 
 import NotFoundPage from "../pages/404.vue";
 import ErrorPage from "../pages/error.vue";
@@ -28,6 +28,9 @@ const router = createRouter({
       path: "/auth",
       name: "Auth",
       component: AuthPage,
+      redirect: () => {
+        return { path: '/auth/login' }
+      },
       meta: {
         layout: "Default",
       },
@@ -54,9 +57,9 @@ const router = createRouter({
       },
     },
     {
-      path: "/form/create",
-      name: "CreateForm",
-      component: CreateFormPage,
+      path: "/form/:formId/edit",
+      name: "EditForm",
+      component: EditFormPage,
       meta: {
         layout: "Form",
       },

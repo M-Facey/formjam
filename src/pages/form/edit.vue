@@ -1,13 +1,14 @@
 <script lang="ts" setup>
+import { useRoute } from "vue-router";
 import FormQuestionList from "../../components/form/FormQuestionList.vue";
+
+const route = useRoute();
 </script>
 
 <template>
   <div class="px-5 pt-5">
     <div class="w-full max-w-[1000px] mx-auto">
-      <p>sdasd</p>
-
-      <FormQuestionList />
+      <FormQuestionList :form-id="(route.params.formId as string)" />
     </div>
   </div>
 </template>
