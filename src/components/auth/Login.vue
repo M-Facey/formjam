@@ -22,7 +22,7 @@ const { handleSubmit } = useForm({
     password: yup
       .string()
       .required("Your password is required")
-      .min(6, "Your password must contain at least 6 characters")
+      .min(8, "Your password must contain at least 8 characters")
       .max(25, "Your password must contain at most 25 characters"),
   }),
 });
