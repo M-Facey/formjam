@@ -9,7 +9,7 @@ import InfoCard from "../components/home/InfoCard.vue";
     class="w-full max-w-[1200px] text-white flex flex-grow flex-col items-center px-3 sm:px-6 mx-auto"
   >
     <h2
-      class="text-lg sm:text-2xl md:text-4xl text-center mt-12 mb-1 md:mb-3 text-white/80"
+      class="text-lg sm:text-2xl md:text-4xl text-center mt-12 mb-1 md:mb-3 text-black/80 dark:text-white/80"
     >
       Welcome to FormJAM
     </h2>
@@ -46,21 +46,33 @@ import InfoCard from "../components/home/InfoCard.vue";
       <img
         src="../assets/images/bg-circle.png"
         alt="circles"
-        class="absolute bottom-0"
+        class="hidden dark:block absolute bottom-0"
+      />
+      <img
+        src="../assets/images/bg-circle-light.png"
+        alt="circles"
+        class="block dark:hidden absolute bottom-0"
       />
       <img
         src="../assets/images/dashboard-dark.png"
         alt="dashboard"
-        class="relative"
+        class="hidden dark:block relative"
+      />
+      <img
+        src="../assets/images/dashboard-light.png"
+        alt="dashboard"
+        class="block dark:hidden relative"
       />
     </div>
   </div>
-  <footer class="w-full py-2 border-t border-primary-dark-100 text-center">
+  <footer
+    class="w-full py-2 border-t border-neutral-200 dark:border-primary-dark-100 text-neutral-900 dark:text-white text-center"
+  >
     <p>
       Copyright © {{ new Date().getFullYear() }}
       <a
         href="https://github.com/M-Facey"
-        class="underline text-white/60 hover:text-white"
+        class="underline text-neutral-950 dark:text-white/60 hover:text-neutral-500 dark:hover:text-white"
         >Murphy Facey</a
       >
     </p>

@@ -1,7 +1,10 @@
 <script lang="ts" setup>
 import { ref } from "vue";
+
 import IconMenu from "../icons/Menu.vue";
 import IconClose from "../icons/Close.vue";
+
+import ThemeToggle from "../common/ThemeToggle.vue";
 
 const showNavDropdown = ref(false);
 function toggleNavDropdown() {
@@ -11,7 +14,7 @@ function toggleNavDropdown() {
 
 <template>
   <header
-    class="sticky top-0 w-full bg-primary-dark-800 flex items-center py-4 px-3 md:px-6 border-b border-primary-dark-500 z-50"
+    class="sticky top-0 w-full bg-primary-light-100 dark:bg-primary-dark-800 flex items-center py-4 px-3 md:px-6 text-neutral-900 dark:text-white"
   >
     <div
       class="w-full max-w-[1200px] flex items-center justify-between mx-auto"
@@ -21,36 +24,44 @@ function toggleNavDropdown() {
         <h1 class="text-xl md:text-2xl leading-4 font-bold">FormJAM</h1>
       </div>
 
-      <nav class="hidden md:flex items-center gap-x-3">
-        <RouterLink to="/auth/signup">
-          <button
-            class="hover:bg-white/10 border border-white/30 py-2 px-4 font-light rounded-lg select-none"
-          >
-            Sign up
-          </button>
-        </RouterLink>
-        <RouterLink to="/auth/login">
-          <button
-            class="btn relative bg-primary-dark-500 py-2 px-4 font-medium rounded-md select-none"
-          >
-            <p class="relative z-10">Log in</p>
-          </button>
-        </RouterLink>
-      </nav>
+      <div class="hidden md:flex items-center">
+        <ThemeToggle />
+
+        <div class="block w-[1px] h-8 bg-black/20 dark:bg-white/20 mx-4"></div>
+
+        <nav class="flex items-center gap-x-3">
+          <RouterLink to="/auth/signup">
+            <button
+              class="hover:bg-black/5 dark:hover:bg-white/10 border border-neutral-300 dark:border-white/30 py-2 px-4 rounded-lg select-none"
+            >
+              Sign up
+            </button>
+          </RouterLink>
+          <RouterLink to="/auth/login">
+            <button
+              class="btn relative bg-primary-dark-500 py-2 px-4 font-medium rounded-md select-none"
+            >
+              <p class="relative z-10">Log in</p>
+            </button>
+          </RouterLink>
+        </nav>
+      </div>
 
       <div class="block md:hidden" @click.stop="toggleNavDropdown">
-        <button class="p-1.5 border border-primary-dark-100 rounded-md">
+        <button
+          class="p-1.5 border border-gray-300 dark:border-primary-dark-100 rounded-md"
+        >
           <IconMenu class="w-6 h-6" :class="{ hidden: showNavDropdown }" />
           <IconClose class="w-6 h-6" :class="{ hidden: !showNavDropdown }" />
         </button>
 
         <nav
           v-if="showNavDropdown"
-          class="absolute top-full left-0 translate-y-[1px] w-full flex flex-col gap-y-2 bg-black p-4 z-50"
+          class="absolute top-full left-0 translate-y-[1px] w-full flex flex-col gap-y-4 bg-white dark:bg-black p-4 z-50"
         >
           <RouterLink to="/auth/signup">
             <button
-              class="w-full hover:bg-white/10 border border-white/30 py-2 px-4 font-light rounded-lg select-none"
+              class="w-full hover:bg-black/5 dark:hover:bg-white/10 border border-neutral-300 dark:border-white/30 py-2 px-4 rounded-lg select-none"
             >
               Sign up
             </button>
@@ -62,6 +73,13 @@ function toggleNavDropdown() {
               <p class="relative z-10">Log in</p>
             </button>
           </RouterLink>
+          <div
+            class="w-full flex items-center justify-between px-4 py-3 bg-gray-50 dark:bg-white/10 rounded-md"
+            @click.stop
+          >
+            <p>Appearance</p>
+            <ThemeToggle />
+          </div>
         </nav>
       </div>
     </div>
@@ -72,7 +90,7 @@ function toggleNavDropdown() {
 .btn::before {
   content: "";
   position: absolute;
-  inset: 0px;
+  inset: 2px;
   opacity: 0.45;
   transform: translate3d(0, 0, -1px);
   background: linear-gradient(#ff007a, #7000ff, #ff007a, #7000ff);
@@ -103,7 +121,7 @@ function toggleNavDropdown() {
   content: "";
   position: absolute;
   inset: 1px;
-  @apply bg-neutral-900 transition rounded-[5px];
+  @apply bg-white dark:bg-neutral-900 transition rounded-[5px];
 }
 
 @keyframes btn-pan-down {
