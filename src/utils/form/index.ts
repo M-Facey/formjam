@@ -14,7 +14,7 @@ export async function createForm(): Promise<string> {
 
   const questionData = await pb.collection("questions").create({
     text: "Question 1",
-    type: "multiple_choice",
+    type: "single-choice",
     answers: [],
     form: formData.id,
   });
