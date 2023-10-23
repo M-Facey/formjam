@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@vee-validate/yup": "^4.11.8",
+    "@vueuse/core": "^10.5.0",
     "dayjs": "^1.11.10",
     "pinia": "^2.1.7",
     "pocketbase": "^0.18.2",
