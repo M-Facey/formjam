@@ -14,7 +14,7 @@ function toggleNavDropdown() {
 
 <template>
   <header
-    class="sticky top-0 w-full bg-primary-light-100 dark:bg-primary-dark-800 flex items-center py-4 px-3 md:px-6 text-neutral-900 dark:text-white"
+    class="sticky top-0 w-full bg-primary-light-100 dark:bg-primary-dark-800 flex items-center py-4 px-3 md:px-6 text-neutral-900 dark:text-white z-[100]"
   >
     <div
       class="w-full max-w-[1200px] flex items-center justify-between mx-auto"
@@ -57,7 +57,7 @@ function toggleNavDropdown() {
 
         <nav
           v-if="showNavDropdown"
-          class="absolute top-full left-0 translate-y-[1px] w-full flex flex-col gap-y-4 bg-white dark:bg-black p-4 z-50"
+          class="absolute top-full left-0 translate-y-[1px] w-full flex flex-col gap-y-4 bg-white dark:bg-black p-4 z-[999]"
         >
           <RouterLink to="/auth/signup">
             <button
