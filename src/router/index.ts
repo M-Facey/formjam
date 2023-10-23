@@ -29,10 +29,10 @@ const router = createRouter({
       name: "Auth",
       component: AuthPage,
       redirect: () => {
-        return { path: '/auth/login' }
+        return { path: "/auth/login" };
       },
       meta: {
-        layout: "Default",
+        layout: "Auth",
       },
       children: [
         {

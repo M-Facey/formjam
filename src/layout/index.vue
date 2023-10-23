@@ -7,6 +7,7 @@ import { useRoute } from "vue-router";
 import DefaultLayout from "./default.vue";
 import AppLayout from "./app.vue";
 import FormLayout from "./form.vue";
+import AuthLayout from "./auth.vue";
 
 const route = useRoute();
 const layoutName = ref("Default");
@@ -28,8 +29,11 @@ watch(
       layoutName.value = "App";
       layoutComponent.value = AppLayout;
     } else if (route.meta.layout === "Form") {
-      layoutName.value = "form";
+      layoutName.value = "Form";
       layoutComponent.value = FormLayout;
+    } else if (route.meta.layout === "Auth") {
+      layoutName.value = "Auth";
+      layoutComponent.value = AuthLayout;
     }
   }
 );
