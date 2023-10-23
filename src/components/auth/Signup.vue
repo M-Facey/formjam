@@ -30,7 +30,7 @@ const { values, handleSubmit, resetForm } = useForm({
     password: yup
       .string()
       .required("Your password is required")
-      .min(6, "Your password must contain at least 6 characters")
+      .min(8, "Your password must contain at least 8 characters")
       .max(25, "Your password must contain at most 25 characters"),
     confirmPassword: yup
       .string()
@@ -134,6 +134,7 @@ function closeErrorMessage() {
         name="password"
         type="password"
         placeholder="Password"
+        max="25"
       >
         <label for="signup_password" class="pb-1">Password</label>
       </XTextInput>
