@@ -1,13 +1,23 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import type { FormCardPropType, FormCardEmitType } from "../../types/form";
 
 import IconDots from "../icons/Dots.vue";
 import IconDelete from "../icons/Delete.vue";
 import IconEdit from "../icons/Edit.vue";
 
-defineProps<FormCardPropType>();
+const props = defineProps<FormCardPropType>();
 defineEmits<FormCardEmitType>();
+
+// ** Dev note **
+// Since the title in rich text, I decided to rendered the rich text
+// in a hidden element, and extract it using `textContent` property.
+// A ref was used to avoid having to create custom ids
+const titleElem = ref<HTMLDivElement>();
+const unformattedTitle = computed(() => {
+  if (titleElem.value === undefined) return props.title;
+  return titleElem.value.textContent;
+});
 
 const showFormDropdown = ref(false);
 function toggleFormDropdown() {
@@ -23,7 +33,8 @@ function toggleFormDropdown() {
     <div class="h-[130px] bg-sky-400"></div>
 
     <div class="relative py-2 px-2">
-      <p class="font-medium">{{ title }}</p>
+      <p class="pr-10 font-medium truncate" v-html="unformattedTitle"></p>
+      <div ref="titleElem" class="hidden" v-html="title"></div>
       <p class="text-sm text-gray-600 mt-auto py-2">
         Last edited:
         <span class="text-black font-medium">{{ lastEdited }}</span>
