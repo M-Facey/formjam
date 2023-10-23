@@ -9,7 +9,7 @@ import InfoCard from "../components/home/InfoCard.vue";
     class="w-full max-w-[1200px] text-white flex flex-grow flex-col items-center px-3 sm:px-6 mx-auto"
   >
     <h2
-      class="text-lg sm:text-2xl md:text-4xl text-center mt-12 mb-1 md:mb-3 text-black/80 dark:text-white/80"
+      class="text-xl sm:text-2xl md:text-4xl text-center mt-12 mb-1 md:mb-3 text-black/80 dark:text-white/80"
     >
       Welcome to FormJAM
     </h2>
