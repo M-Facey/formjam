@@ -8,6 +8,8 @@ export type TextPropType = {
   modelValue?: string;
   isOptional?: boolean;
   isSearchable?: boolean;
+  max?: string;
+  min?: string;
 };
 
 export type TextEmitType = {

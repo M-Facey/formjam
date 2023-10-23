@@ -14,6 +14,8 @@ const props = withDefaults(defineProps<TextPropType>(), {
   isOptional: false,
   isSearchable: false,
   modelValue: "",
+  min: '3',
+  max: '255',
 });
 
 const { value, errorMessage } = useField(() => {
@@ -44,6 +46,8 @@ function toggleShowPassword() {
           'pl-4 pr-14 py-3': type === 'password',
           'pl-10 pr-4 py-3': isSearchable,
         }"
+        :minlength="min"
+        :maxlength="max"
       />
       <input
         v-else
@@ -60,6 +64,8 @@ function toggleShowPassword() {
         @input="
           $emit('update:modelValue', ($event.target as HTMLInputElement).value)
         "
+        :minlength="min"
+        :maxlength="max"
       />
 
       <IconSearch
