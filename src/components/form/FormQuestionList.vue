@@ -2,9 +2,10 @@
 import { onMounted, onUnmounted, ref } from "vue";
 import { useRoute } from "vue-router";
 import pb from "../../db/pocketBase";
+import type { QuestionResponse } from "../../types/form";
 
 import FormQuestion from "./FormQuestion.vue";
-import { QuestionResponse } from "../../types/form";
+import TitleCard from "./question/TitleCard.vue";
 
 const props = defineProps<{ formId: string }>();
 const route = useRoute();
@@ -15,19 +16,16 @@ onMounted(async () => {
   questions.value = await pb.collection("questions").getList(1, 100, {
     filter: `form="${formId}"`,
   });
-
-  pb.collection("questions").subscribe("*", function (e) {
-    console.log(e.action);
-    console.log(e.record);
-  });
 });
 
 onUnmounted(() => {
   pb.collection("questions").unsubscribe("*");
 });
 </script>
+
 <template>
   <div class="flex flex-col gap-y-3">
+    <TitleCard :form-id="formId" />
     <FormQuestion v-for="question in questions?.items" :key="question.id" />
   </div>
 </template>
