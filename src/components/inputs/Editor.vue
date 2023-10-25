@@ -68,7 +68,6 @@ const editor = useEditor({
   onFocus: () => {
     if (waitId.value !== -1) {
       clearTimeout(waitId.value);
-      console.log("wait timer cleared");
       return;
     }
 
@@ -77,14 +76,13 @@ const editor = useEditor({
     }
   },
   onBlur: () => {
-    console.log("wait timer started, Menu is open?", isMenuOpen.value);
     waitId.value = setTimeout(() => {
       if (isMenuOpen) {
         hideMenu();
         emits("update:modelValue", editor.value?.getHTML() || "");
         waitId.value = -1;
       }
-    }, 150);
+    }, 250);
   },
   onDestroy: () => {
     emits("update:modelValue", editor.value?.getHTML() || "");
