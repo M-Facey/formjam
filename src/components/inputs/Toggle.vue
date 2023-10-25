@@ -13,7 +13,7 @@ defineEmits<CheckboxEmitType>();
         type="checkbox"
         class="invisible peer"
         :value="modelValue"
-        @input="$emit('update:modelValue', modelValue)"
+        @input="$emit('update:modelValue', !modelValue)"
       />
       <span
         class="slider absolute inset-0 bg-gray-200 peer-checked:bg-sky-500 transition duration-75 cursor-pointer"
