@@ -2,7 +2,7 @@
 import { onMounted, ref, watch } from "vue";
 import pb from "../../../db/pocketBase";
 
-import Editor from "../../inputs/Editor.vue";
+import XEditor from "../../inputs/Editor.vue";
 
 const props = defineProps<{ formId: string }>();
 
@@ -44,8 +44,12 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-y-3 p-4 bg-gray-100 rounded-lg">
-    <Editor type="title" placeholder="Untitled Form" v-model.lazy="title" />
-    <Editor placeholder="Form description" v-model.lazy="description" />
+  <div class="flex flex-col gap-y-2 p-4 bg-gray-100 rounded-lg">
+    <XEditor type="title" placeholder="Untitled Form" v-model.lazy="title" />
+    <XEditor
+      type="description"
+      placeholder="Form description"
+      v-model.lazy="description"
+    />
   </div>
 </template>
