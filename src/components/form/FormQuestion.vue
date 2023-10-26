@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { ref, shallowRef } from "vue";
-import XTextInput from "../inputs/TextInput.vue";
+import { onMounted, ref, shallowRef, watch } from "vue";
+import XEditor from "../inputs/Editor.vue";
 import XDropdown from "../inputs/Dropdown.vue";
 import XToggle from "../inputs/Toggle.vue";
 import XButton from "../inputs/Button.vue";
@@ -17,12 +17,10 @@ import IconArrowDown from "../icons/ArrowDown.vue";
 import IconCopy from "../icons/Copy.vue";
 import IconDelete from "../icons/Delete.vue";
 import IconAdjustment from "../icons/Adjustments.vue";
+import { Question } from "../../types/pocketbase";
+import pb from "../../db/pocketBase";
 
-const questionConfig = ref({
-  question: "",
-  description: "",
-  required: false,
-});
+const props = defineProps<{ question: Question }>();
 
 const questionTypeOptions = shallowRef([
   { name: "Short Text", value: "short-text", icon: IconShortText },
@@ -31,25 +29,47 @@ const questionTypeOptions = shallowRef([
   { name: "Checkboxes", value: "checboxes", icon: IconCheckbox },
   { name: "Dropdown", value: "dropdown", icon: IconDropdown },
 ]);
+
+const questionConfig = ref<Question>({
+  id: "",
+  created: "",
+  updated: "",
+  text: "",
+  description: "",
+  required: false,
+  type: "short-text",
+  answers: [],
+  form: "",
+});
+
+watch(
+  questionConfig,
+  async (questionData) => {
+    await pb.collection("questions").update(questionData.id, questionData);
+  },
+  { deep: true }
+);
+
+onMounted(() => {
+  questionConfig.value = props.question;
+});
 </script>
 
 <template>
   <div class="flex bg-gray-100 divide-x divide-gray-300">
     <div class="flex-grow p-4">
-      <XTextInput
-        id="form_question"
-        type="text"
-        placeholder="Untitled Question"
-        v-model="questionConfig.question"
+      <XEditor
+        type="question"
+        placeholder="Question"
+        v-model="questionConfig.text"
       />
-
-      <XTextInput
-        id="form_desc"
-        type="text"
-        placeholder="Description"
-        v-model="questionConfig.description"
-        class="mt-2"
-      />
+      <div class="pt-1">
+        <XEditor
+          type="description"
+          placeholder="Description"
+          v-model="questionConfig.description"
+        />
+      </div>
       <!-- general config for question type -->
       <div></div>
     </div>
