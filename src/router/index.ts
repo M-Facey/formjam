@@ -28,7 +28,10 @@ const router = createRouter({
       path: "/auth",
       name: "Auth",
       component: AuthPage,
-      redirect: () => {
+      redirect: (to) => {
+        if (to.name === "Signup" || to.name === "Login") {
+          return { path: to.fullPath };
+        }
         return { path: "/auth/login" };
       },
       meta: {
