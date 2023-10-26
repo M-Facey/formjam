@@ -21,6 +21,7 @@ interface Answer extends BaseCollectionType {
 
 interface Question extends BaseCollectionType {
   text: string;
+  description: string;
   type:
     | "short-text"
     | "paragraph"
@@ -28,6 +29,7 @@ interface Question extends BaseCollectionType {
     | "checkboxes"
     | "dropdown";
   answers: string[];
+  required: boolean;
   form: string;
 }
 

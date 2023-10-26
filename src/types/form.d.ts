@@ -1,3 +1,5 @@
+import { Question } from "./pocketbase";
+
 // component types
 export type FormCardPropType = {
   title: string;
@@ -64,16 +66,5 @@ export type QuestionResponse = {
   perPage: number;
   totalPages: number;
   totalItems: number;
-  items: {
-    id: string;
-    collectionId: string;
-    collectionName: string;
-    created: string;
-    updated: string;
-    text: string;
-    type: "multiple_choice" | "checkboxes";
-    answers: string[];
-    image: string;
-    form: string;
-  }[];
+  items: Question[];
 };
