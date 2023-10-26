@@ -9,7 +9,13 @@ import TitleCard from "./question/TitleCard.vue";
 
 const props = defineProps<{ formId: string }>();
 const route = useRoute();
-const questions = ref<QuestionResponse>();
+const questions = ref<QuestionResponse>({
+  page: 0,
+  perPage: 0,
+  totalItems: 0,
+  totalPages: 0,
+  items: [],
+});
 
 onMounted(async () => {
   const formId = props.formId || (route.params.formId as string);
@@ -26,6 +32,10 @@ onUnmounted(() => {
 <template>
   <div class="flex flex-col gap-y-3">
     <TitleCard :form-id="formId" />
-    <FormQuestion v-for="question in questions?.items" :key="question.id" />
+    <FormQuestion
+      v-for="question in questions?.items"
+      :key="question.id"
+      :question="question"
+    />
   </div>
 </template>
