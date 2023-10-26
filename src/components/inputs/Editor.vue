@@ -54,7 +54,7 @@ const editor = useEditor({
   ],
   editorProps: {
     attributes: {
-      class: "border-b border-gray-200 pb-1 outline-none",
+      class: createInputClass(),
     },
   },
   onUpdate: () => {
@@ -120,11 +120,23 @@ function setLink() {
   editor.value?.chain().focus().setUnderline().run();
 }
 
+function createInputClass() {
+  let baseClasses = "outline-none ";
+  if (props.type === "question") {
+    baseClasses += "py-0.5 text-lg";
+  } else if (props.type === "title") {
+    baseClasses += "border-b border-gray-200 pb-1 text-3xl";
+  } else if (props.type === "description") {
+    baseClasses += "border-b border-gray-200 pb-1 text-sm ";
+  }
+
+  return baseClasses;
+}
+
 const menu = ref<HTMLElement>();
 const isMenuOpen = ref(false);
 function showMenu() {
   if (menu.value === undefined) return;
-  // menu.value.style.height = '0px';
   let currentHeight = 0;
   const DESIRED_HEIGHT_IN_PIXEL = 36;
   const DURATION_IN_MS = 100;
@@ -168,15 +180,7 @@ onUnmounted(() => {
 
 <template>
   <div class="relative">
-    <editor-content
-      :editor="editor"
-      class="peer"
-      :class="{
-        'text-3xl': type === 'title',
-        'text-base': type === 'question',
-        'text-sm': type === 'description',
-      }"
-    />
+    <editor-content :editor="editor" class="peer" />
 
     <div
       v-if="editor"
