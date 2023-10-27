@@ -11,8 +11,10 @@ import Placeholder from "@tiptap/extension-placeholder";
 import IconBold from "../icons/text/Bold.vue";
 import IconItalics from "../icons/text/Italics.vue";
 import IconUnderline from "../icons/text/Underline.vue";
-import IconClearFormat from "../icons/text/ClearFormat.vue";
 import IconLink from "../icons/text/Link.vue";
+import IconList from "../icons/List.vue";
+import IconNumberedList from "../icons/text/NumberedList.vue";
+import IconClearFormat from "../icons/text/ClearFormat.vue";
 
 const props = withDefaults(
   defineProps<{
@@ -120,6 +122,19 @@ function setLink() {
   editor.value?.chain().focus().setUnderline().run();
 }
 
+function setList(listType: "bulletList" | "orderedList") {
+  if (editor.value?.isActive(listType)) {
+    editor.value.chain().focus().liftListItem("listItem").run();
+    return;
+  }
+
+  if (listType === "orderedList") {
+    editor.value?.chain().focus().toggleOrderedList().run();
+  } else if (listType === "bulletList") {
+    editor.value?.chain().focus().toggleBulletList().run();
+  }
+}
+
 function createInputClass() {
   let baseClasses = "prose outline-none ";
   if (props.type === "question") {
@@ -127,7 +142,8 @@ function createInputClass() {
   } else if (props.type === "title") {
     baseClasses += "border-b border-gray-200 pb-1 text-3xl";
   } else if (props.type === "description") {
-    baseClasses += "prose-sm border-b border-gray-200 pb-1 text-sm text-black/30";
+    baseClasses +=
+      "prose-sm border-b border-gray-200 pb-1 text-sm text-black/50";
   }
 
   return baseClasses;
@@ -210,6 +226,22 @@ onUnmounted(() => {
         @click="editor.chain().focus().toggleUnderline().run()"
       >
         <IconUnderline class="w-6 h-6" />
+      </button>
+      <button
+        v-if="type === 'description'"
+        class="hover:bg-gray-200 p-1 rounded-md"
+        :class="{ 'bg-gray-200': editor?.isActive('bulletList') }"
+        @click="setList('bulletList')"
+      >
+        <IconList class="w-6 h-6" />
+      </button>
+      <button
+        v-if="type === 'description'"
+        class="hover:bg-gray-200 p-1 rounded-md"
+        :class="{ 'bg-gray-200': editor?.isActive('orderedList') }"
+        @click="setList('orderedList')"
+      >
+        <IconNumberedList class="w-6 h-6" />
       </button>
       <button
         class="hover:bg-gray-200 p-1 rounded-md"
