@@ -15,8 +15,8 @@ export default {
             800: "#05051E",
           },
           light: {
-            100: '#F5F6FA'
-          }
+            100: "#F5F6FA",
+          },
         },
       },
       fontFamily: {
@@ -24,5 +24,5 @@ export default {
       },
     },
   },
-  plugins: [],
+  plugins: [require("@tailwindcss/typography")],
 };

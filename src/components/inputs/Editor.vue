@@ -121,13 +121,13 @@ function setLink() {
 }
 
 function createInputClass() {
-  let baseClasses = "outline-none ";
+  let baseClasses = "prose outline-none ";
   if (props.type === "question") {
     baseClasses += "py-0.5 text-lg";
   } else if (props.type === "title") {
     baseClasses += "border-b border-gray-200 pb-1 text-3xl";
   } else if (props.type === "description") {
-    baseClasses += "border-b border-gray-200 pb-1 text-sm ";
+    baseClasses += "prose-sm border-b border-gray-200 pb-1 text-sm text-black/30";
   }
 
   return baseClasses;
