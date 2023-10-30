@@ -29,7 +29,7 @@ jobs:
       - name: Cypress tests
         uses: cypress-io/github-action@v2
         env: 
-          BASE_URL: {{ secrets.BASE_URL }}
-          API_URL: {{ secrets.API_URL }}
-          USER_EMAIL: {{ secrets.USER_EMAIL }}
-          USER_PASSWORD: {{ secrets.USER_PASSWORD }}
+          BASE_URL: ${{ secrets.BASE_URL }}
+          API_URL: ${{ secrets.API_URL }}
+          USER_EMAIL: ${{ secrets.USER_EMAIL }}
+          USER_PASSWORD: ${{ secrets.USER_PASSWORD }}
