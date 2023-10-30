@@ -2,9 +2,9 @@
 import { computed, ref } from "vue";
 import type { FormCardPropType, FormCardEmitType } from "../../types/form";
 
-import IconDots from "../icons/Dots.vue";
-import IconDelete from "../icons/Delete.vue";
-import IconEdit from "../icons/Edit.vue";
+import IconDots from "../icons/menu/Dots.vue";
+import IconDelete from "../icons/controls/Delete.vue";
+import IconEdit from "../icons/controls/Edit.vue";
 
 const props = defineProps<FormCardPropType>();
 defineEmits<FormCardEmitType>();

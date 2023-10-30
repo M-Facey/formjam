@@ -13,7 +13,7 @@ import IconBold from "../icons/text/Bold.vue";
 import IconItalics from "../icons/text/Italics.vue";
 import IconUnderline from "../icons/text/Underline.vue";
 import IconLink from "../icons/text/Link.vue";
-import IconList from "../icons/List.vue";
+import IconList from "../icons/layout/List.vue";
 import IconNumberedList from "../icons/text/NumberedList.vue";
 import IconClearFormat from "../icons/text/ClearFormat.vue";
 

@@ -4,10 +4,10 @@ import type { TextPropType, TextEmitType } from "../../types/inputs";
 
 import { useField } from "vee-validate";
 
-import IconEyeClose from "../icons/EyeClose.vue";
-import IconEyeOpen from "../icons/EyeOpen.vue";
-import IconSearch from "../icons/Search.vue";
-import IconAlert from "../icons/Alert.vue";
+import IconEyeClose from "../icons/input/EyeClose.vue";
+import IconEyeOpen from "../icons/input/EyeOpen.vue";
+import IconSearch from "../icons/input/Search.vue";
+import IconAlert from "../icons/misc/Alert.vue";
 
 const props = withDefaults(defineProps<TextPropType>(), {
   placeholder: "",

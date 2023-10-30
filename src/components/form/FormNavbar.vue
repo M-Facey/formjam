@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import XButton from "../inputs/Button.vue";
-import IconEyeOpen from "../icons/EyeOpen.vue";
+import IconEyeOpen from "../icons/input/EyeOpen.vue";
 
 const currentSection = ref("Questions");
 function setSection(section: string) {

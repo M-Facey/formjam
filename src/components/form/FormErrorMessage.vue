@@ -3,8 +3,8 @@ import type {
   ErrorMessagePropType,
   ErrorMessageEmitType,
 } from "../../types/form";
-import IconClose from "../icons/Close.vue";
-import IconAlert from "../icons/Alert.vue";
+import IconClose from "../icons/controls/Close.vue";
+import IconAlert from "../icons/misc/Alert.vue";
 
 defineProps<ErrorMessagePropType>();
 defineEmits<ErrorMessageEmitType>();

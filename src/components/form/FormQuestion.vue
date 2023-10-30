@@ -13,10 +13,10 @@ import IconSelect from "../icons/question/Select.vue";
 import IconDropdown from "../icons/question/Dropdown.vue";
 
 // controls icons
-import IconArrowDown from "../icons/ArrowDown.vue";
-import IconCopy from "../icons/Copy.vue";
-import IconDelete from "../icons/Delete.vue";
-import IconAdjustment from "../icons/Adjustments.vue";
+import IconArrowDown from "../icons/controls/ArrowDown.vue";
+import IconCopy from "../icons/controls/Copy.vue";
+import IconDelete from "../icons/controls/Delete.vue";
+import IconAdjustment from "../icons/menu/Adjustments.vue";
 import { Question } from "../../types/pocketbase";
 import pb from "../../db/pocketBase";
 

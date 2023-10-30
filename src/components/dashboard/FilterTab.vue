@@ -4,7 +4,7 @@ import { ref } from "vue";
 import XDropdown from "../inputs/Dropdown.vue";
 import XButton from "../inputs/Button.vue";
 
-import IconGrid from "../icons/Grid.vue";
+import IconGrid from "../icons/layout/Grid.vue";
 
 const sortOptions = ref([
   { name: "Last Opened", value: "last_opened" },

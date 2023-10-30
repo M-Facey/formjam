@@ -4,8 +4,8 @@ import { useRouter } from "vue-router";
 import pb from "../../db/pocketBase";
 import { createForm } from "../../utils/form";
 
-import IconAdd from "../icons/Add.vue";
-import IconLogout from "../icons/Logout.vue";
+import IconAdd from "../icons/controls/Add.vue";
+import IconLogout from "../icons/controls/Logout.vue";
 
 import XTextInput from "../inputs/TextInput.vue";
 import XButton from "../inputs/Button.vue";

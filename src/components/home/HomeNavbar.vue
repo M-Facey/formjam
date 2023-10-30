@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import IconMenu from "../icons/Menu.vue";
-import IconClose from "../icons/Close.vue";
+import IconMenu from "../icons/menu/Menu.vue";
+import IconClose from "../icons/controls/Close.vue";
 
 import ThemeToggle from "../common/ThemeToggle.vue";
 
