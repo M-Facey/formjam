@@ -6,7 +6,9 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "cypress:open": "cypress open",
+    "test:e2e": "cypresss run"
   },
   "dependencies": {
     "@tiptap/extension-character-count": "^2.1.12",
@@ -19,6 +21,7 @@
     "@vee-validate/yup": "^4.11.8",
     "@vueuse/core": "^10.5.0",
     "dayjs": "^1.11.10",
+    "dotenv": "^16.3.1",
     "pinia": "^2.1.7",
     "pocketbase": "^0.18.2",
     "vee-validate": "^4.11.8",
@@ -31,6 +34,7 @@
     "@types/node": "^20.8.9",
     "@vitejs/plugin-vue": "^4.2.3",
     "autoprefixer": "^10.4.16",
+    "cypress": "^13.3.3",
     "postcss": "^8.4.31",
     "tailwindcss": "^3.3.3",
     "typescript": "^5.0.2",
