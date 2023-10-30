@@ -12,7 +12,7 @@ Purpose: Stores all icons related to performing a specific functions. **Please n
 Examples: `Logout`, `Add`, `Edit`, ...etc
 No. of icons: 7 icons
 
-### [Inputs](./inputs/)
+### [Input](./input/)
 
 Purpose: Store all icons relates to input functionality
 Examples: `Search`, `Eye Open` & `Eye Closed`
