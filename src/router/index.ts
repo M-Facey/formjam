@@ -3,16 +3,6 @@ import { middleware } from "@/router/middleware";
 
 import HomePage from "@/pages/index.vue";
 
-import AuthPage from "@/pages/auth.vue";
-import Login from "@/components/auth/Login.vue";
-import Signup from "@/components/auth/Signup.vue";
-
-import DashboardPage from "@/pages/dashboard.vue";
-import EditFormPage from "@/pages/form/edit.vue";
-
-import NotFoundPage from "@/pages/404.vue";
-import ErrorPage from "@/pages/error.vue";
-
 const router = createRouter({
   history: createWebHistory(),
   routes: [
@@ -27,7 +17,7 @@ const router = createRouter({
     {
       path: "/auth",
       name: "Auth",
-      component: AuthPage,
+      component: () => import("@/pages/auth.vue"),
       redirect: (to) => {
         if (to.name === "Signup" || to.name === "Login") {
           return { path: to.fullPath };
@@ -41,19 +31,19 @@ const router = createRouter({
         {
           path: "/auth/login",
           name: "Login",
-          component: Login,
+          component: () => import("@/components/auth/Login.vue"),
         },
         {
           path: "signup",
           name: "Signup",
-          component: Signup,
+          component: () => import("@/components/auth/Signup.vue"),
         },
       ],
     },
     {
       path: "/dashboard",
       name: "Dashboard",
-      component: DashboardPage,
+      component: () => import("@/pages/dashboard.vue"),
       meta: {
         layout: "App",
         authRequired: true,
@@ -62,7 +52,7 @@ const router = createRouter({
     {
       path: "/form/:formId/edit",
       name: "EditForm",
-      component: EditFormPage,
+      component: () => import("@/pages/form/edit.vue"),
       meta: {
         layout: "Form",
       },
@@ -70,7 +60,7 @@ const router = createRouter({
     {
       path: "/error",
       name: "Error",
-      component: ErrorPage,
+      component: () => import("@/pages/error.vue"),
       meta: {
         layout: "Default",
       },
@@ -78,7 +68,7 @@ const router = createRouter({
     {
       path: "/:pathMatch(.*)*",
       name: "NotFound",
-      component: NotFoundPage,
+      component: () => import("@/pages/404.vue"),
       meta: {
         layout: "Default",
       },
