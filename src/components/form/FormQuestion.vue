@@ -74,7 +74,7 @@ onMounted(() => {
       <div></div>
     </div>
     <!--  -->
-    <div class="w-full max-w-[300px] divide-y divide-gray-300">
+    <div class="w-full max-w-[250px] divide-y divide-gray-300">
       <div class="flex flex-col gap-y-2 p-4">
         <XDropdown
           :select-option="questionTypeOptions[0]"

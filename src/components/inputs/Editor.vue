@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { onUnmounted, watch, ref } from "vue";
+import { onUnmounted, watch, ref, computed } from "vue";
 
 import { Extension } from "@tiptap/vue-3";
 import { useEditor, EditorContent } from "@tiptap/vue-3";
@@ -7,6 +7,7 @@ import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
+import CharacterCount from "@tiptap/extension-character-count";
 
 import IconBold from "../icons/text/Bold.vue";
 import IconItalics from "../icons/text/Italics.vue";
@@ -38,12 +39,17 @@ const DisableEnter = Extension.create({
   },
 });
 
+const characterLimit = computed(() => {
+  return props.type === "title" ? 200 : 500;
+});
+
 const timerId = ref(-1);
 const waitId = ref(-1);
 const editor = useEditor({
   content: props.modelValue,
   extensions: [
     StarterKit,
+    DisableEnter, // custom extension for disabling enter
     Underline,
     Link.configure({
       openOnClick: false,
@@ -52,19 +58,44 @@ const editor = useEditor({
     Placeholder.configure({
       placeholder: props.placeholder,
     }),
-    DisableEnter,
+    CharacterCount.configure({
+      limit: characterLimit.value,
+    }),
   ],
   editorProps: {
     attributes: {
       class: createInputClass(),
     },
+    transformPastedText(text) {
+      const transformedText = text
+        .replaceAll("\n", " ")
+        .replaceAll("\r", " ")
+        .trim();
+      return transformedText;
+    },
+    transformPastedHTML(text) {
+      // Dev note:
+      // This function is used for pasting text without any new lines,
+      // this only applies to title inputs from website
+
+      // first, convert the text being pasted into HTML
+      const domParser = new DOMParser();
+      const html = domParser.parseFromString(text, "text/html");
+
+      // get text content from the pasted text
+      const content = html.documentElement.textContent;
+
+      // used one paragraph and paste all the content in there
+      html.body.innerHTML = `<!--StartFragment--><p>${content}</p><!--EndFragment-->`;
+      return html.documentElement.innerHTML;
+    },
   },
-  onUpdate: () => {
+  onUpdate: ({ editor }) => {
     if (timerId.value !== -1) {
       clearTimeout(timerId.value);
     }
     timerId.value = setTimeout(() => {
-      emits("update:modelValue", editor.value?.getHTML() || "");
+      emits("update:modelValue", editor.getHTML() || "");
     }, 1000);
   },
   onFocus: () => {
@@ -136,7 +167,7 @@ function setList(listType: "bulletList" | "orderedList") {
 }
 
 function createInputClass() {
-  let baseClasses = "prose outline-none ";
+  let baseClasses = "prose max-w-[100%] outline-none ";
   if (props.type === "question") {
     baseClasses += "py-0.5 text-lg";
   } else if (props.type === "title") {
@@ -159,7 +190,12 @@ function showMenu() {
   const interval = DESIRED_HEIGHT_IN_PIXEL / DURATION_IN_MS;
 
   const timerInterval = setInterval(() => {
-    if (menu.value === undefined) return;
+    // Dev Note:
+    // The menu value can be `undefined`, `null` or `HTMLElement`.
+    // So, a more generic check was used to text if the value exist inside the menu ref
+
+    // Chenks in lines: 212, 220
+    if (!menu.value) return;
     menu.value.style.height = `${currentHeight}px`;
     currentHeight += interval;
 
@@ -171,14 +207,19 @@ function showMenu() {
 }
 
 function hideMenu() {
-  if (menu.value === undefined) return;
+  if (!menu.value) return;
+
   let currentHeight = 36;
   const DESIRED_HEIGHT_IN_PIXEL = 0;
   const DURATION_IN_MS = 100;
   const interval = currentHeight / DURATION_IN_MS;
 
   const timerInterval = setInterval(() => {
-    if (menu.value === undefined) return;
+    if (!menu.value) {
+      clearInterval(timerInterval);
+      return;
+    }
+
     menu.value.style.height = `${currentHeight}px`;
     currentHeight -= interval;
 
@@ -195,7 +236,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="relative">
+  <div class="w-full relative">
     <editor-content :editor="editor" class="peer" />
 
     <div
@@ -256,6 +297,16 @@ onUnmounted(() => {
       >
         <IconClearFormat class="w-6 h-6" />
       </button>
+
+      <div class="h-full flex items-center gap-x-4 p-4">
+        <span class="block w-2 h-2 bg-black rounded-full"></span>
+        <p class="leading-0 text-lg text-gray-400">
+          <span class="text-black/70 font-bold">{{
+            editor.storage.characterCount.characters()
+          }}</span
+          >/{{ characterLimit }}
+        </p>
+      </div>
     </div>
   </div>
 </template>
