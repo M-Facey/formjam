@@ -32,6 +32,7 @@ function toggleNavDropdown() {
           <RouterLink to="/auth/signup">
             <button
               class="hover:bg-black/5 dark:hover:bg-white/10 border border-neutral-300 dark:border-white/30 py-2 px-4 rounded-lg select-none"
+              data-cy="home_signup_btn"
             >
               Sign up
             </button>
@@ -39,6 +40,7 @@ function toggleNavDropdown() {
           <RouterLink to="/auth/login">
             <button
               class="btn relative bg-primary-dark-500 py-2 px-4 font-medium rounded-md select-none"
+              data-cy="home_login_btn"
             >
               <p class="relative z-10">Log in</p>
             </button>
@@ -49,6 +51,7 @@ function toggleNavDropdown() {
       <div class="block md:hidden" @click.stop="toggleNavDropdown">
         <button
           class="p-1.5 border border-gray-300 dark:border-primary-dark-100 rounded-md"
+          data-cy="home_menu_btn"
         >
           <IconMenu class="w-6 h-6" :class="{ hidden: showNavDropdown }" />
           <IconClose class="w-6 h-6" :class="{ hidden: !showNavDropdown }" />
@@ -61,6 +64,7 @@ function toggleNavDropdown() {
           <RouterLink to="/auth/signup">
             <button
               class="w-full hover:bg-black/5 dark:hover:bg-white/10 border border-neutral-300 dark:border-white/30 py-2 px-4 rounded-lg select-none"
+              data-cy="home_mobile_signup_btn"
             >
               Sign up
             </button>
@@ -68,6 +72,7 @@ function toggleNavDropdown() {
           <RouterLink to="/auth/login">
             <button
               class="w-full btn relative bg-primary-dark-500 py-2 px-4 font-medium rounded-md select-none"
+              data-cy="home_mobile_login_btn"
             >
               <p class="relative z-10">Log in</p>
             </button>

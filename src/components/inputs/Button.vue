@@ -8,7 +8,9 @@ withDefaults(defineProps<ButtonPropType>(), {
   align: "left",
   size: "compact",
   reverseOrder: false,
+  dataCy: "",
 });
+
 defineEmits<ButtonEmitType>();
 </script>
 
@@ -19,6 +21,7 @@ defineEmits<ButtonEmitType>();
       'w-fit': size === 'compact',
       'w-full': size === 'expand',
     }"
+    :data-cy="dataCy"
     @click="$emit('triggerEvent')"
   >
     <div

@@ -10,6 +10,7 @@ export type TextPropType = {
   isSearchable?: boolean;
   max?: string;
   min?: string;
+  dataCy?: string;
 };
 
 export type TextEmitType = {
@@ -23,6 +24,7 @@ export type ButtonPropType = {
   align?: "left" | "center" | "right";
   size?: "compact" | "expand";
   loading?: boolean;
+  dataCy?: string;
 };
 
 export type ButtonEmitType = {
@@ -33,6 +35,7 @@ export type CheckboxPropType = {
   id?: string;
   text: string;
   modelValue: boolean;
+  dataCy?: string;
 };
 
 export type CheckboxEmitType = {

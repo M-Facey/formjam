@@ -60,8 +60,9 @@ async function logout() {
 
         <XButton
           class="font-medium"
-          :has-icon="false"
           text="Log out"
+          data-cy="dashboard_logout_btn"
+          :has-icon="false"
           :loading="loading"
           @trigger-event="logout"
         >

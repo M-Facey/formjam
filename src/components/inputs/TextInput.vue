@@ -16,6 +16,7 @@ const props = withDefaults(defineProps<TextPropType>(), {
   modelValue: "",
   min: "3",
   max: "255",
+  dataCy: "",
 });
 
 const { value, errorMessage } = useField(() => {
@@ -37,9 +38,9 @@ function toggleShowPassword() {
       <input
         v-if="name"
         :id="id"
+        v-model="value"
         :type="!showPassword && type === 'password' ? type : 'text'"
         :placeholder="placeholder"
-        v-model="value"
         class="w-full px-4 py-3 text-black rounded-lg outline-none"
         :class="{
           'px-4 py-3': type !== 'password',
@@ -48,6 +49,7 @@ function toggleShowPassword() {
         }"
         :minlength="min"
         :maxlength="max"
+        :data-cy="dataCy"
       />
       <input
         v-else

@@ -68,7 +68,13 @@ function closeErrorMessage() {
         :message="errorMessage"
         @close-error-message="closeErrorMessage"
       />
-      <XTextInput name="email" id="login_email" type="text" placeholder="Email">
+      <XTextInput
+        name="email"
+        id="login_email"
+        type="text"
+        placeholder="Email"
+        data-cy="login_email_input"
+      >
         <label for="login_email" class="pb-1">Email</label>
       </XTextInput>
 
@@ -77,6 +83,7 @@ function closeErrorMessage() {
         id="login_password"
         type="password"
         placeholder="Password"
+        data-cy="login_password_input"
       >
         <label for="login_password" class="pb-1">Password</label>
       </XTextInput>
@@ -86,6 +93,7 @@ function closeErrorMessage() {
         text="Remember me?"
         v-model="rememberMe"
         class="pt-3"
+        data-cy="login_rememberme_input"
       />
 
       <div class="flex items-center justify-between">
@@ -94,6 +102,7 @@ function closeErrorMessage() {
           <RouterLink
             to="/auth/signup"
             class="text-sky-500 hover:text-sky-400 font-bold underline"
+            data-cy="login_goto_signup_link"
             >Sign Up</RouterLink
           >
         </p>
@@ -102,8 +111,9 @@ function closeErrorMessage() {
             text="Log In"
             size="expand"
             align="center"
-            :loading="loading"
             class="font-bold"
+            data-cy="login_submit_btn"
+            :loading="loading"
             @trigger-event="onSubmit"
           />
         </div>

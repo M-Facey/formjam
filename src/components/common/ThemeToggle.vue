@@ -8,7 +8,11 @@ const themeStore = useThemeStore();
 
 <template>
   <div class="flex items-center gap-x-3">
-    <label class="relative w-[50px] h-[30px]" for="theme_toggle">
+    <label
+      class="relative w-[50px] h-[30px]"
+      for="theme_toggle"
+      data-cy="theme_toggle"
+    >
       <input
         id="theme_toggle"
         type="checkbox"
