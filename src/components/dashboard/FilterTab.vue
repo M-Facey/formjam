@@ -1,10 +1,10 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import XDropdown from "../inputs/Dropdown.vue";
-import XButton from "../inputs/Button.vue";
+import XDropdown from "@/components/inputs/Dropdown.vue";
+import XButton from "@/components/inputs/Button.vue";
 
-import IconGrid from "../icons/layout/Grid.vue";
+import IconGrid from "@/components/icons/layout/Grid.vue";
 
 const sortOptions = ref([
   { name: "Last Opened", value: "last_opened" },

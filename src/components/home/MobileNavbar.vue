@@ -1,13 +1,13 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import IconAdd from "../icons/controls/Add.vue";
-import IconSearch from "../icons/input/Search.vue";
-import IconLogout from "../icons/controls/Logout.vue";
+import IconAdd from "@/components/icons/controls/Add.vue";
+import IconSearch from "@/components/icons/input/Search.vue";
+import IconLogout from "@/components/icons/controls/Logout.vue";
 
-import XTextInput from "../inputs/TextInput.vue";
-import XButton from "../inputs/Button.vue";
-import XDropdown from "../inputs/Dropdown.vue";
+import XTextInput from "@/components/inputs/TextInput.vue";
+import XButton from "@/components/inputs/Button.vue";
+import XDropdown from "@/components/inputs/Dropdown.vue";
 
 const searchParam = ref("");
 
@@ -27,7 +27,7 @@ function toggleSearchInput() {
     <div class="bg-neutral-100 border-b border-neutral-200 px-6 py-3">
       <div class="container flex items-center justify-between">
         <RouterLink to="/" class="flex items-center gap-x-2">
-          <img src="../../assets/vue.svg" class="max-h-[30px]" />
+          <img src="@/assets/vue.svg" class="max-h-[30px]" />
           <p class="text-2xl text-neutral-700">
             Form<span class="text-neutral-400 font-bold">JAM</span>
           </p>

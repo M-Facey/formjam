@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { TooltipPropType } from "../../types/common";
+import type { TooltipPropType } from "@/types/common";
 defineProps<TooltipPropType>();
 </script>
 

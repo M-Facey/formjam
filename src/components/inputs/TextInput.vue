@@ -1,21 +1,21 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import type { TextPropType, TextEmitType } from "../../types/inputs";
+import type { TextPropType, TextEmitType } from "@/types/inputs";
 
 import { useField } from "vee-validate";
 
-import IconEyeClose from "../icons/input/EyeClose.vue";
-import IconEyeOpen from "../icons/input/EyeOpen.vue";
-import IconSearch from "../icons/input/Search.vue";
-import IconAlert from "../icons/misc/Alert.vue";
+import IconEyeClose from "@/components/icons/input/EyeClose.vue";
+import IconEyeOpen from "@/components/icons/input/EyeOpen.vue";
+import IconSearch from "@/components/icons/input/Search.vue";
+import IconAlert from "@/components/icons/misc/Alert.vue";
 
 const props = withDefaults(defineProps<TextPropType>(), {
   placeholder: "",
   isOptional: false,
   isSearchable: false,
   modelValue: "",
-  min: '3',
-  max: '255',
+  min: "3",
+  max: "255",
 });
 
 const { value, errorMessage } = useField(() => {

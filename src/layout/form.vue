@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import FormNavbar from "../components/form/FormNavbar.vue";
+import FormNavbar from "@/components/form/FormNavbar.vue";
 </script>
 
 <template>

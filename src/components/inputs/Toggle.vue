@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { TogglePropType, CheckboxEmitType } from "../../types/inputs";
+import type { TogglePropType, CheckboxEmitType } from "@/types/inputs";
 
 defineProps<TogglePropType>();
 defineEmits<CheckboxEmitType>();

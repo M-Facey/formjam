@@ -1,24 +1,26 @@
 <script lang="ts" setup>
 import { onMounted, ref, shallowRef, watch } from "vue";
-import XEditor from "../../inputs/Editor.vue";
-import XDropdown from "../../inputs/Dropdown.vue";
-import XToggle from "../../inputs/Toggle.vue";
-import XButton from "../../inputs/Button.vue";
+import type { Question } from "@/types/pocketbase";
+import pb from "@/db/pocketBase";
+
+// input components
+import XEditor from "@/components/inputs/Editor.vue";
+import XDropdown from "@/components/inputs/Dropdown.vue";
+import XToggle from "@/components/inputs/Toggle.vue";
+import XButton from "@/components/inputs/Button.vue";
 
 // question type icons
-import IconCheckbox from "../../icons/question/Checkbox.vue";
-import IconShortText from "../../icons/question/ShortText.vue";
-import IconLongText from "../../icons/question/LongText.vue";
-import IconSelect from "../../icons/question/Select.vue";
-import IconDropdown from "../../icons/question/Dropdown.vue";
+import IconCheckbox from "@/components/icons/question/Checkbox.vue";
+import IconShortText from "@/components/icons/question/ShortText.vue";
+import IconLongText from "@/components/icons/question/LongText.vue";
+import IconSelect from "@/components/icons/question/Select.vue";
+import IconDropdown from "@/components/icons/question/Dropdown.vue";
 
 // controls icons
-import IconArrowDown from "../../icons/controls/ArrowDown.vue";
-import IconCopy from "../../icons/controls/Copy.vue";
-import IconDelete from "../../icons/controls/Delete.vue";
-import IconAdjustment from "../../icons/menu/Adjustments.vue";
-import { Question } from "../../../types/pocketbase";
-import pb from "../../../db/pocketBase";
+import IconArrowDown from "@/components/icons/controls/ArrowDown.vue";
+import IconCopy from "@/components/icons/controls/Copy.vue";
+import IconDelete from "@/components/icons/controls/Delete.vue";
+import IconAdjustment from "@/components/icons/menu/Adjustments.vue";
 
 const props = defineProps<{ question: Question }>();
 

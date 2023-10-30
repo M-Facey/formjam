@@ -1,7 +1,8 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import XButton from "../inputs/Button.vue";
-import IconEyeOpen from "../icons/input/EyeOpen.vue";
+
+import XButton from "@/components/inputs/Button.vue";
+import IconEyeOpen from "@/components/icons/input/EyeOpen.vue";
 
 const currentSection = ref("Questions");
 function setSection(section: string) {
@@ -13,7 +14,7 @@ function setSection(section: string) {
   <header class="relative bg-neutral-100 border-b border-neutral-200 px-6 py-3">
     <div class="container flex items-center justify-between">
       <RouterLink to="/" class="flex items-center gap-x-2">
-        <img src="../../assets/vue.svg" class="max-h-[30px]" />
+        <img src="@/assets/vue.svg" class="max-h-[30px]" />
         <p class="text-2xl text-neutral-700">
           Form<span class="text-neutral-400 font-bold">JAM</span>
         </p>

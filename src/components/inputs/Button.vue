@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { ButtonPropType, ButtonEmitType } from "../../types/inputs";
-import Loader from "../anim/Loader.vue";
+import { ButtonPropType, ButtonEmitType } from "@/types/inputs";
+
+import Loader from "@/components/anim/Loader.vue";
 
 withDefaults(defineProps<ButtonPropType>(), {
   hasIcon: false,

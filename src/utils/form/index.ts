@@ -1,4 +1,4 @@
-import pb from "../../db/pocketBase";
+import pb from "@/db/pocketBase";
 
 // create form
 export async function createForm(): Promise<string> {

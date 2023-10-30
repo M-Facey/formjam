@@ -1,21 +1,20 @@
 <script lang="ts" setup>
 import { onUnmounted, watch, ref, computed } from "vue";
 
-import { Extension } from "@tiptap/vue-3";
-import { useEditor, EditorContent } from "@tiptap/vue-3";
+import { useEditor, EditorContent, Extension } from "@tiptap/vue-3";
 import StarterKit from "@tiptap/starter-kit";
 import Underline from "@tiptap/extension-underline";
 import Link from "@tiptap/extension-link";
 import Placeholder from "@tiptap/extension-placeholder";
 import CharacterCount from "@tiptap/extension-character-count";
 
-import IconBold from "../icons/text/Bold.vue";
-import IconItalics from "../icons/text/Italics.vue";
-import IconUnderline from "../icons/text/Underline.vue";
-import IconLink from "../icons/text/Link.vue";
-import IconList from "../icons/layout/List.vue";
-import IconNumberedList from "../icons/text/NumberedList.vue";
-import IconClearFormat from "../icons/text/ClearFormat.vue";
+import IconBold from "@/components/icons/text/Bold.vue";
+import IconItalics from "@/components/icons/text/Italics.vue";
+import IconUnderline from "@/components/icons/text/Underline.vue";
+import IconLink from "@/components/icons/text/Link.vue";
+import IconList from "@/components/icons/layout/List.vue";
+import IconNumberedList from "@/components/icons/text/NumberedList.vue";
+import IconClearFormat from "@/components/icons/text/ClearFormat.vue";
 
 const props = withDefaults(
   defineProps<{
@@ -43,8 +42,8 @@ const characterLimit = computed(() => {
   return props.type === "title" ? 200 : 500;
 });
 
-const timerId = ref(-1);
-const waitId = ref(-1);
+const timerId = ref<NodeJS.Timeout | null>(null);
+const waitId = ref<NodeJS.Timeout | null>(null);
 const editor = useEditor({
   content: props.modelValue,
   extensions: [
@@ -91,7 +90,7 @@ const editor = useEditor({
     },
   },
   onUpdate: ({ editor }) => {
-    if (timerId.value !== -1) {
+    if (timerId.value) {
       clearTimeout(timerId.value);
     }
     timerId.value = setTimeout(() => {
@@ -99,7 +98,7 @@ const editor = useEditor({
     }, 1000);
   },
   onFocus: () => {
-    if (waitId.value !== -1) {
+    if (waitId.value) {
       clearTimeout(waitId.value);
       return;
     }
@@ -113,7 +112,7 @@ const editor = useEditor({
       if (isMenuOpen) {
         hideMenu();
         emits("update:modelValue", editor.value?.getHTML() || "");
-        waitId.value = -1;
+        waitId.value = null;
       }
     }, 250);
   },

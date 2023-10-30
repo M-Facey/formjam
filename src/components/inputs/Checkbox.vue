@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import IconCheck from "../icons/input/Check.vue";
-import { CheckboxPropType, CheckboxEmitType } from "../../types/inputs";
+import { CheckboxPropType, CheckboxEmitType } from "@/types/inputs";
+
+import IconCheck from "@/components/icons/input/Check.vue";
 
 withDefaults(defineProps<CheckboxPropType>(), {
   id: "",

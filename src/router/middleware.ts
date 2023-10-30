@@ -1,5 +1,5 @@
 import { NavigationGuardNext, RouteLocationNormalized } from "vue-router";
-import pb from "../db/pocketBase";
+import pb from "@/db/pocketBase";
 
 export const middleware = (
   to: RouteLocationNormalized,

@@ -4,10 +4,10 @@ import type { Component } from "vue";
 import { useRoute } from "vue-router";
 
 // import layouts
-import DefaultLayout from "./default.vue";
-import AppLayout from "./app.vue";
-import FormLayout from "./form.vue";
-import AuthLayout from "./auth.vue";
+import DefaultLayout from "@/layout/default.vue";
+import AppLayout from "@/layout/app.vue";
+import FormLayout from "@/layout/form.vue";
+import AuthLayout from "@/layout/auth.vue";
 
 const route = useRoute();
 const layoutName = ref("Default");

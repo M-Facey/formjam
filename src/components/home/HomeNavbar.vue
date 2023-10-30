@@ -1,10 +1,9 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 
-import IconMenu from "../icons/menu/Menu.vue";
-import IconClose from "../icons/controls/Close.vue";
-
-import ThemeToggle from "../common/ThemeToggle.vue";
+import IconMenu from "@/components/icons/menu/Menu.vue";
+import IconClose from "@/components/icons/controls/Close.vue";
+import ThemeToggle from "@/components/common/ThemeToggle.vue";
 
 const showNavDropdown = ref(false);
 function toggleNavDropdown() {
@@ -20,7 +19,7 @@ function toggleNavDropdown() {
       class="w-full max-w-[1200px] flex items-center justify-between mx-auto"
     >
       <div class="flex items-center gap-x-3 select-none">
-        <img src="../../assets/vue.svg" alt="logo" class="h-7 md:h-8 mb-2" />
+        <img src="@/assets/vue.svg" alt="logo" class="h-7 md:h-8 mb-2" />
         <h1 class="text-xl md:text-2xl leading-4 font-bold">FormJAM</h1>
       </div>
 

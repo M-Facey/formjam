@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import { DropdownPropType } from "../../types/inputs";
+import { DropdownPropType } from "@/types/inputs";
 
-import IconArrowDown from "../icons/controls/ArrowDown.vue";
-import IconMenu from "../icons/menu/Menu.vue";
+import IconArrowDown from "@/components/icons/controls/ArrowDown.vue";
+import IconMenu from "@/components/icons/menu/Menu.vue";
 
 withDefaults(defineProps<DropdownPropType>(), {
   isSearchable: false,

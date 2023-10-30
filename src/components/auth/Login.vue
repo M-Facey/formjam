@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
+import pb from "@/db/pocketBase";
 
 import { useForm } from "vee-validate";
 import * as yup from "yup";
-import pb from "../../db/pocketBase";
 
-import XTextInput from "../inputs/TextInput.vue";
-import XButton from "../inputs/Button.vue";
-import XCheckbox from "../inputs/Checkbox.vue";
-import FormErrorMessage from "../form/FormErrorMessage.vue";
+import XTextInput from "@/components/inputs/TextInput.vue";
+import XButton from "@/components/inputs/Button.vue";
+import XCheckbox from "@/components/inputs/Checkbox.vue";
+import FormErrorMessage from "@/components/form/FormErrorMessage.vue";
 
 const rememberMe = ref(false);
 
@@ -30,7 +30,7 @@ const { handleSubmit } = useForm({
 const router = useRouter();
 const loading = ref(false);
 const errorMessage = ref("");
-const errorTimeoutId = ref(-1);
+const errorTimeoutId = ref<NodeJS.Timeout | null>(null);
 const onSubmit = handleSubmit(async ({ email, password }) => {
   loading.value = true;
   try {
@@ -50,6 +50,7 @@ function resetErrorMessage() {
 }
 
 function closeErrorMessage() {
+  if (!errorTimeoutId.value) return;
   clearTimeout(errorTimeoutId.value);
   errorMessage.value = "";
 }

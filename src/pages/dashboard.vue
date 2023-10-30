@@ -1,12 +1,13 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref } from "vue";
-import type { FormType, SanitizedFormType, FormCardEvent } from "../types/form";
-import pb from "../db/pocketBase";
+import { useRouter } from "vue-router";
+import type { FormType, SanitizedFormType, FormCardEvent } from "@/types/form";
+import pb from "@/db/pocketBase";
 
-import FilterTab from "../components/dashboard/FilterTab.vue";
-import FormCardGrid from "../components/form/view/FormCardGrid.vue";
-import router from "../router";
+import FilterTab from "@/components/dashboard/FilterTab.vue";
+import FormCardGrid from "@/components/form/view/FormCardGrid.vue";
 
+const router = useRouter();
 const forms = ref<FormType[]>();
 const sanitizedForms = computed<SanitizedFormType[]>(() => {
   if (!forms.value) return [];

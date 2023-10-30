@@ -1,15 +1,15 @@
 <script lang="ts" setup>
 import { ref, computed } from "vue";
-import { FormError } from "../../types/form";
-import XTextInput from "../inputs/TextInput.vue";
-import XButton from "../inputs/Button.vue";
-import FormErrorMessage from "../form/FormErrorMessage.vue";
-
-import pb from "../../db/pocketBase";
 import { useRouter } from "vue-router";
+import pb from "@/db/pocketBase";
+import type { FormError } from "@/types/form";
 
 import { useForm } from "vee-validate";
 import * as yup from "yup";
+
+import XTextInput from "@/components/inputs/TextInput.vue";
+import XButton from "@/components/inputs/Button.vue";
+import FormErrorMessage from "@/components/form/FormErrorMessage.vue";
 
 const { values, handleSubmit, resetForm } = useForm({
   validationSchema: yup.object({
@@ -78,7 +78,7 @@ const hasErrorMessage = computed(() => {
   return errorMessage.value !== "";
 });
 const errorMessage = ref("");
-const errorTimoutId = ref(-1);
+const errorTimoutId = ref<NodeJS.Timeout | null>(null);
 function resetErrorMessage() {
   errorTimoutId.value = setTimeout(() => {
     errorMessage.value = "";
@@ -86,7 +86,9 @@ function resetErrorMessage() {
 }
 
 function closeErrorMessage() {
+  if (!errorTimoutId.value) return;
   clearTimeout(errorTimoutId.value);
+
   errorMessage.value = "";
 }
 </script>

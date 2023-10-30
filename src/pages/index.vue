@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import HomeNavbar from "../components/home/HomeNavbar.vue";
-import InfoCard from "../components/home/InfoCard.vue";
+import HomeNavbar from "@/components/home/HomeNavbar.vue";
+import InfoCard from "@/components/home/InfoCard.vue";
 </script>
 
 <template>
@@ -44,22 +44,22 @@ import InfoCard from "../components/home/InfoCard.vue";
 
     <div class="hidden md:block relative mt-auto">
       <img
-        src="../assets/images/bg-circle.png"
+        src="@/assets/images/bg-circle.png"
         alt="circles"
         class="hidden dark:block absolute bottom-0"
       />
       <img
-        src="../assets/images/bg-circle-light.png"
+        src="@/assets/images/bg-circle-light.png"
         alt="circles"
         class="block dark:hidden absolute bottom-0"
       />
       <img
-        src="../assets/images/dashboard-dark.png"
+        src="@/assets/images/dashboard-dark.png"
         alt="dashboard"
         class="hidden dark:block relative"
       />
       <img
-        src="../assets/images/dashboard-light.png"
+        src="@/assets/images/dashboard-light.png"
         alt="dashboard"
         class="block dark:hidden relative"
       />

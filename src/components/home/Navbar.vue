@@ -1,14 +1,14 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import pb from "../../db/pocketBase";
-import { createForm } from "../../utils/form";
+import { createForm } from "@/utils/form";
+import pb from "@/db/pocketBase";
 
-import IconAdd from "../icons/controls/Add.vue";
-import IconLogout from "../icons/controls/Logout.vue";
+import IconAdd from "@/components/icons/controls/Add.vue";
+import IconLogout from "@/components/icons/controls/Logout.vue";
 
-import XTextInput from "../inputs/TextInput.vue";
-import XButton from "../inputs/Button.vue";
+import XTextInput from "@/components/inputs/TextInput.vue";
+import XButton from "@/components/inputs/Button.vue";
 
 const searchParam = ref("");
 const router = useRouter();
@@ -33,7 +33,7 @@ async function logout() {
   <header class="bg-neutral-100 border-b border-neutral-200 px-6 py-3">
     <div class="container flex items-center justify-between">
       <RouterLink to="/" class="flex flex-shrink-0 items-center gap-x-2">
-        <img src="../../assets/vue.svg" class="max-h-[30px]" />
+        <img src="@/assets/vue.svg" class="max-h-[30px]" />
         <p class="text-2xl text-neutral-700">
           Form<span class="text-neutral-400 font-bold">JAM</span>
         </p>

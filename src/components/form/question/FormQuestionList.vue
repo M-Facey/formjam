@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { onMounted, onUnmounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import pb from "../../../db/pocketBase";
-import type { QuestionResponse } from "../../../types/form";
+import type { QuestionResponse } from "@/types/form";
+import pb from "@/db/pocketBase";
 
-import FormQuestion from "./FormQuestion.vue";
-import FormTitle from "./FormTitle.vue";
+import FormQuestion from "@/components/form/question/FormQuestion.vue";
+import FormTitle from "@/components/form/question/FormTitle.vue";
 
 const props = defineProps<{ formId: string }>();
 const route = useRoute();

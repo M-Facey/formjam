@@ -1,17 +1,17 @@
 import { createRouter, createWebHistory } from "vue-router";
-import { middleware } from "./middleware";
+import { middleware } from "@/router/middleware";
 
-import HomePage from "../pages/index.vue";
+import HomePage from "@/pages/index.vue";
 
-import AuthPage from "../pages/auth.vue";
-import Login from "../components/auth/Login.vue";
-import Signup from "../components/auth/Signup.vue";
+import AuthPage from "@/pages/auth.vue";
+import Login from "@/components/auth/Login.vue";
+import Signup from "@/components/auth/Signup.vue";
 
-import DashboardPage from "../pages/dashboard.vue";
-import EditFormPage from "../pages/form/edit.vue";
+import DashboardPage from "@/pages/dashboard.vue";
+import EditFormPage from "@/pages/form/edit.vue";
 
-import NotFoundPage from "../pages/404.vue";
-import ErrorPage from "../pages/error.vue";
+import NotFoundPage from "@/pages/404.vue";
+import ErrorPage from "@/pages/error.vue";
 
 const router = createRouter({
   history: createWebHistory(),

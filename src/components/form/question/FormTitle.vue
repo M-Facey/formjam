@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { onMounted, ref, watch } from "vue";
-import pb from "../../../db/pocketBase";
+import pb from "@/db/pocketBase";
 
-import XEditor from "../../inputs/Editor.vue";
+import XEditor from "@/components/inputs/Editor.vue";
 
 const props = defineProps<{ formId: string }>();
 

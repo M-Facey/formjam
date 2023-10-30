@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import XNavbar from "../components/home/Navbar.vue";
-import XMobileNavbar from "../components/home/MobileNavbar.vue";
+import XNavbar from "@/components/home/Navbar.vue";
+import XMobileNavbar from "@/components/home/MobileNavbar.vue";
 </script>
 
 <template>

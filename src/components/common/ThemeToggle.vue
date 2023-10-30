@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { useThemeStore } from "../../store/theme";
-import IconSun from "../icons/theme/Sun.vue";
-import IconMoon from "../icons/theme/Moon.vue";
+import { useThemeStore } from "@/store/theme";
+import IconSun from "@/components/icons/theme/Sun.vue";
+import IconMoon from "@/components/icons/theme/Moon.vue";
 
 const themeStore = useThemeStore();
 </script>
