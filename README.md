@@ -1,13 +1,18 @@
 # FormJam: A Simple Form App
 
-This is a simple app created using Vue 3 and Pocketbase. The rest of the docs will be added at a later date.
+This is a simple app created using Vue 3 and Pocketbase. The `src` documentation found [here](./src/README.md) can help newcomers understand how the project is broken down based on folder structure. :warning: The docs for different folders are still being worked on.
 
 ## :computer: The Tech I Used
 
 ### Front end
 
 - Vue 3 with Typescript
-    - Vue Router: for routing
+  - Vue Router: for routing
+- Tiptap for rich text editor
+  - Character Count plugin
+  - Link plugin
+  - Underline plugin
+- Icones for icons
 - TailwindCSS
 
 ### Back end
