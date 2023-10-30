@@ -6,18 +6,18 @@ This is a simple app created using Vue 3 and Pocketbase. The `src` documentation
 
 ### Front end
 
-- Vue 3 with Typescript
-  - Vue Router: for routing
-- Tiptap for rich text editor
+- [Vue 3](https://vuejs.org/) with Typescript
+  - [Vue Router](https://router.vuejs.org/): for routing
+- [Tiptap](https://tiptap.dev/) for rich text editor
   - Character Count plugin
   - Link plugin
   - Underline plugin
-- Icones for icons
-- TailwindCSS
+- [Icones](https://icones.js.org/) for icons
+- [TailwindCSS](https://tailwindcss.com/)
 
 ### Back end
 
-- Pocketbase (v0.18.9)
+- Pocketbase (v0.18.10)
 
 ## :hammer_and_wrench: How To Run
 
@@ -47,4 +47,14 @@ pnpm build
 pnpm preview
 ```
 
-:warning: **Please Note**: More commands are to be added for the running tests. This will be done at a later date.
+### Run E2E tests with headless browser/electron
+
+```sh
+pnpm test:e2e
+```
+
+### Run E2E tests with Cypress UI
+
+```sh
+pnpm cypress:open
+```
