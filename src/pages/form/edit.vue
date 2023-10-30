@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { useRoute } from "vue-router";
-import FormQuestionList from "../../components/form/FormQuestionList.vue";
+import FormQuestionList from "../../components/form/question/FormQuestionList.vue";
 
 const route = useRoute();
 </script>

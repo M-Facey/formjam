@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import type { SanitizedFormType, FormGridEmitType } from "../../types/form";
+import type { SanitizedFormType, FormGridEmitType } from "../../../types/form";
 import dayjs from "dayjs";
 
 import FormCard from "./FormCard.vue";

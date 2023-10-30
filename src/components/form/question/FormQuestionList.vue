@@ -1,11 +1,11 @@
 <script lang="ts" setup>
 import { onMounted, onUnmounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import pb from "../../db/pocketBase";
-import type { QuestionResponse } from "../../types/form";
+import pb from "../../../db/pocketBase";
+import type { QuestionResponse } from "../../../types/form";
 
 import FormQuestion from "./FormQuestion.vue";
-import TitleCard from "./question/TitleCard.vue";
+import FormTitle from "./FormTitle.vue";
 
 const props = defineProps<{ formId: string }>();
 const route = useRoute();
@@ -31,7 +31,7 @@ onUnmounted(() => {
 
 <template>
   <div class="flex flex-col gap-y-3">
-    <TitleCard :form-id="formId" />
+    <FormTitle :form-id="formId" />
     <FormQuestion
       v-for="question in questions?.items"
       :key="question.id"

@@ -4,7 +4,7 @@ import type { FormType, SanitizedFormType, FormCardEvent } from "../types/form";
 import pb from "../db/pocketBase";
 
 import FilterTab from "../components/dashboard/FilterTab.vue";
-import FormCardGrid from "../components/form/FormCardGrid.vue";
+import FormCardGrid from "../components/form/view/FormCardGrid.vue";
 import router from "../router";
 
 const forms = ref<FormType[]>();
