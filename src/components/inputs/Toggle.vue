@@ -7,30 +7,31 @@ defineEmits<CheckboxEmitType>();
 
 <template>
   <div class="flex items-center gap-x-3">
-    <label class="relative w-[60px] h-[34px]">
+    <label class="relative w-[41px] h-[24px]">
       <input
         :id="id"
         type="checkbox"
-        class="invisible peer"
+        class="opacity-0 peer"
         :value="modelValue"
-        @input="$emit('update:modelValue', !modelValue)"
+        @click="$emit('update:modelValue', !modelValue)"
       />
-      <span
-        class="slider absolute inset-0 bg-gray-200 peer-checked:bg-sky-500 transition duration-75 cursor-pointer"
-      ></span>
+      <div
+        class="absolute inset-0 p-2 transition duration-75 cursor-pointer border border-transparent rounded-full"
+        :class="{
+          'bg-sky-400 hover:border-sky-700': modelValue,
+          'bg-gray-200 hover:border-gray-400': !modelValue,
+        }"
+      >
+        <div
+          class="absolute top-1/2 -translate-y-1/2 h-4 w-4 bg-white transition duration-75 rounded-full"
+          :class="{
+            'translate-x-3': modelValue,
+            '-translate-x-1': !modelValue,
+          }"
+        ></div>
+      </div>
     </label>
 
     <label :for="id" class="select-none">{{ label }}</label>
   </div>
 </template>
-
-<style scoped>
-.slider:before {
-  content: "";
-  @apply absolute left-[4px] bottom-[4px] h-[26px] w-[26px] bg-white transition duration-75;
-}
-
-input:checked + .slider:before {
-  @apply translate-x-[26px];
-}
-</style>
