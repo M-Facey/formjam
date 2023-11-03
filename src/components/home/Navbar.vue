@@ -1,8 +1,8 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import { useRouter } from "vue-router";
-import { createForm } from "@/utils/form";
 import pb from "@/db/pocketBase";
+import { useFormStore } from "@/store/forms";
 
 import IconAdd from "@/components/icons/controls/Add.vue";
 import IconLogout from "@/components/icons/controls/Logout.vue";
@@ -14,8 +14,9 @@ const searchParam = ref("");
 const router = useRouter();
 const loading = ref(false);
 
+const formStore = useFormStore();
 async function gotoCreateFormPage() {
-  const id = await createForm();
+  const id = await formStore.createForm();
   router.push({ name: "EditForm", params: { formId: id } });
 }
 

@@ -1,18 +1,19 @@
 <script lang="ts" setup>
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted } from "vue";
 import { useRouter } from "vue-router";
-import type { FormType, SanitizedFormType, FormCardEvent } from "@/types/form";
-import pb from "@/db/pocketBase";
+import type { SanitizedFormType, FormCardEvent } from "@/types/form";
+import { useFormStore } from "@/store/forms";
 
 import FilterTab from "@/components/dashboard/FilterTab.vue";
 import FormCardGrid from "@/components/form/view/FormCardGrid.vue";
 
 const router = useRouter();
-const forms = ref<FormType[]>();
-const sanitizedForms = computed<SanitizedFormType[]>(() => {
-  if (!forms.value) return [];
+const formStore = useFormStore();
 
-  return forms.value.map((form) => {
+const sanitizedForms = computed<SanitizedFormType[]>(() => {
+  if (!formStore.forms) return [];
+
+  return formStore.forms.map((form) => {
     // remove unused & sensitive data
     const { collectionId, collectionName, user, ...rest } = form;
     return rest;
@@ -21,17 +22,14 @@ const sanitizedForms = computed<SanitizedFormType[]>(() => {
 
 async function executeEvent(event: FormCardEvent) {
   if (event.name === "delete") {
-    await pb.collection("forms").delete(event.id);
-    forms.value = await pb
-      .collection("forms")
-      .getFullList({ sort: "-created" });
+    await formStore.deleteForm(event.id);
   } else if (event.name === "edit") {
     router.push({ name: "EditForm", params: { formId: event.id } });
   }
 }
 
 onMounted(async () => {
-  forms.value = await pb.collection("forms").getFullList({ sort: "-created" });
+  formStore.fetchForms();
 });
 </script>
 
