@@ -5,11 +5,13 @@ import XDropdown from "@/components/inputs/Dropdown.vue";
 import XButton from "@/components/inputs/Button.vue";
 
 import IconGrid from "@/components/icons/layout/Grid.vue";
+import { DropdownOption } from "@/types/inputs";
 
 const sortOptions = ref([
   { name: "Last Opened", value: "last_opened" },
   { name: "Title", value: "title" },
 ]);
+const currentSortOption = ref<DropdownOption>(sortOptions.value[0]);
 </script>
 
 <template>
@@ -31,7 +33,7 @@ const sortOptions = ref([
         <p class="pb-1 text-xs uppercase tracking-widest select-none">
           Sort by
         </p>
-        <XDropdown :select-option="sortOptions[0]" :options="sortOptions" />
+        <XDropdown v-model="currentSortOption" :options="sortOptions" />
       </div>
     </div>
   </div>

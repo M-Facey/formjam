@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { ref } from "vue";
+import { ref, shallowRef } from "vue";
 
 import IconAdd from "@/components/icons/controls/Add.vue";
 import IconSearch from "@/components/icons/input/Search.vue";
@@ -11,10 +11,11 @@ import XDropdown from "@/components/inputs/Dropdown.vue";
 
 const searchParam = ref("");
 
-const navbarOptions = ref([
+const navbarOptions = shallowRef([
   { name: "Create Form", value: "create-form", icon: IconAdd },
   { name: "Log out", value: "log-out", icon: IconLogout },
 ]);
+const currentNavbarOption = shallowRef(navbarOptions.value[0]);
 
 const showSearchInput = ref(false);
 function toggleSearchInput() {
@@ -46,7 +47,7 @@ function toggleSearchInput() {
           </XButton>
 
           <XDropdown
-            :select-option="navbarOptions[0]"
+            v-model="currentNavbarOption"
             :options="navbarOptions"
             :show-selected-option="false"
           />
