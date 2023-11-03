@@ -40,7 +40,7 @@ The icons are organized into different folders and here is what they mean:
 
 - Purpose: Stores all icons for various question types
 - Examples: `Checkboxes`, `Select`, `Short Text`, ...etc
-- No. of icons: 5 icons
+- No. of icons: 6 icons
 
 ### [Text](./text/)
 
