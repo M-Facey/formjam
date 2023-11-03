@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import { DropdownPropType } from "@/types/inputs";
+import { DropdownEmitType, DropdownPropType } from "@/types/inputs";
 
 import IconArrowDown from "@/components/icons/controls/ArrowDown.vue";
 import IconMenu from "@/components/icons/menu/Menu.vue";
@@ -9,6 +9,8 @@ withDefaults(defineProps<DropdownPropType>(), {
   isSearchable: false,
   showSelectedOption: true,
 });
+
+const emits = defineEmits<DropdownEmitType>();
 
 const showDropdown = ref(false);
 function toggleDropdown() {
@@ -25,11 +27,11 @@ function toggleDropdown() {
     >
       <p class="select-none flex items-center gap-x-2 pr-2">
         <Component
-          v-if="selectOption.icon"
-          :is="selectOption.icon"
+          v-if="modelValue.icon"
+          :is="modelValue.icon"
           class="dropdown-icons w-5 h-5"
         />
-        {{ selectOption.name }}
+        {{ modelValue.name }}
       </p>
       <IconArrowDown class="w-6 h-6" :class="{ 'rotate-180': showDropdown }" />
     </div>
@@ -47,13 +49,17 @@ function toggleDropdown() {
         v-if="showDropdown"
         class="absolute top-full translate-y-2 right-0 flex flex-col bg-neutral-50 border border-neutral-200 rounded-md z-10"
         :class="{ 'w-full': showSelectedOption, 'w-max': !showSelectedOption }"
+        @click.stop="toggleDropdown"
       >
         <p
           v-for="option in options"
           class="flex items-center gap-x-3 hover:bg-neutral-200 px-3 py-1.5 cursor-pointer select-none"
-          @click="toggleDropdown"
+          :class="{
+            'bg-gray-200 pointer-events-none': option.name === modelValue.name,
+          }"
+          @click="$emit('update:modelValue', option)"
         >
-          <component
+          <Component
             v-if="option.icon"
             :is="option.icon"
             class="dropdown-icons w-5 h-5"
