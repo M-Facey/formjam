@@ -42,19 +42,21 @@ export type CheckboxEmitType = {
   (e: "update:modelValue", value: boolean): void;
 };
 
+export type DropdownOption = {
+  name: string;
+  value: string;
+  icon?: Component;
+};
+
 export type DropdownPropType = {
-  selectOption: {
-    name: string;
-    value: string;
-    icon?: Component;
-  };
-  options: {
-    name: string;
-    value: string;
-    icon?: Component;
-  }[];
+  modelValue: DropdownOption;
+  options: DropdownOption[];
   isSearchable?: boolean;
   showSelectedOption?: boolean;
+};
+
+export type DropdownEmitType = {
+  (e: "update:modelValue", value: DropdownOption): void;
 };
 
 export type TogglePropType = {
