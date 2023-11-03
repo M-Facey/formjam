@@ -12,6 +12,8 @@ interface BaseCollectionType {
   id: string;
   created: string;
   updated: string;
+  collectionId: string;
+  collectionName: string;
 }
 
 interface Answer extends BaseCollectionType {
@@ -27,7 +29,9 @@ interface Question extends BaseCollectionType {
     | "paragraph"
     | "single-choice"
     | "checkboxes"
-    | "dropdown";
+    | "dropdown"
+    | "linear-scale";
+  order: number;
   answers: string[];
   required: boolean;
   form: string;
