@@ -1,41 +1,52 @@
 <script lang="ts" setup>
-import { onMounted, onUnmounted, ref } from "vue";
+import { onMounted, ref } from "vue";
 import { useRoute } from "vue-router";
-import type { QuestionResponse } from "@/types/form";
-import pb from "@/db/pocketBase";
+import { useQuestionStore } from "@/store/questions";
 
 import FormQuestion from "@/components/form/question/FormQuestion.vue";
 import FormTitle from "@/components/form/question/FormTitle.vue";
+import QuestionControls from "./QuestionControls.vue";
 
+const questionStore = useQuestionStore();
 const props = defineProps<{ formId: string }>();
 const route = useRoute();
-const questions = ref<QuestionResponse>({
-  page: 0,
-  perPage: 0,
-  totalItems: 0,
-  totalPages: 0,
-  items: [],
-});
+
+const selectedCurrentQuestion = ref(-1);
+function setCurrentQuestion(index: number) {
+  selectedCurrentQuestion.value = index;
+}
 
 onMounted(async () => {
   const formId = props.formId || (route.params.formId as string);
-  questions.value = await pb.collection("questions").getList(1, 100, {
-    filter: `form="${formId}"`,
-  });
-});
-
-onUnmounted(() => {
-  pb.collection("questions").unsubscribe("*");
+  questionStore.fetchQuestions(formId);
 });
 </script>
 
 <template>
-  <div class="flex flex-col gap-y-3">
-    <FormTitle :form-id="formId" />
-    <FormQuestion
-      v-for="question in questions?.items"
-      :key="question.id"
-      :question="question"
+  <div class="flex gap-4 pb-10">
+    <div class="flex flex-col flex-grow gap-y-3">
+      <FormTitle :form-id="formId" @click="setCurrentQuestion(-1)" />
+      <FormQuestion
+        v-for="(question, index) in questionStore.questions"
+        :key="question.id"
+        :question="question"
+        :is-selected="index === selectedCurrentQuestion"
+        :disable-up="question.order === 1"
+        :disable-down="question.order === questionStore.questions.length"
+        @click="setCurrentQuestion(index)"
+        @moveup:question="
+          () => questionStore.shuffleQuestions(index, index - 1)
+        "
+        @movedown:question="
+          () => questionStore.shuffleQuestions(index, index + 1)
+        "
+        @update:question="questionStore.updateQuestion"
+        @delete:question="(id) => questionStore.deleteQuestion(id, formId)"
+      />
+    </div>
+    <QuestionControls
+      :form-id="formId"
+      @add:question="questionStore.createQuestion(formId)"
     />
   </div>
 </template>
