@@ -22,18 +22,18 @@ function toggleDropdown() {
   <div class="relative">
     <div
       v-if="showSelectedOption"
-      class="flex items-center justify-between bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 hover:border-neutral-300 px-3 py-2 rounded-md cursor-pointer"
+      class="flex items-center justify-between bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 hover:border-neutral-300 px-2 py-2 rounded-md cursor-pointer"
       @click="toggleDropdown"
     >
-      <p class="select-none flex items-center gap-x-2 pr-2">
+      <p class="select-none flex items-center gap-x-2 pr-2 text-sm">
         <Component
           v-if="modelValue.icon"
           :is="modelValue.icon"
-          class="dropdown-icons w-5 h-5"
+          class="flex-grow dropdown-icons w-5 h-5"
         />
         {{ modelValue.name }}
       </p>
-      <IconArrowDown class="w-6 h-6" :class="{ 'rotate-180': showDropdown }" />
+      <IconArrowDown class="w-5 h-5" :class="{ 'rotate-180': showDropdown }" />
     </div>
 
     <div
