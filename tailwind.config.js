@@ -21,6 +21,7 @@ export default {
       },
       fontFamily: {
         epilogue: ["Epilogue", "sans-serif"],
+        inter: ["Inter", "sans-serif"],
       },
     },
   },
