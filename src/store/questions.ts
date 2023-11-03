@@ -26,7 +26,6 @@ export const useQuestionStore = defineStore({
       this.questions = items;
     },
     async createQuestion(formId: string) {
-      console.log(this.questions.length);
       const question = await pb.collection("questions").create({
         text: `Question ${this.questions.length + 1}`,
         description: "",
@@ -40,27 +39,27 @@ export const useQuestionStore = defineStore({
       return question.id;
     },
     // TODO: The duplicate funcion needs to be fixed as well as the correct order function
-    async duplicateQuestion(question: Question) {
-      const { id, text, description, type, required, answers, form, order } =
-        question;
+    // async duplicateQuestion(question: Question) {
+    //   const { id, text, description, type, required, answers, form, order } =
+    //     question;
 
-      const index = this.questions.findIndex((question) => question.id === id);
-      await pb.collection("questions").create({
-        text,
-        description,
-        type,
-        required,
-        answers,
-        form,
-        order: order + 1,
-      });
-      if (index < this.questions.length) {
-        console.log(index + 1, this.questions.length);
-        this.correctOrder(index + 1, this.questions.length, order + 1);
-      }
+    //   const index = this.questions.findIndex((question) => question.id === id);
+    //   await pb.collection("questions").create({
+    //     text,
+    //     description,
+    //     type,
+    //     required,
+    //     answers,
+    //     form,
+    //     order: order + 1,
+    //   });
+    //   if (index < this.questions.length) {
+    //     console.log(index + 1, this.questions.length);
+    //     this.correctOrder(index + 1, this.questions.length, order + 1);
+    //   }
 
-      this.fetchQuestions(form);
-    },
+    //   this.fetchQuestions(form);
+    // },
     async shuffleQuestions(idx1: number, idx2: number) {
       await pb.collection("questions").update(this.questions[idx1].id, {
         ...this.questions[idx1],
@@ -78,23 +77,21 @@ export const useQuestionStore = defineStore({
       await pb.collection("questions").update(question.id, question);
       await this.fetchQuestions(question.form);
     },
-    async correctOrder(start: number, end: number, currentOrder?: number) {
-      let accumulator = currentOrder ? currentOrder + 1 : start;
-
-      for (let i = start; i < end; i++) {
+    async correctOrder(index: number, operation: string) {
+      for (let i = index; i < this.questions.length; i++) {
+        const increment = operation === "delete" ? -1 : 1;
         await pb.collection("questions").update(this.questions[i].id, {
           ...this.questions[i],
-          order: accumulator,
+          order: this.questions[i].order + increment,
         });
       }
-      accumulator += 1;
     },
     async deleteQuestion(questionId: string, formId: string) {
       const index = this.questions.findIndex(
         (question) => question.id === questionId
       );
 
-      this.correctOrder(index + 1, this.questions.length);
+      this.correctOrder(index + 1, "delete");
 
       await pb.collection("questions").delete(questionId);
       await this.fetchQuestions(formId);
