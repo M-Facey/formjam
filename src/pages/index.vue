@@ -9,12 +9,12 @@ import InfoCard from "@/components/home/InfoCard.vue";
     class="w-full max-w-[1200px] text-white flex flex-grow flex-col items-center px-3 sm:px-6 mx-auto"
   >
     <h2
-      class="text-xl sm:text-2xl md:text-4xl text-center mt-12 mb-1 md:mb-3 text-black/80 dark:text-white/80"
+      class="mt-12 mb-1 md:mb-3 text-xl sm:text-2xl md:text-4xl text-center text-black/80 dark:text-white/80 font-epilogue"
     >
       Welcome to FormJAM
     </h2>
     <h2
-      class="bg-gradient-to-r from-primary-purple via-primary-pink to-primary-orange pb-10 mx-auto text-3xl sm:text-4xl md:text-5xl text-center text-transparent font-bold bg-clip-text"
+      class="bg-gradient-to-r from-primary-purple via-primary-pink to-primary-orange pb-10 mx-auto text-3xl sm:text-4xl md:text-5xl text-center text-transparent font-bold font-epilogue bg-clip-text"
     >
       Revolutionize Your Data Collection
     </h2>
