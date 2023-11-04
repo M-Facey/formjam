@@ -3,6 +3,7 @@ import type { SanitizedFormType, FormGridEmitType } from "@/types/form";
 import dayjs from "dayjs";
 
 import FormCard from "@/components/form/view/FormCard.vue";
+import CreateFormCard from "@/components/form/view/CreateFormCard.vue";
 
 defineProps<{ forms: SanitizedFormType[] }>();
 defineEmits<FormGridEmitType>();
@@ -10,6 +11,7 @@ defineEmits<FormGridEmitType>();
 
 <template>
   <div class="flex flex-wrap gap-3 pt-5">
+    <CreateFormCard />
     <FormCard
       v-for="form in forms"
       :title="form.title"
