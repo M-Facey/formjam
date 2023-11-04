@@ -2,23 +2,14 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import pb from "@/db/pocketBase";
-import { useFormStore } from "@/store/forms";
 
-import IconAdd from "@/components/icons/controls/Add.vue";
 import IconLogout from "@/components/icons/controls/Logout.vue";
-
 import XTextInput from "@/components/inputs/TextInput.vue";
 import XButton from "@/components/inputs/Button.vue";
 
 const searchParam = ref("");
 const router = useRouter();
 const loading = ref(false);
-
-const formStore = useFormStore();
-async function gotoCreateFormPage() {
-  const id = await formStore.createForm();
-  router.push({ name: "EditForm", params: { formId: id } });
-}
 
 async function logout() {
   loading.value = true;
@@ -47,31 +38,19 @@ async function logout() {
         is-searchable
         v-model="searchParam"
       />
-      <div class="flex flex-shrink-0 gap-x-2">
-        <XButton
-          text="Create Form"
-          :has-icon="false"
-          class="font-medium"
-          @trigger-event="gotoCreateFormPage"
-        >
-          <template #icon>
-            <IconAdd class="w-6 h-6 mr-2" />
-          </template>
-        </XButton>
 
-        <XButton
-          class="font-medium"
-          text="Log out"
-          data-cy="dashboard_logout_btn"
-          :has-icon="false"
-          :loading="loading"
-          @trigger-event="logout"
-        >
-          <template #icon>
-            <IconLogout class="w-6 h-6 mr-2" />
-          </template>
-        </XButton>
-      </div>
+      <XButton
+        class="font-medium"
+        text="Log out"
+        data-cy="dashboard_logout_btn"
+        :has-icon="false"
+        :loading="loading"
+        @trigger-event="logout"
+      >
+        <template #icon>
+          <IconLogout class="w-6 h-6 mr-2" />
+        </template>
+      </XButton>
     </div>
   </header>
 </template>
