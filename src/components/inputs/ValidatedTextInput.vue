@@ -49,7 +49,7 @@ function toggleShowPassword() {
 
       <button
         v-if="type === 'password'"
-        class="absolute bottom-3 right-1 px-1 py-0.5 text-sm text-white/80 hover:text-sky-500 rounded-md"
+        class="absolute bottom-3 right-1 px-1 py-0.5 text-sm text-black/80 dark:text-white/80 hover:text-sky-500 rounded-md"
         @click="toggleShowPassword"
       >
         <IconEyeClose
