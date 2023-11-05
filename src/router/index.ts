@@ -42,6 +42,11 @@ const router = createRouter({
           name: "PasswordRest",
           component: () => import("@/components/auth/PasswordReset.vue"),
         },
+        {
+          path: "confirm-password-reset/:token(.*)",
+          name: "ConfirmPasswordReset",
+          component: () => import("@/components/auth/ConfirmPassword.vue"),
+        },
       ],
     },
     {
