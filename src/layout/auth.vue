@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useThemeStore } from "@/store/theme";
 
-import IconHandHeart from "@/components/icons/emoji/HandHeart.vue";
+import IconHandHeart from "@/components/icons/emojis/HandHeart.vue";
 import ThemeToggle from "@/components/common/ThemeToggle.vue";
 
 const themeStore = useThemeStore();
