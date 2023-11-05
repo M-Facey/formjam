@@ -6,8 +6,8 @@ import pb from "@/db/pocketBase";
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 
-import XTextInput from "@/components/inputs/TextInput.vue";
-import XButton from "@/components/inputs/Button.vue";
+import Loader from "@/components/anim/Loader.vue";
+import XTextInput from "@/components/inputs/ValidatedTextInput.vue";
 import XCheckbox from "@/components/inputs/Checkbox.vue";
 import FormErrorMessage from "@/components/form/FormErrorMessage.vue";
 
@@ -22,8 +22,8 @@ const { handleSubmit } = useForm({
     password: yup
       .string()
       .required("Your password is required")
-      .min(8, "Your password must contain at least 8 characters")
-      .max(25, "Your password must contain at most 25 characters"),
+      .min(8, "Your password must be at least 8 characters")
+      .max(25, "Your password must be at most 25 characters"),
   }),
 });
 
@@ -57,66 +57,86 @@ function closeErrorMessage() {
 </script>
 
 <template>
-  <div>
-    <h2 class="text-4xl text-center font-bold pb-10">
-      Log In to <RouterLink to="/" class="text-white/50">FormJAM</RouterLink>
+  <div class="w-full max-w-[520px] px-5">
+    <h2
+      class="text-primary-dark-500 dark:text-white text-3xl xs:text-4xl text-center font-bold"
+    >
+      Log In to
+      <RouterLink to="/" class="text-primary-dark-100/70 dark:text-white/50"
+        >FormJAM</RouterLink
+      >
     </h2>
+    <p
+      class="pt-2 pb-7 text-base xs:text-xl text-center text-sky-500 dark:text-sky-200"
+    >
+      Ready to get started? Log in to your account.
+    </p>
 
-    <div class="flex flex-col gap-y-2">
+    <div class="flex flex-col gap-y-4">
       <FormErrorMessage
         v-if="errorMessage"
         :message="errorMessage"
         @close-error-message="closeErrorMessage"
       />
+
       <XTextInput
-        name="email"
         id="login_email"
+        name="email"
         type="text"
-        placeholder="Email"
+        label="Email Address"
         data-cy="login_email_input"
-      >
-        <label for="login_email" class="pb-1">Email</label>
-      </XTextInput>
-
-      <XTextInput
-        name="password"
-        id="login_password"
-        type="password"
-        placeholder="Password"
-        data-cy="login_password_input"
-      >
-        <label for="login_password" class="pb-1">Password</label>
-      </XTextInput>
-
-      <XCheckbox
-        id="loginRememberMe"
-        text="Remember me?"
-        v-model="rememberMe"
-        class="pt-3"
-        data-cy="login_rememberme_input"
       />
 
-      <div class="flex items-center justify-between">
-        <p class="text-lg">
+      <XTextInput
+        id="login_email_input_1"
+        name="password"
+        type="password"
+        label="Password"
+        data-cy="login_password_input"
+      />
+
+      <div
+        class="flex flex-col xs:flex-row items-center justify-between gap-y-2"
+      >
+        <XCheckbox
+          id="loginRememberMe"
+          text="Remember me?"
+          v-model="rememberMe"
+          class="pt-1"
+          data-cy="login_rememberme_input"
+        />
+
+        <router-link
+          to="/auth/reset-your-password"
+          class="text-sky-500 hover:text-sky-600 dark:hover:text-sky-200 font-semibold underline"
+        >
+          Forgot your password
+        </router-link>
+      </div>
+
+      <div
+        class="flex flex-col xs:flex-row items-center justify-between gap-x-4 gap-y-4"
+      >
+        <p
+          class="flex-shrink-0 text-black dark:text-white text-base sm:text-lg select-none"
+        >
           Is this your first time?
           <RouterLink
             to="/auth/signup"
-            class="text-sky-500 hover:text-sky-400 font-bold underline"
+            class="text-sky-500 hover:text-sky-600 dark:hover:text-sky-400 font-semibold underline"
             data-cy="login_goto_signup_link"
             >Sign Up</RouterLink
           >
         </p>
-        <div class="w-[140px]">
-          <XButton
-            text="Log In"
-            size="expand"
-            align="center"
-            class="font-bold"
-            data-cy="login_submit_btn"
-            :loading="loading"
-            @trigger-event="onSubmit"
-          />
-        </div>
+
+        <button
+          class="custom-btn w-full xs:max-w-[150px] px-4 py-1.5 text-black rounded-lg"
+          data-cy="login_submit_btn"
+          @click="onSubmit"
+        >
+          <Loader v-if="loading" class="w-5 h-5" />
+          <p v-else class="font-semibold tracking-wide">Log in</p>
+        </button>
       </div>
     </div>
   </div>
