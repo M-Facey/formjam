@@ -12,7 +12,8 @@ defineEmits<CheckboxEmitType>();
 <template>
   <div class="flex items-center gap-x-3">
     <label
-      class="relative w-6 h-6 flex items-center justify-center hover:bg-neutral-300/20 ring-2 ring-neutral-600 rounded-md"
+      class="relative w-6 h-6 flex items-center justify-center hover:bg-white dark:hover:bg-primary-dark-100/30 border border-gray-300 dark:border-primary-dark-100 cursor-pointer rounded-lg"
+      :class="{ 'custom-btn': modelValue }"
     >
       <input
         :id="id"
@@ -22,10 +23,20 @@ defineEmits<CheckboxEmitType>();
         @click="$emit('update:modelValue', !modelValue)"
       />
       <IconCheck
-        class="icon-check absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-5 h-5 opacity-0 peer-checked:opacity-100"
+        class="icon-check absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-4 h-4 text-primary-dark-800 opacity-0 peer-checked:opacity-100"
       />
     </label>
 
-    <label :for="id" class="select-none cursor-pointer">{{ text }}</label>
+    <label
+      :for="id"
+      class="text-black dark:text-white select-none cursor-pointer"
+      >{{ text }}</label
+    >
   </div>
 </template>
+
+<style>
+.icon-check * {
+  stroke-width: 3px;
+}
+</style>
