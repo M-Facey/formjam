@@ -1,8 +1,22 @@
 import { Component } from "vue";
 
+interface BaseInput {
+  id: string;
+  type: "text" | "password";
+  placeholder?: string;
+  isOptional?: string;
+  dataCy: string;
+}
+
+export interface ValidatedInputPropType extends BaseInput {
+  label: string;
+  name: string;
+}
+
 export type TextPropType = {
   id: string;
   name?: string;
+  label?: string;
   type: "text" | "password";
   placeholder?: string;
   modelValue?: string;
