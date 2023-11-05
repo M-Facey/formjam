@@ -17,7 +17,6 @@ const router = createRouter({
     {
       path: "/auth",
       name: "Auth",
-      component: () => import("@/pages/auth.vue"),
       redirect: (to) => {
         if (to.name === "Signup" || to.name === "Login") {
           return { path: to.fullPath };
@@ -37,6 +36,11 @@ const router = createRouter({
           path: "signup",
           name: "Signup",
           component: () => import("@/components/auth/Signup.vue"),
+        },
+        {
+          path: "reset-your-password",
+          name: "PasswordRest",
+          component: () => import("@/components/auth/PasswordReset.vue"),
         },
       ],
     },
