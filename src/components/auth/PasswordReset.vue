@@ -28,6 +28,10 @@ const onSubmit = handleSubmit(async ({ email }) => {
   }
   loading.value = false;
 });
+
+function clearErrorMessage() {
+  errorMessage.value = "";
+}
 </script>
 
 <template>
@@ -40,7 +44,12 @@ const onSubmit = handleSubmit(async ({ email }) => {
       Fear not. We'll email you the instructions to reset your password.
     </p>
 
-    <FormErrorMessage v-if="errorMessage" message="errorMessage" />
+    <FormErrorMessage
+      v-if="errorMessage"
+      :message="errorMessage"
+      @close-error-message="clearErrorMessage"
+    />
+
     <XTextInput
       id="reset_email_input"
       type="text"

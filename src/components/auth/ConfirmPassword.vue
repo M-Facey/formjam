@@ -42,6 +42,10 @@ const onSubmit = handleSubmit(async ({ password, confirmPassword }) => {
   }
   loading.value = false;
 });
+
+function clearErrorMessage() {
+  errorMessage.value = "";
+}
 </script>
 
 <template>
@@ -50,7 +54,12 @@ const onSubmit = handleSubmit(async ({ password, confirmPassword }) => {
       Confirm Your New Password
     </h2>
 
-    <FormErrorMessage v-if="errorMessage" message="errorMessage" />
+    <FormErrorMessage
+      v-if="errorMessage"
+      :message="errorMessage"
+      @close-error-message="clearErrorMessage"
+    />
+
     <XTextInput
       id="new_password_input"
       type="password"
