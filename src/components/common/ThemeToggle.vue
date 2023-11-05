@@ -7,7 +7,7 @@ const themeStore = useThemeStore();
 </script>
 
 <template>
-  <div class="flex items-center gap-x-3">
+  <div class="flex items-center gap-x-3 select-none">
     <label
       class="relative w-[50px] h-[30px]"
       for="theme_toggle"
