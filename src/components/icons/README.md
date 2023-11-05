@@ -12,6 +12,12 @@ The icons are organized into different folders and here is what they mean:
 - Examples: `Logout`, `Add`, `Edit`, ...etc
 - No. of icons: 8 icons
 
+### [Emojis](./emojis/)
+
+- Purpose: Stores all icons related to emojis or emoticons
+- Examples: `HandHeart`
+- No. of icons: 1 icon
+
 ### [Input](./input/)
 
 - Purpose: Store all icons relates to input functionality
