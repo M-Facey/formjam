@@ -88,7 +88,7 @@ function closeErrorMessage() {
       />
 
       <XTextInput
-        id="login_email_input_1"
+        id="login_password_input"
         name="password"
         type="password"
         label="Password"
@@ -134,7 +134,7 @@ function closeErrorMessage() {
           data-cy="login_submit_btn"
           @click="onSubmit"
         >
-          <Loader v-if="loading" class="w-5 h-5" />
+          <Loader v-if="loading" class="w-5 h-5 mx-auto" />
           <p v-else class="font-semibold tracking-wide">Log in</p>
         </button>
       </div>

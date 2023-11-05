@@ -44,6 +44,7 @@ function toggleShowPassword() {
           'pl-3 pr-10 py-3': type === 'password',
         }"
         v-model="value"
+        :data-cy="dataCy"
       />
 
       <button
