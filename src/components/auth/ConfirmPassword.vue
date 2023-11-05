@@ -53,7 +53,7 @@ const onSubmit = handleSubmit(async ({ password, confirmPassword }) => {
     <FormErrorMessage v-if="errorMessage" message="errorMessage" />
     <XTextInput
       id="new_password_input"
-      type="text"
+      type="password"
       name="password"
       label="New Password"
       data-cy="new_password_input"
@@ -61,7 +61,7 @@ const onSubmit = handleSubmit(async ({ password, confirmPassword }) => {
 
     <XTextInput
       id="confirm_new_password_input"
-      type="text"
+      type="password"
       name="confirmPassword"
       label="Confirm New Password"
       data-cy="confirm_new_password_input"
