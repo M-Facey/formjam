@@ -65,6 +65,7 @@ function toggleShowPassword() {
     <p
       v-if="errorMessage"
       class="flex items-center gap-x-1 pt-1.5 text-[15px] text-red-500 tracking-wider"
+      :data-cy="`${dataCy}_error`"
     >
       <IconAlert class="w-5 h-5" />
       <span class="text-sm text-black dark:text-white font-medium">

@@ -46,7 +46,7 @@ const onSubmit = handleSubmit(async ({ email, password }) => {
 function resetErrorMessage() {
   errorTimeoutId.value = setTimeout(() => {
     errorMessage.value = "";
-  }, 10000);
+  }, 5000);
 }
 
 function closeErrorMessage() {
@@ -109,6 +109,7 @@ function closeErrorMessage() {
         <router-link
           to="/auth/reset-your-password"
           class="text-sky-500 hover:text-sky-600 dark:hover:text-sky-200 font-semibold underline"
+          data-cy="login_goto_password_reset_link"
         >
           Forgot your password
         </router-link>

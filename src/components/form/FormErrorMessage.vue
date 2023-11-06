@@ -1,8 +1,5 @@
 <script lang="ts" setup>
-import type {
-  ErrorMessagePropType,
-  ErrorMessageEmitType,
-} from "@/types/form";
+import type { ErrorMessagePropType, ErrorMessageEmitType } from "@/types/form";
 import IconClose from "@/components/icons/controls/Close.vue";
 import IconAlert from "@/components/icons/misc/Alert.vue";
 
@@ -13,6 +10,7 @@ defineEmits<ErrorMessageEmitType>();
 <template>
   <div
     class="w-full flex items-center justify-between bg-red-500/20 border border-red-700 text-white font-medium tracking-wide p-3 rounded-lg"
+    data-cy="server_error_message"
   >
     <div class="flex items-center">
       <IconAlert class="w-7 h-7 text-red-500 mr-3" />
