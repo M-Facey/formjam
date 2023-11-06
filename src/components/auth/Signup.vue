@@ -82,7 +82,7 @@ const errorTimoutId = ref<NodeJS.Timeout | null>(null);
 function resetErrorMessage() {
   errorTimoutId.value = setTimeout(() => {
     errorMessage.value = "";
-  }, 10000);
+  }, 5000);
 }
 
 function closeErrorMessage() {
