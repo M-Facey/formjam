@@ -64,6 +64,7 @@ const router = createRouter({
       component: () => import("@/pages/form/edit.vue"),
       meta: {
         layout: "Form",
+        authRequired: true,
       },
     },
     {
