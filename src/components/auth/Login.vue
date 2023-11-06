@@ -62,7 +62,10 @@ function closeErrorMessage() {
       class="text-primary-dark-500 dark:text-white text-3xl xs:text-4xl text-center font-bold"
     >
       Log In to
-      <RouterLink to="/" class="text-primary-dark-100/70 dark:text-white/50"
+      <RouterLink
+        to="/"
+        class="text-primary-dark-100/70 dark:text-white/50"
+        data-cy="login_goto_home_link"
         >FormJAM</RouterLink
       >
     </h2>
