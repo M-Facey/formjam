@@ -2,7 +2,11 @@
 
 declare namespace Cypress {
   interface Chainable {
-    login(): Chainable<void>;
+    login(
+      email?: string,
+      password?: string,
+      userExist?: boolean
+    ): Chainable<void>;
     logout(): Chainable<void>;
   }
 }
