@@ -7,8 +7,8 @@ import type { FormError } from "@/types/form";
 import { useForm } from "vee-validate";
 import * as yup from "yup";
 
-import XTextInput from "@/components/inputs/TextInput.vue";
-import XButton from "@/components/inputs/Button.vue";
+import Loader from "@/components/anim/Loader.vue";
+import XTextInput from "@/components/inputs/ValidatedTextInput.vue";
 import FormErrorMessage from "@/components/form/FormErrorMessage.vue";
 
 const { values, handleSubmit, resetForm } = useForm({
@@ -48,37 +48,37 @@ const fullName = computed(() => {
 
 const router = useRouter();
 const loading = ref(false);
-const submitForm = handleSubmit(
-  async ({ email, password, confirmPassword }) => {
-    loading.value = true;
-    const data = {
-      username: "",
-      email,
-      password,
-      passwordConfirm: confirmPassword,
-      name: fullName.value,
-    };
+const onSubmit = handleSubmit(async ({ email, password, confirmPassword }) => {
+  loading.value = true;
+  const data = {
+    username: "",
+    email,
+    password,
+    passwordConfirm: confirmPassword,
+    name: fullName.value,
+  };
 
-    try {
-      await pb.collection("users").create(data);
-      resetForm();
-      router.push("/auth/login");
-    } catch (error: any) {
-      const errorResponse = error.data as FormError;
-      let errorFields = Object.keys(errorResponse.data);
-      errorMessage.value = errorResponse.data[errorFields[0]].message;
-      resetErrorMessage();
-    }
-    loading.value = false;
+  try {
+    await pb.collection("users").create(data);
+    resetForm();
+    router.push("/auth/login");
+  } catch (error: any) {
+    const errorResponse = error.data as FormError;
+    let errorFields = Object.keys(errorResponse.data);
+    errorMessage.value = errorResponse.data[errorFields[0]].message;
+    resetErrorMessage();
   }
-);
+  loading.value = false;
+});
 
 // error message functions
 const hasErrorMessage = computed(() => {
   return errorMessage.value !== "";
 });
+
 const errorMessage = ref("");
 const errorTimoutId = ref<NodeJS.Timeout | null>(null);
+
 function resetErrorMessage() {
   errorTimoutId.value = setTimeout(() => {
     errorMessage.value = "";
@@ -94,83 +94,85 @@ function closeErrorMessage() {
 </script>
 
 <template>
-  <div>
+  <div class="w-full">
     <h2 class="text-4xl text-center font-bold pb-10">
       Sign Up to <RouterLink to="/" class="text-white/70">FormJAM</RouterLink>
     </h2>
 
-    <div class="flex flex-col gap-y-2">
+    <div class="w-full max-w-[540px] flex flex-col gap-y-3 px-5 mx-auto">
       <FormErrorMessage
         v-if="hasErrorMessage"
         :message="errorMessage"
         @close-error-message="closeErrorMessage"
       />
-      <XTextInput
-        id="signup_firstname"
-        name="firstName"
-        type="text"
-        placeholder="First Name"
-      >
-        <label for="signup_firstname" class="pb-1">First Name</label>
-      </XTextInput>
-      <XTextInput
-        id="signup_lastname"
-        name="lastName"
-        type="text"
-        placeholder="Last Name"
-      >
-        <label for="signup_lastname" class="pb-1">Last Name</label>
-      </XTextInput>
+
+      <div class="flex flex-col sm:flex-row gap-3">
+        <XTextInput
+          id="signup_firstname"
+          type="text"
+          name="firstName"
+          label="First Name"
+          class="w-full sm:w-1/2"
+          data-cy="signup_firstname_input"
+        />
+
+        <XTextInput
+          id="signup_lastname"
+          type="text"
+          name="lastName"
+          label="Last Name"
+          class="w-full sm:w-1/2"
+          data-cy="signup_lastname_input"
+        />
+      </div>
 
       <XTextInput
         id="signup_email"
         name="email"
         type="text"
-        placeholder="Email"
-      >
-        <label for="signup_email" class="pb-1">Email</label>
-      </XTextInput>
+        label="Email Address"
+        data-cy="signup_email_input"
+      />
 
       <XTextInput
         id="signup_pasxsword"
-        name="password"
         type="password"
-        placeholder="Password"
-        max="25"
-      >
-        <label for="signup_password" class="pb-1">Password</label>
-      </XTextInput>
+        name="password"
+        label="Password"
+        data-cy="signup_pasxsword_input"
+      />
 
       <XTextInput
         id="signup_confirm_password"
         name="confirmPassword"
         type="password"
-        placeholder="Password"
-      >
-        <label for="signup_confirm_password" class="pb-1"
-          >Confirm Password</label
-        >
-      </XTextInput>
+        label="Confirm Password"
+        data-cy="signup_confirm_password_input"
+      />
 
-      <div class="flex items-center justify-between pt-4">
-        <p class="text-lg">
+      <div
+        class="flex flex-col sm:flex-row items-center justify-between gap-x-4 gap-y-4 mt-3"
+      >
+        <p
+          class="flex-shrink-0 text-center text-black dark:text-white text-base sm:text-lg select-none"
+        >
           Already have an account?
           <RouterLink
-            to="/auth/login"
-            class="text-sky-500 hover:text-sky-400 font-bold underline"
+            to="/auth/signup"
+            class="text-sky-500 hover:text-sky-600 dark:hover:text-sky-400 font-semibold underline"
+            data-cy="signup_goto_login_link"
             >Log in</RouterLink
           >
         </p>
-        <div class="w-[140px]">
-          <XButton
-            text="Get Started"
-            size="expand"
-            align="center"
-            :loading="loading"
-            class="font-bold"
-            @trigger-event="submitForm"
-          />
-        </div>
+
+        <button
+          class="custom-btn w-full sm:max-w-[150px] px-4 py-1.5 text-black rounded-lg"
+          data-cy="signup_submit_btn"
+          @click="onSubmit"
+        >
+          <Loader v-if="loading" class="w-5 h-5 mx-auto" />
+          <p v-else class="font-semibold tracking-wide">Get Started</p>
+        </button>
       </div>
     </div>
   </div>
