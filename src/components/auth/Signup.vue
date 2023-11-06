@@ -34,7 +34,7 @@ const { values, handleSubmit, resetForm } = useForm({
       .max(25, "Your password must contain at most 25 characters"),
     confirmPassword: yup
       .string()
-      .required()
+      .required("Confirm Password is required")
       .oneOf(
         [yup.ref("password")],
         "Confirm Password must match your password"
@@ -139,7 +139,7 @@ function closeErrorMessage() {
         type="password"
         name="password"
         label="Password"
-        data-cy="signup_pasxsword_input"
+        data-cy="signup_password_input"
       />
 
       <XTextInput
@@ -158,7 +158,7 @@ function closeErrorMessage() {
         >
           Already have an account?
           <RouterLink
-            to="/auth/signup"
+            to="/auth/login"
             class="text-sky-500 hover:text-sky-600 dark:hover:text-sky-400 font-semibold underline"
             data-cy="signup_goto_login_link"
             >Log in</RouterLink
