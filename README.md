@@ -17,11 +17,20 @@ This is a simple app created using Vue 3 and Pocketbase. The `src` documentation
 
 ### Back end
 
-- Pocketbase (v0.18.10)
+- [Pocketbase](https://pocketbase.io/) (v0.18.10)
 
 ## :hammer_and_wrench: How To Run
 
-First, navigate to root folder of the project and run the following commands.
+First, copy the values from `.env.example` into a `.env` file and set the value according what your specific setup. Afterwards, you should navigate the root folder and run any of the folling commands.
+
+```sh
+VITE_POCKET_BASE="http://127.0.0.1:8090" # default port for pocketbase
+BASE_URL="http://localhost:5173" # default port for app
+
+API_URL="http://127.0.0.1:8090" # same as the local or production pocketbase instance
+USER_EMAIL="user@test.com" 
+USER_PASSWORD="password"
+```
 
 ### Install the dependencies
 
