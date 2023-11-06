@@ -8,5 +8,10 @@ declare namespace Cypress {
       userExist?: boolean
     ): Chainable<void>;
     logout(): Chainable<void>;
+    task<T>(
+      event: string,
+      arg?: any,
+      options?: Partial<Loggable & Timeoutable>
+    ): Chainable<T>;
   }
 }
