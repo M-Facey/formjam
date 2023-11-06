@@ -95,8 +95,13 @@ function closeErrorMessage() {
 
 <template>
   <div class="w-full">
-    <h2 class="text-4xl text-center font-bold pb-10">
-      Sign Up to <RouterLink to="/" class="text-white/70">FormJAM</RouterLink>
+    <h2
+      class="text-primary-dark-500 dark:text-white text-3xl xs:text-4xl text-center font-bold pb-7"
+    >
+      Sign Up to
+      <RouterLink to="/" class="text-primary-dark-100/70 dark:text-white/50"
+        >FormJAM</RouterLink
+      >
     </h2>
 
     <div class="w-full max-w-[540px] flex flex-col gap-y-3 px-5 mx-auto">
