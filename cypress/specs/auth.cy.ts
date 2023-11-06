@@ -69,6 +69,13 @@ describe("Login Tests", () => {
     cy.get('[data-cy="login_goto_password_reset_link"]').click();
     cy.location("pathname").should("eq", "/auth/reset-your-password");
   });
+
+  it("should redirect to homepage page", () => {
+    cy.visit("/auth/login");
+    cy.get('[data-cy="login_goto_home_link"]').click();
+    cy.wait(500);
+    cy.location("pathname").should("eq", "/");
+  });
 });
 
 describe("Signup Tests", () => {
@@ -102,6 +109,7 @@ describe("Signup Tests", () => {
       cy.location("pathname").should("eq", "/auth/login");
     });
   });
+
   it("should fail to sign up", () => {
     cy.intercept(
       "POST",
@@ -213,6 +221,13 @@ describe("Signup Tests", () => {
     cy.get('[data-cy="signup_goto_login_link"]').click();
     cy.wait(500);
     cy.location("pathname").should("eq", "/auth/login");
+  });
+
+  it("should redirect to homepage page", () => {
+    cy.visit("/auth/signup");
+    cy.get('[data-cy="signup_goto_home_link"]').click();
+    cy.wait(500);
+    cy.location("pathname").should("eq", "/");
   });
 });
 
