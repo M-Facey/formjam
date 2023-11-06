@@ -185,7 +185,7 @@ function showMenu() {
   if (menu.value === undefined) return;
   let currentHeight = 0;
   const DESIRED_HEIGHT_IN_PIXEL = 36;
-  const DURATION_IN_MS = 100;
+  const DURATION_IN_MS = 50;
   const interval = DESIRED_HEIGHT_IN_PIXEL / DURATION_IN_MS;
 
   const timerInterval = setInterval(() => {
@@ -210,7 +210,7 @@ function hideMenu() {
 
   let currentHeight = 36;
   const DESIRED_HEIGHT_IN_PIXEL = 0;
-  const DURATION_IN_MS = 100;
+  const DURATION_IN_MS = 50;
   const interval = currentHeight / DURATION_IN_MS;
 
   const timerInterval = setInterval(() => {
