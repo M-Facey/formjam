@@ -18,7 +18,7 @@ The default layout is the base layout used throughout the application. It provid
 
 4. Form Layout
 
-The form layout is used for all the pages within the form dashboard. It includes the creation and modification form pages and form-specific components. You can explore it in the [layouts/form.vue] file.
+The form layout is used for all the pages within the form dashboard. It includes the creation and modification form pages and form-specific components. You can explore it in the [layouts/form.vue](../layout/form.vue) file.
 
 ## Routes & Pages
 
