@@ -235,7 +235,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="w-full relative">
+  <div class="w-full max-w-[896px] overflow-hidden relative">
     <editor-content :editor="editor" class="peer" />
 
     <div
