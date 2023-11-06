@@ -59,7 +59,7 @@ function toggleNavDropdown() {
 
         <nav
           v-if="showNavDropdown"
-          class="absolute top-full left-0 translate-y-[1px] w-full flex flex-col gap-y-4 bg-white dark:bg-black p-4 z-[999]"
+          class="absolute top-full left-0 w-full flex flex-col gap-y-4 bg-white dark:bg-black p-4 z-[999]"
         >
           <RouterLink to="/auth/signup">
             <button
