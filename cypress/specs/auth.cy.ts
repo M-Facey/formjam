@@ -183,7 +183,7 @@ describe("Signup Tests", () => {
     );
   });
 
-  it("should show email address validation error", () => {
+  it("should show password validation error", () => {
     cy.visit("/auth/signup");
     cy.get('[data-cy="signup_password_input"]').type("123");
     cy.get('[data-cy="signup_password_input_error"]').contains(
@@ -201,7 +201,7 @@ describe("Signup Tests", () => {
     );
   });
 
-  it("should show email address validation error", () => {
+  it("should show confirm password validation error", () => {
     cy.visit("/auth/signup");
     cy.get('[data-cy="signup_password_input"]').type("123").clear();
     cy.get('[data-cy="signup_confirm_password_input"]').type("123").clear();
