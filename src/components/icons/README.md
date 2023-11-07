@@ -15,8 +15,8 @@ The icons are organized into different folders and here is what they mean:
 ### [Emojis](./emojis/)
 
 - Purpose: Stores all icons related to emojis or emoticons
-- Examples: `HandHeart`
-- No. of icons: 1 icon
+- Examples: `HandHeart`, `Phone`, `Chart`, ...etc
+- No. of icons: 4 icons
 
 ### [Input](./input/)
 
