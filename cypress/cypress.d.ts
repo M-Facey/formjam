@@ -2,6 +2,15 @@
 
 declare namespace Cypress {
   interface Chainable {
+    validatePasswordInput(
+      dataAttrs: string,
+      fieldName: string
+    ): Chainable<void>;
+    validateConfirmPasswordInput(
+      dataAttrs: string,
+      passwordDataAttrs: string,
+      fieldName: string
+    ): Chainable<void>;
     login(
       email?: string,
       password?: string,

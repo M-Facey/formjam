@@ -1,6 +1,43 @@
 /// <reference types="../cypress.d.ts" />
 
 Cypress.Commands.add(
+  "validatePasswordInput",
+  (dataAttrs: string, fieldName: string) => {
+    cy.get(`[data-cy="${dataAttrs}"]`).type("123");
+    cy.get(`[data-cy="${dataAttrs}_error"]`).contains(
+      fieldName + " must be at least 8 characters"
+    );
+    cy.get(`[data-cy="${dataAttrs}"]`)
+      .clear()
+      .type("oVr32EB1b,KQe8oz#2JtD]5AOh@");
+    cy.get(`[data-cy="${dataAttrs}_error"]`).contains(
+      fieldName + " must be at most 25 characters"
+    );
+    cy.get(`[data-cy="${dataAttrs}"]`).clear();
+    cy.get(`[data-cy="${dataAttrs}_error"]`).contains(
+      fieldName + " is required"
+    );
+  }
+);
+
+Cypress.Commands.add(
+  "validateConfirmPasswordInput",
+  (dataAttrs: string, passwordDataAttrs: string, fieldName: string) => {
+    cy.get(`[data-cy="${passwordDataAttrs}"]`).type("123").clear();
+    cy.get(`[data-cy="${dataAttrs}"]`).type("123").clear();
+    cy.get(`[data-cy="${dataAttrs}_error"]`).contains(
+      fieldName + " is required"
+    );
+    cy.get(`[data-cy="${dataAttrs}"]`)
+      .clear()
+      .type("oVr32EB1b,KQe8oz#2JtD]5AOh@");
+    cy.get(`[data-cy="${dataAttrs}_error"]`).contains(
+      fieldName + " must match "
+    );
+  }
+);
+
+Cypress.Commands.add(
   "login",
   (email?: string, password?: string, userExists = true) => {
     const userEmailAddress = email ? email : Cypress.env("USER_EMAIL");
