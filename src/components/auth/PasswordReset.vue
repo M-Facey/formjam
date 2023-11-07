@@ -53,17 +53,18 @@ function clearErrorMessage() {
     />
 
     <XTextInput
-      id="reset_email_input"
+      id="reset_password_email_input"
       type="text"
       name="email"
       label="Email Address"
-      data-cy="reset_email_input"
+      data-cy="reset_password_email_input"
     />
 
     <div class="flex flex-col xs:flex-row items-center gap-x-4 pt-3">
       <button
         class="w-full xs:max-w-[156px] custom-btn mb-2 xs:mb-0 px-4 py-1.5 text-sky-800 rounded-lg"
         @click="onSubmit"
+        data-cy="reset_password_submit_btn"
       >
         <Loader v-if="loading" class="w-6 h-6" />
         <p v-else>Reset Password</p>
@@ -71,6 +72,7 @@ function clearErrorMessage() {
       <router-link
         to="/auth/login"
         class="text-base sm:text-lg font-semibold underline"
+        data-cy="reset_password_goto_login"
         >Return to login page</router-link
       >
     </div>
