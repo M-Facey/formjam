@@ -30,8 +30,8 @@ const { values, handleSubmit, resetForm } = useForm({
     password: yup
       .string()
       .required("Your password is required")
-      .min(8, "Your password must contain at least 8 characters")
-      .max(25, "Your password must contain at most 25 characters"),
+      .min(8, "Your password must be at least 8 characters")
+      .max(25, "Your password must be at most 25 characters"),
     confirmPassword: yup
       .string()
       .required("Confirm Password is required")

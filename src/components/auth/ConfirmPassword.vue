@@ -19,10 +19,10 @@ const { handleSubmit } = useForm({
       .max(25, "Your new password must be at most 25 characters"),
     confirmNewPassword: yup
       .string()
-      .required("Please retype your new password")
+      .required("Confirm password is required")
       .oneOf(
-        [yup.ref("password")],
-        "Confirm Password must match your new password"
+        [yup.ref("newPassword")],
+        "Confirm password must match your new password"
       ),
   }),
 });
@@ -86,6 +86,7 @@ function cancelTimeout() {
       <div
         v-if="showSuccessMessage"
         class="bg-green-500/30 mb-3 p-3 border border-green-500 rounded-lg"
+        data-cy="confirm_password_success_message"
       >
         <p>
           Your password was successfully reset to the new password.
@@ -120,6 +121,7 @@ function cancelTimeout() {
         <button
           class="w-full xs:max-w-[156px] custom-btn mb-2 xs:mb-0 px-4 py-1.5 text-sky-800 rounded-lg"
           @click="onSubmit"
+          data-cy="confirm_password_submit_btn"
         >
           <Loader v-if="loading" class="w-6 h-6 mx-auto" />
           <p v-else>Reset Password</p>
@@ -128,6 +130,7 @@ function cancelTimeout() {
           to="/auth/login"
           class="text-vase sm:text-lg font-semibold underline"
           @click="cancelTimeout"
+          data-cy="confirm_password_goto_login"
           >Return to login page</router-link
         >
       </div>
