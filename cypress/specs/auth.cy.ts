@@ -39,23 +39,7 @@ describe("Login Tests", () => {
 
   it("should show password validation error", () => {
     cy.visit("/auth/login");
-
-    cy.get('[data-cy="login_password_input"]').type("test");
-    cy.get('[data-cy="login_password_input_error"]').contains(
-      "Your password must be at least 8 characters"
-    );
-
-    cy.get('[data-cy="login_password_input"]').clear();
-    cy.get('[data-cy="login_password_input_error"]').contains(
-      "Your password is required"
-    );
-
-    cy.get('[data-cy="login_password_input"]')
-      .clear()
-      .type("oVr32EB1b,KQe8oz#2JtD]5AOh@");
-    cy.get('[data-cy="login_password_input_error"]').contains(
-      "Your password must be at most 25 characters"
-    );
+    cy.validatePasswordInput('login_password_input', "Your password");
   });
 
   it("should redirect to sign up page", () => {
@@ -185,35 +169,12 @@ describe("Signup Tests", () => {
 
   it("should show password validation error", () => {
     cy.visit("/auth/signup");
-    cy.get('[data-cy="signup_password_input"]').type("123");
-    cy.get('[data-cy="signup_password_input_error"]').contains(
-      "Your password must contain at least 8 characters"
-    );
-    cy.get('[data-cy="signup_password_input"]')
-      .clear()
-      .type("oVr32EB1b,KQe8oz#2JtD]5AOh@");
-    cy.get('[data-cy="signup_password_input_error"]').contains(
-      "Your password must contain at most 25 characters"
-    );
-    cy.get('[data-cy="signup_password_input"]').clear();
-    cy.get('[data-cy="signup_password_input_error"]').contains(
-      "Your password is required"
-    );
+    cy.validatePasswordInput('signup_password_input', "Your password");
   });
 
   it("should show confirm password validation error", () => {
     cy.visit("/auth/signup");
-    cy.get('[data-cy="signup_password_input"]').type("123").clear();
-    cy.get('[data-cy="signup_confirm_password_input"]').type("123").clear();
-    cy.get('[data-cy="signup_confirm_password_input_error"]').contains(
-      "Confirm Password is required"
-    );
-    cy.get('[data-cy="signup_confirm_password_input"]').type(
-      "oVr32EB1b,KQe8oz#2JtD]5AOh@"
-    );
-    cy.get('[data-cy="signup_confirm_password_input_error"]').contains(
-      "Confirm Password must match your password"
-    );
+    cy.validateConfirmPasswordInput('signup_confirm_password_input', 'signup_password_input', "Confirm Password");
   });
 
   it("should redirect to login page", () => {
@@ -228,6 +189,79 @@ describe("Signup Tests", () => {
     cy.get('[data-cy="signup_goto_home_link"]').click();
     cy.wait(500);
     cy.location("pathname").should("eq", "/");
+  });
+});
+
+describe("Forgot Password Flow Tests", () => {
+  it("should navigate to reset password page", () => {
+    cy.visit("/auth/login");
+    cy.get('[data-cy="login_goto_password_reset_link"]').click();
+    cy.location("pathname").should("eq", "/auth/reset-your-password");
+  });
+
+  it("should submit reset link successfully", () => {
+    cy.intercept(
+      "POST",
+      Cypress.env("API_URL") + "/api/collections/users/request-password-reset"
+    ).as("resetPasswordRequest");
+    cy.visit("/auth/reset-your-password");
+
+    cy.get('[data-cy="reset_password_email_input"]').type(
+      Cypress.env("USER_EMAIL")
+    );
+    cy.get('[data-cy="reset_password_submit_btn"]').click();
+
+    cy.wait("@resetPasswordRequest")
+      .its("response.statusCode")
+      .should("eq", 204);
+  });
+
+  it("should show reset password email validation errors", () => {
+    cy.visit("/auth/reset-your-password");
+
+    cy.get('[data-cy="reset_password_email_input"]').type("123");
+    cy.get('[data-cy="reset_password_email_input_error"]').contains(
+      "Your email must be valid"
+    );
+
+    cy.get('[data-cy="reset_password_email_input"]').clear();
+    cy.get('[data-cy="reset_password_email_input_error"]').contains(
+      "Your email is required"
+    );
+  });
+
+  it("should confirm new password successfully", () => {
+    cy.intercept(
+      "POST",
+      Cypress.env("API_URL") + "/api/collections/users/confirm-password-reset",
+      {
+        statusCode: 204,
+        body: null,
+      }
+    ).as("confirmPasswordRequest");
+
+    cy.visit("/auth/confirm-password-reset/dummy-token");
+    cy.get('[data-cy="new_password_input"]').type(Cypress.env("USER_PASSWORD"));
+    cy.get('[data-cy="confirm_new_password_input"]').type(
+      Cypress.env("USER_PASSWORD")
+    );
+    cy.get('[data-cy="confirm_password_submit_btn"]').click();
+
+    cy.wait("@confirmPasswordRequest");
+
+    cy.get('[data-cy="confirm_password_success_message"]').should('exist');
+    cy.wait(2000);
+    cy.location("pathname").should("eq", "/auth/login");
+  });
+
+  it("should show new password input validation error", () => {
+    cy.visit("/auth/confirm-password-reset/dummy-token");
+    cy.validatePasswordInput('new_password_input', "Your new password");
+  });
+
+  it("should show new password input validation error", () => {
+    cy.visit("/auth/confirm-password-reset/dummy-token");
+    cy.validateConfirmPasswordInput('confirm_new_password_input', 'new_password_input', "Confirm password");
   });
 });
 
