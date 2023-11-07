@@ -71,8 +71,8 @@ function cancelTimeout() {
 </script>
 
 <template>
-  <div class="text-black dark:text-white">
-    <h2 class="text-center text-4xl font-epilogue font-bold pb-6">
+  <div class="text-black dark:text-white px-5">
+    <h2 class="text-center text-2xl xs:text-4xl font-epilogue font-bold pb-6">
       Confirm New Password
     </h2>
 
@@ -116,9 +116,9 @@ function cancelTimeout() {
         class="mt-4"
       />
 
-      <div class="flex items-center gap-x-4 pt-3">
+      <div class="flex flex-col xs:flex-row items-center gap-x-4 pt-3">
         <button
-          class="w-[156px] custom-btn px-4 py-1.5 text-sky-800 rounded-lg"
+          class="w-full xs:max-w-[156px] custom-btn mb-2 xs:mb-0 px-4 py-1.5 text-sky-800 rounded-lg"
           @click="onSubmit"
         >
           <Loader v-if="loading" class="w-6 h-6 mx-auto" />
@@ -126,7 +126,7 @@ function cancelTimeout() {
         </button>
         <router-link
           to="/auth/login"
-          class="text-lg font-semibold underline"
+          class="text-vase sm:text-lg font-semibold underline"
           @click="cancelTimeout"
           >Return to login page</router-link
         >
