@@ -1,6 +1,10 @@
 <script lang="ts" setup>
 import HomeNavbar from "@/components/home/HomeNavbar.vue";
 import InfoCard from "@/components/home/InfoCard.vue";
+
+import IconPhone from "@/components/icons/emojis/Phone.vue";
+import IconChart from "@/components/icons/emojis/Chart.vue";
+import IconClipboard from "@/components/icons/emojis/Clipboard.vue";
 </script>
 
 <template>
@@ -21,25 +25,28 @@ import InfoCard from "@/components/home/InfoCard.vue";
 
     <div class="w-full flex flex-col lg:flex-row gap-4 lg:mt-auto mb-7 z-10">
       <InfoCard
-        icon="📋"
         heading="Streamline Data Collection"
         content=" Effortlessly gather information, whether it's surveys, feedback, or
           applications. Say goodbye to paperwork and hello to efficiency."
-      />
+      >
+        <IconClipboard class="w-8 h-8" />
+      </InfoCard>
 
       <InfoCard
-        icon="📈"
         heading="Powerful Analytics"
         content="Unlock insights with our advanced analytics tools. Visualize data,
-          track trends, and make informed decisions."
-      />
+    track trends, and make informed decisions."
+      >
+        <IconChart class="w-8 h-8" />
+      </InfoCard>
 
       <InfoCard
-        icon="📱"
         heading="Anytime, Anywhere"
         content="Access your forms on the go. Our mobile-friendly platform ensures you
           can collect data from anywhere, anytime."
-      />
+      >
+        <IconPhone class="w-8 h-8" />
+      </InfoCard>
     </div>
 
     <div class="hidden md:block relative mt-auto">
