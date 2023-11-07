@@ -51,24 +51,24 @@ import IconClipboard from "@/components/icons/emojis/Clipboard.vue";
 
     <div class="hidden md:block relative mt-auto">
       <img
-        src="@/assets/images/bg-circle.png"
+        src="@/assets/images/bg-circle.webp"
         alt="circles"
         class="hidden dark:block absolute bottom-0"
       />
       <img
-        src="@/assets/images/bg-circle-light.png"
+        src="@/assets/images/bg-circle-light.webp"
         alt="circles"
         class="block dark:hidden absolute bottom-0"
       />
       <img
-        src="@/assets/images/dashboard-dark.png"
+        src="@/assets/images/dashboard-dark.webp"
         alt="dashboard"
-        class="hidden dark:block relative"
+        class="w-full max-h-[415px] max-w-[1106px] hidden dark:block relative"
       />
       <img
-        src="@/assets/images/dashboard-light.png"
+        src="@/assets/images/dashboard-light.webp"
         alt="dashboard"
-        class="block dark:hidden relative"
+        class="w-full max-h-[415px] max-w-[1106px] block dark:hidden relative"
       />
     </div>
   </div>
