@@ -35,12 +35,14 @@ function clearErrorMessage() {
 </script>
 
 <template>
-  <div class="text-black dark:text-white">
-    <h2 class="text-center text-4xl font-epilogue font-bold">
+  <div class="text-black dark:text-white px-5">
+    <h2 class="text-center text-3xl xs:text-4xl font-epilogue font-bold">
       Reset Your Password
     </h2>
 
-    <p class="pb-5 text-sky-500 dark:text-white">
+    <p
+      class="pt-1 pb-5 text-sm xs:text-base text-center text-sky-500 dark:text-white"
+    >
       Fear not. We'll email you the instructions to reset your password.
     </p>
 
@@ -58,15 +60,17 @@ function clearErrorMessage() {
       data-cy="reset_email_input"
     />
 
-    <div class="flex items-center gap-x-4 pt-3">
+    <div class="flex flex-col xs:flex-row items-center gap-x-4 pt-3">
       <button
-        class="custom-btn px-4 py-1.5 text-sky-800 rounded-lg"
+        class="w-full xs:max-w-[156px] custom-btn mb-2 xs:mb-0 px-4 py-1.5 text-sky-800 rounded-lg"
         @click="onSubmit"
       >
         <Loader v-if="loading" class="w-6 h-6" />
         <p v-else>Reset Password</p>
       </button>
-      <router-link to="/auth/login" class="text-lg font-semibold underline"
+      <router-link
+        to="/auth/login"
+        class="text-base sm:text-lg font-semibold underline"
         >Return to login page</router-link
       >
     </div>
