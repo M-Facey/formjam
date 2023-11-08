@@ -1,0 +1,10 @@
+{
+  "short_name": "formjam",
+  "name": "FormJAM | Just another form app",
+  "description": "A simple form app created in Vue3, TailwindCSS and Pocketbase",
+  "scope": "/",
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "background_color": "#0ea5e9",
+  "theme_color": "#0ea5e9"
+}
