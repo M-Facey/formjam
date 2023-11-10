@@ -19,7 +19,7 @@ function toggleNavDropdown() {
       class="w-full max-w-[1200px] flex items-center justify-between mx-auto"
     >
       <div class="flex items-center gap-x-3 select-none">
-        <img src="@/assets/vue.svg" alt="logo" class="h-7 md:h-8 mb-2" />
+        <img src="@/assets/vue.svg" alt="logo" class="w-7 h-7 md:w-8 md:h-8 mb-2" />
         <h1 class="text-xl md:text-2xl leading-4 font-bold">FormJAM</h1>
       </div>
 
