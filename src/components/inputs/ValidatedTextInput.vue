@@ -7,7 +7,9 @@ import IconEyeClose from "@/components/icons/input/EyeClose.vue";
 import IconEyeOpen from "@/components/icons/input/EyeOpen.vue";
 import IconAlert from "@/components/icons/misc/Alert.vue";
 
-const props = defineProps<ValidatedInputPropType>();
+const props = withDefaults(defineProps<ValidatedInputPropType>(), {
+  required: true,
+});
 const { value, errorMessage } = useField(() => {
   return props.name;
 });
@@ -33,6 +35,7 @@ function toggleShowPassword() {
         >{{ label }}</label
       >
       <input
+        :id="id"
         :type="!showPassword && type === 'password' ? type : 'text'"
         :placeholder="placeholder"
         class="w-full bg-white/80 dark:bg-transparent hover:bg-white dark:hover:bg-black/20 pt-6 pb-3 text-black dark:text-white text-base xs:text-lg border outline-none group-focus-within:ring-4 rounded-lg"
@@ -45,6 +48,8 @@ function toggleShowPassword() {
         }"
         v-model="value"
         :data-cy="dataCy"
+        :required="required"
+        :autocomplete="autocomplete"
       />
 
       <button

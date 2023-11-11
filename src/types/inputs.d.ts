@@ -11,6 +11,8 @@ interface BaseInput {
 export interface ValidatedInputPropType extends BaseInput {
   label: string;
   name: string;
+  required?: boolean;
+  autocomplete: string;
 }
 
 export type TextPropType = {
