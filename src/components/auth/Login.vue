@@ -75,7 +75,7 @@ function closeErrorMessage() {
       Ready to get started? Log in to your account.
     </p>
 
-    <div class="flex flex-col gap-y-4">
+    <form id="login_form" class="flex flex-col gap-y-4" @submit="onSubmit">
       <FormErrorMessage
         v-if="errorMessage"
         :message="errorMessage"
@@ -88,6 +88,7 @@ function closeErrorMessage() {
         type="text"
         label="Email Address"
         data-cy="login_email_input"
+        autocomplete="email"
       />
 
       <XTextInput
@@ -96,6 +97,7 @@ function closeErrorMessage() {
         type="password"
         label="Password"
         data-cy="login_password_input"
+        autocomplete="current-password"
       />
 
       <div
@@ -134,14 +136,14 @@ function closeErrorMessage() {
         </p>
 
         <button
+          type="submit"
           class="custom-btn w-full xs:max-w-[150px] px-4 py-1.5 text-black rounded-lg"
           data-cy="login_submit_btn"
-          @click="onSubmit"
         >
           <Loader v-if="loading" class="w-5 h-5 mx-auto" />
           <p v-else class="font-semibold tracking-wide">Log in</p>
         </button>
       </div>
-    </div>
+    </form>
   </div>
 </template>

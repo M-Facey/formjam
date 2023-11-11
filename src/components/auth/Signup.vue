@@ -107,7 +107,10 @@ function closeErrorMessage() {
       >
     </h2>
 
-    <div class="w-full max-w-[540px] flex flex-col gap-y-3 px-5 mx-auto">
+    <form
+      id="signup_form"
+      class="w-full max-w-[540px] flex flex-col gap-y-3 px-5 mx-auto"
+    >
       <FormErrorMessage
         v-if="hasErrorMessage"
         :message="errorMessage"
@@ -122,6 +125,7 @@ function closeErrorMessage() {
           label="First Name"
           class="w-full sm:w-1/2"
           data-cy="signup_firstname_input"
+          autocomplete="given-name"
         />
 
         <XTextInput
@@ -131,6 +135,7 @@ function closeErrorMessage() {
           label="Last Name"
           class="w-full sm:w-1/2"
           data-cy="signup_lastname_input"
+          autocomplete="family-name"
         />
       </div>
 
@@ -140,6 +145,7 @@ function closeErrorMessage() {
         type="text"
         label="Email Address"
         data-cy="signup_email_input"
+        autocomplete="email"
       />
 
       <XTextInput
@@ -148,6 +154,7 @@ function closeErrorMessage() {
         name="password"
         label="Password"
         data-cy="signup_password_input"
+        autocomplete="new-password"
       />
 
       <XTextInput
@@ -156,6 +163,7 @@ function closeErrorMessage() {
         type="password"
         label="Confirm Password"
         data-cy="signup_confirm_password_input"
+        autocomplete="new-password"
       />
 
       <div
@@ -182,6 +190,6 @@ function closeErrorMessage() {
           <p v-else class="font-semibold tracking-wide">Get Started</p>
         </button>
       </div>
-    </div>
+    </form>
   </div>
 </template>
