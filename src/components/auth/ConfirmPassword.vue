@@ -82,7 +82,11 @@ function cancelTimeout() {
       @close-error-message="clearErrorMessage"
     />
 
-    <div class="w-full max-w-[500px]">
+    <form
+      id="confirm_new_password_form"
+      class="w-full max-w-[500px]"
+      @submit="onSubmit"
+    >
       <div
         v-if="showSuccessMessage"
         class="bg-green-500/30 mb-3 p-3 border border-green-500 rounded-lg"
@@ -106,21 +110,23 @@ function cancelTimeout() {
         name="newPassword"
         label="New Password"
         data-cy="new_password_input"
+        autocomplete="new-password"
       />
 
       <XTextInput
         id="confirm_new_password_input"
         type="password"
+        class="mt-4"
         name="confirmNewPassword"
         label="Confirm New Password"
         data-cy="confirm_new_password_input"
-        class="mt-4"
+        autocomplete="new-password"
       />
 
       <div class="flex flex-col xs:flex-row items-center gap-x-4 pt-3">
         <button
+          type="submit"
           class="w-full xs:max-w-[156px] custom-btn mb-2 xs:mb-0 px-4 py-1.5 text-sky-800 rounded-lg"
-          @click="onSubmit"
           data-cy="confirm_password_submit_btn"
         >
           <Loader v-if="loading" class="w-6 h-6 mx-auto" />
@@ -134,6 +140,6 @@ function cancelTimeout() {
           >Return to login page</router-link
         >
       </div>
-    </div>
+    </form>
   </div>
 </template>

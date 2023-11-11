@@ -35,7 +35,11 @@ function clearErrorMessage() {
 </script>
 
 <template>
-  <div class="text-black dark:text-white px-5">
+  <form
+    id="password_reset_form"
+    class="text-black dark:text-white px-5"
+    @sub="onSubmit"
+  >
     <h2 class="text-center text-3xl xs:text-4xl font-epilogue font-bold">
       Reset Your Password
     </h2>
@@ -58,12 +62,12 @@ function clearErrorMessage() {
       name="email"
       label="Email Address"
       data-cy="reset_password_email_input"
+      autocomplete="email"
     />
 
     <div class="flex flex-col xs:flex-row items-center gap-x-4 pt-3">
       <button
         class="w-full xs:max-w-[156px] custom-btn mb-2 xs:mb-0 px-4 py-1.5 text-sky-800 rounded-lg"
-        @click="onSubmit"
         data-cy="reset_password_submit_btn"
       >
         <Loader v-if="loading" class="w-6 h-6" />
@@ -76,5 +80,5 @@ function clearErrorMessage() {
         >Return to login page</router-link
       >
     </div>
-  </div>
+  </form>
 </template>
