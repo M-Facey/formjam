@@ -55,7 +55,8 @@ function toggleShowPassword() {
       <button
         v-if="type === 'password'"
         class="absolute bottom-3 right-1 px-1 py-0.5 text-sm text-black/80 dark:text-white/80 hover:text-sky-500 rounded-md"
-        @click="toggleShowPassword"
+        aria-label="Toggle Show Password"
+        @click.prevent="toggleShowPassword"
       >
         <IconEyeClose
           v-show="!showPassword && type === 'password'"
@@ -79,3 +80,12 @@ function toggleShowPassword() {
     </p>
   </div>
 </template>
+
+<style scoped>
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus {
+  -webkit-text-fill-color: white;
+  -webkit-box-shadow: 0 0 0px 1000px #05051e inset;
+}
+</style>
