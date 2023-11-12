@@ -4,13 +4,14 @@ import dayjs from "dayjs";
 
 import FormCard from "@/components/form/view/FormCard.vue";
 import CreateFormCard from "@/components/form/view/CreateFormCard.vue";
+import FormCardLoader from "./FormCardLoader.vue";
 
 defineProps<{ forms: SanitizedFormType[] }>();
 defineEmits<FormGridEmitType>();
 </script>
 
 <template>
-  <div class="flex flex-wrap gap-3 pt-5">
+  <div v-if="forms.length !== 0" class="custom-grid gap-3 pt-5">
     <CreateFormCard />
     <FormCard
       v-for="form in forms"
@@ -27,4 +28,18 @@ defineEmits<FormGridEmitType>();
       "
     />
   </div>
+
+  <div v-else class="custom-grid gap-3 pt-5">
+    <CreateFormCard />
+    <FormCardLoader v-for="_ in 5" />
+  </div>
 </template>
+
+<style scoped>
+.custom-grid {
+  display: grid;
+  gap: 1em;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+  grid-auto-rows: auto auto;
+}
+</style>
