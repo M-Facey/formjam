@@ -1,13 +1,17 @@
 import { Question } from "./pocketbase";
 
 // component types
-export type FormCardPropType = {
+export interface FormItemPropType {
   title: string;
+  lastEdited: string;
+  hasStar?: boolean;
+}
+
+export interface FormCardPropType extends FormItemPropType {
   description: string;
   lastEdited: string;
   createdAt: string;
-  hasStar?: boolean;
-};
+}
 
 export type FormCardEmitType = {
   (e: "deleteForm"): void;
