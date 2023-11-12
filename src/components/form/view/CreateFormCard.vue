@@ -21,7 +21,7 @@ async function gotoEditFormPage() {
 
 <template>
   <div
-    class="max-w-[241px] flex flex-col items-center justify-center bg-sky-100 py-4 px-6 border-2 border-dashed border-sky-300 hover:border-sky-500 rounded-lg cursor-pointer"
+    class="max-w-full flex flex-col items-center justify-center bg-sky-200 py-6 px-6 border-2 border-dashed border-sky-300 hover:border-sky-500 rounded-lg cursor-pointer"
     @click="gotoEditFormPage"
   >
     <div class="custom-btn p-1 rounded-xl">
@@ -31,7 +31,7 @@ async function gotoEditFormPage() {
     <p class="pt-4 text-lg text-center font-bold font-epilogue">
       Create new form
     </p>
-    <p class="text-sm text-center text-sky-400 font-medium tracking-wide">
+    <p class="text-sm text-center text-sky-800 font-medium tracking-wide">
       Click here to create a blank form
     </p>
   </div>
