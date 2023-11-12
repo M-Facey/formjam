@@ -27,7 +27,7 @@ function toggleFormDropdown() {
 
 <template>
   <div
-    class="flex flex-col flex-stretch w-[241px] border border-sky-100 hover:border-sky-500 rounded-md cursor-pointer"
+    class="flex flex-col flex-stretch w-full border border-sky-100 hover:border-sky-500 rounded-md cursor-pointer overflow-hidden"
     @click="$emit('editForm')"
   >
     <div class="h-[130px] bg-sky-400"></div>
@@ -41,7 +41,10 @@ function toggleFormDropdown() {
       </p>
 
       <div class="absolute top-3 right-3" @click.stop="toggleFormDropdown">
-        <button class="p-1 bg-gray-200 rounded">
+        <button
+          aria-label="Form card dropdown menu"
+          class="p-1 bg-gray-200 rounded"
+        >
           <IconDots class="w-4 h-4" />
         </button>
 
