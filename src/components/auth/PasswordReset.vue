@@ -38,7 +38,7 @@ function clearErrorMessage() {
   <form
     id="password_reset_form"
     class="text-black dark:text-white px-5"
-    @sub="onSubmit"
+    @submit="onSubmit"
   >
     <h2 class="text-center text-3xl xs:text-4xl font-epilogue font-bold">
       Reset Your Password
