@@ -11,6 +11,8 @@ import FormList from "@/components/form/view/FormList.vue";
 const router = useRouter();
 const formStore = useFormStore();
 
+const isLoading = ref(false);
+
 const sanitizedForms = computed<SanitizedFormType[]>(() => {
   if (!formStore.forms) return [];
 
@@ -23,7 +25,9 @@ const sanitizedForms = computed<SanitizedFormType[]>(() => {
 
 async function executeEvent(event: FormCardEvent) {
   if (event.name === "delete") {
+    isLoading.value = true;
     await formStore.deleteForm(event.id);
+    isLoading.value = false;
   } else if (event.name === "edit") {
     router.push({ name: "EditForm", params: { formId: event.id } });
   }
@@ -35,7 +39,9 @@ function toggleView() {
 }
 
 onMounted(async () => {
+  isLoading.value = true;
   formStore.fetchForms();
+  isLoading.value = false;
 });
 </script>
 
@@ -47,6 +53,7 @@ onMounted(async () => {
       <FormCardGrid
         v-if="currentView === 'Grid'"
         :forms="sanitizedForms"
+        :is-loading="isLoading"
         @trigger-event="executeEvent"
       />
       <FormList v-else :forms="sanitizedForms" @trigger-event="executeEvent" />

@@ -6,12 +6,12 @@ import FormCard from "@/components/form/view/FormCard.vue";
 import CreateFormCard from "@/components/form/view/CreateFormCard.vue";
 import FormCardLoader from "./FormCardLoader.vue";
 
-defineProps<{ forms: SanitizedFormType[] }>();
+defineProps<{ forms: SanitizedFormType[], isLoading: boolean }>();
 defineEmits<FormGridEmitType>();
 </script>
 
 <template>
-  <div v-if="forms.length !== 0" class="custom-grid gap-3 pt-5">
+  <div v-if="!isLoading" class="custom-grid gap-3 pt-5">
     <CreateFormCard />
     <FormCard
       v-for="form in forms"
