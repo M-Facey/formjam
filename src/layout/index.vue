@@ -5,7 +5,7 @@ import { useRoute } from "vue-router";
 
 // import layouts
 import DefaultLayout from "@/layout/default.vue";
-import AppLayout from "@/layout/app.vue";
+import AppLayout from "@/layout/dashboard.vue";
 import FormLayout from "@/layout/form.vue";
 import AuthLayout from "@/layout/auth.vue";
 
@@ -25,8 +25,8 @@ watch(
     if (route.meta.layout === "Default") {
       layoutName.value = "Default";
       layoutComponent.value = DefaultLayout;
-    } else if (route.meta.layout === "App") {
-      layoutName.value = "App";
+    } else if (route.meta.layout === "Dashboard") {
+      layoutName.value = "Dashboard";
       layoutComponent.value = AppLayout;
     } else if (route.meta.layout === "Form") {
       layoutName.value = "Form";
