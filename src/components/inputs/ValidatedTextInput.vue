@@ -47,6 +47,7 @@ function toggleShowPassword() {
           'pl-3 pr-10 py-3': type === 'password',
         }"
         v-model="value"
+        @keydown.enter.prevent
         :data-cy="dataCy"
         :required="required"
         :autocomplete="autocomplete"
