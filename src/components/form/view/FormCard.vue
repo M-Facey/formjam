@@ -27,11 +27,11 @@ function toggleFormDropdown() {
 
 <template>
   <div
-    class="flex flex-col flex-stretch w-full border border-sky-100 hover:border-sky-500 rounded-md cursor-pointer overflow-hidden"
+    class="flex flex-col flex-stretch w-full border border-sky-100 hover:border-sky-500 rounded-md cursor-pointer"
     data-cy="form_card"
     @click="$emit('editForm')"
   >
-    <div class="h-[130px] bg-sky-400"></div>
+    <div class="h-[130px] bg-sky-400 rounded-t-[5px]"></div>
 
     <div class="relative py-2 px-2">
       <p class="pr-10 font-medium truncate" v-html="unformattedTitle"></p>
