@@ -5,6 +5,7 @@ import { faker } from "@faker-js/faker";
 dotenv.config();
 
 export default defineConfig({
+  projectId: "qecres",
   e2e: {
     baseUrl: process.env.BASE_URL,
     specPattern: "cypress/specs/**/*.cy.{js,ts,jsx,tsx}",
