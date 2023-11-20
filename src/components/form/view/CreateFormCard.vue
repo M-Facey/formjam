@@ -22,6 +22,7 @@ async function gotoEditFormPage() {
 <template>
   <div
     class="max-w-full flex flex-col items-center justify-center bg-sky-200 py-6 px-6 border-2 border-dashed border-sky-300 hover:border-sky-500 rounded-lg cursor-pointer"
+    data-cy="create_form_card"
     @click="gotoEditFormPage"
   >
     <div class="custom-btn p-1 rounded-xl">

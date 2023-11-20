@@ -28,6 +28,7 @@ function toggleFormDropdown() {
 <template>
   <div
     class="flex flex-col flex-stretch w-full border border-sky-100 hover:border-sky-500 rounded-md cursor-pointer overflow-hidden"
+    data-cy="form_card"
     @click="$emit('editForm')"
   >
     <div class="h-[130px] bg-sky-400"></div>
@@ -44,6 +45,7 @@ function toggleFormDropdown() {
         <button
           aria-label="Form card dropdown menu"
           class="p-1 bg-gray-200 rounded"
+          data-cy="form_card_dropdown"
         >
           <IconDots class="w-4 h-4" />
         </button>
@@ -53,13 +55,19 @@ function toggleFormDropdown() {
           class="absolute top-full translate-y-3 right-0 w-[140px] flex flex-col bg-white py-1 border border-gray-200 rounded"
         >
           <button
+            aria-label="Form card delete button"
             class="flex items-center gap-x-2 hover:bg-gray-200 p-1.5"
+            data-cy="form_card_delete_btn"
             @click="$emit('deleteForm')"
           >
             <IconDelete class="w-5 h-5" />
             <p>Delete</p>
           </button>
-          <button class="flex items-center gap-x-2 hover:bg-gray-200 p-1.5">
+          <button
+            aria-label="Form card rename button"
+            class="flex items-center gap-x-2 hover:bg-gray-200 p-1.5"
+            data-cy="form_card_rename_btn"
+          >
             <IconEdit class="w-5 h-5" />
             <p>Rename</p>
           </button>
