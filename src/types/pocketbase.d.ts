@@ -2,7 +2,7 @@ import type { BaseAuthStore, PocketBase, RecordService } from "pocketbase";
 
 // ** Dev Note **
 // These types def for pocketbase seems to only affect
-// retreival of records from pocketbase. Methods such as
+// retrieval of records from pocketbase. Methods such as
 // `getList`, `getOne`, etc.
 
 // It is completely useless for managing the data used to
@@ -32,7 +32,10 @@ interface Question extends BaseCollectionType {
     | "dropdown"
     | "linear-scale";
   order: number;
-  answers: string[];
+  answers: {
+    id: string;
+    text: string;
+  }[];
   required: boolean;
   form: string;
 }
