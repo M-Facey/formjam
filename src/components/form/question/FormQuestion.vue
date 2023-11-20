@@ -7,6 +7,7 @@ import type { Question } from "@/types/pocketbase";
 import XEditor from "@/components/inputs/Editor.vue";
 import XDropdown from "@/components/inputs/Dropdown.vue";
 import XToggle from "@/components/inputs/Toggle.vue";
+import Answer from "@/components/form/question/Answer.vue";
 
 // question type icons
 import IconCheckbox from "@/components/icons/question/Checkbox.vue";
@@ -121,23 +122,22 @@ onMounted(() => {
         />
       </div>
       <div class="pt-3">
-        <div class="w-full">
-          <input
-            v-if="
-              currentQuestionOption.value === 'short-text' ||
-              currentQuestionOption.value === 'paragraph'
-            "
-            :id="`text-answer-${question.id}`"
-            type="text"
-            class="w-full border border-gray-400 py-2 px-4 outline-none rounded-md"
-            readonly
-            :placeholder="
-              currentQuestionOption.value === 'short-text'
-                ? 'Short text'
-                : 'Long text'
-            "
-          />
-        </div>
+        <input
+          v-if="
+            currentQuestionOption.value === 'short-text' ||
+            currentQuestionOption.value === 'paragraph'
+          "
+          :id="`text-answer-${question.id}`"
+          type="text"
+          class="w-full border border-gray-400 py-2 px-4 outline-none rounded-md"
+          readonly
+          :placeholder="
+            currentQuestionOption.value === 'short-text'
+              ? 'Short text'
+              : 'Long text'
+          "
+        />
+        <Answer v-else v-model="questionConfig.answers" :question-type="questionConfig.type" />
       </div>
     </div>
 
