@@ -1,3 +1,5 @@
+/// <reference types="../cypress.d.ts" />
+
 describe("UI Tests", () => {
   it("should able to toggle theme button", () => {
     cy.visit("/");
