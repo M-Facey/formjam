@@ -7,8 +7,6 @@ jobs:
 
     strategy:
       fail-fast: false # https://github.com/cypress-io/github-action/issues/48
-      matrix:
-        containers: [1, 2] # Uses 2 parallel instances
 
     steps:
       - name: Checkout
@@ -24,7 +22,6 @@ jobs:
         with:
           install-command: pnpm install
           record: true
-          parallel: true
         env:
           CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           BASE_URL: ${{ secrets.BASE_URL }}
