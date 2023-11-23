@@ -43,7 +43,6 @@ const characterLimit = computed(() => {
 });
 
 const timerId = ref<NodeJS.Timeout | null>(null);
-const waitId = ref<NodeJS.Timeout | null>(null);
 const editor = useEditor({
   content: props.modelValue,
   extensions: [
@@ -98,23 +97,10 @@ const editor = useEditor({
     }, 1000);
   },
   onFocus: () => {
-    if (waitId.value) {
-      clearTimeout(waitId.value);
-      return;
-    }
-
-    if (isMenuOpen) {
-      showMenu();
-    }
+    isMenuOpen.value = true;
   },
   onBlur: () => {
-    waitId.value = setTimeout(() => {
-      if (isMenuOpen) {
-        hideMenu();
-        emits("update:modelValue", editor.value?.getHTML() || "");
-        waitId.value = null;
-      }
-    }, 250);
+    isMenuOpen.value = false;
   },
   onDestroy: () => {
     emits("update:modelValue", editor.value?.getHTML() || "");
@@ -181,53 +167,6 @@ function createInputClass() {
 
 const menu = ref<HTMLElement>();
 const isMenuOpen = ref(false);
-function showMenu() {
-  if (menu.value === undefined) return;
-  let currentHeight = 0;
-  const DESIRED_HEIGHT_IN_PIXEL = 36;
-  const DURATION_IN_MS = 50;
-  const interval = DESIRED_HEIGHT_IN_PIXEL / DURATION_IN_MS;
-
-  const timerInterval = setInterval(() => {
-    // Dev Note:
-    // The menu value can be `undefined`, `null` or `HTMLElement`.
-    // So, a more generic check was used to text if the value exist inside the menu ref
-
-    // Chenks in lines: 212, 220
-    if (!menu.value) return;
-    menu.value.style.height = `${currentHeight}px`;
-    currentHeight += interval;
-
-    if (currentHeight >= DESIRED_HEIGHT_IN_PIXEL) {
-      isMenuOpen.value = true;
-      clearInterval(timerInterval);
-    }
-  }, 1);
-}
-
-function hideMenu() {
-  if (!menu.value) return;
-
-  let currentHeight = 36;
-  const DESIRED_HEIGHT_IN_PIXEL = 0;
-  const DURATION_IN_MS = 50;
-  const interval = currentHeight / DURATION_IN_MS;
-
-  const timerInterval = setInterval(() => {
-    if (!menu.value) {
-      clearInterval(timerInterval);
-      return;
-    }
-
-    menu.value.style.height = `${currentHeight}px`;
-    currentHeight -= interval;
-
-    if (currentHeight <= DESIRED_HEIGHT_IN_PIXEL) {
-      isMenuOpen.value = false;
-      clearInterval(timerInterval);
-    }
-  }, 1);
-}
 
 onUnmounted(() => {
   editor.value?.destroy();
@@ -241,7 +180,8 @@ onUnmounted(() => {
     <div
       v-if="editor"
       ref="menu"
-      class="menu flex gap-x-1 pt-1 overflow-hidden"
+      class="menu h-8 flex gap-x-1 pt-1 overflow-hidden"
+      :class="{ open: isMenuOpen }"
     >
       <button
         class="hover:bg-gray-200 p-1 rounded-md"
@@ -335,6 +275,13 @@ onUnmounted(() => {
 }
 
 .menu {
-  height: 0px;
+  max-height: 0px;
+  transition: max-height 0.25s ease-out;
+  overflow: hidden;
+}
+
+.menu.open {
+  max-height: 500px;
+  transition: max-height 0.6s ease-in;
 }
 </style>
