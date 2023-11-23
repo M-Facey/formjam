@@ -324,6 +324,16 @@ onUnmounted(() => {
   height: 0;
 }
 
+.tiptap > p {
+  margin-top: 4px;
+  margin-bottom: 4px;
+}
+
+.tiptap > div p {
+  margin-top: 2px;
+  margin-bottom: 2px;
+}
+
 .menu {
   height: 0px;
 }
