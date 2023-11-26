@@ -180,13 +180,14 @@ onUnmounted(() => {
     <div
       v-if="editor"
       ref="menu"
-      class="menu h-8 flex gap-x-1 pt-1 overflow-hidden"
+      class="menu h-12 flex items-center gap-x-1 pl-1 overflow-hidden"
       :class="{ open: isMenuOpen }"
     >
       <button
         class="hover:bg-gray-200 p-1 rounded-md"
         :class="{ 'bg-gray-200': editor?.isActive('bold') }"
         :disabled="!editor.can().chain().focus().toggleBold().run()"
+        aria-label="Bold Text"
         @click="editor.chain().focus().toggleBold().run()"
       >
         <IconBold class="w-6 h-6" />
@@ -195,6 +196,7 @@ onUnmounted(() => {
         class="hover:bg-gray-200 p-1 rounded-md"
         :class="{ 'bg-gray-200': editor?.isActive('italic') }"
         :disabled="!editor.can().chain().focus().toggleItalic().run()"
+        aria-label="Italicize Text"
         @click="editor.chain().focus().toggleItalic().run()"
       >
         <IconItalics class="w-6 h-6" />
@@ -203,6 +205,7 @@ onUnmounted(() => {
         class="hover:bg-gray-200 p-1 rounded-md"
         :class="{ 'bg-gray-200': editor?.isActive('underline') }"
         :disabled="editor.isActive('link')"
+        aria-label="Underline Text"
         @click="editor.chain().focus().toggleUnderline().run()"
       >
         <IconUnderline class="w-6 h-6" />
@@ -211,6 +214,7 @@ onUnmounted(() => {
         v-if="type === 'description'"
         class="hover:bg-gray-200 p-1 rounded-md"
         :class="{ 'bg-gray-200': editor?.isActive('bulletList') }"
+        aria-label="Toggle Bullet List"
         @click="setList('bulletList')"
       >
         <IconList class="w-6 h-6" />
@@ -219,6 +223,7 @@ onUnmounted(() => {
         v-if="type === 'description'"
         class="hover:bg-gray-200 p-1 rounded-md"
         :class="{ 'bg-gray-200': editor?.isActive('orderedList') }"
+        aria-label="Toggle Numbered List"
         @click="setList('orderedList')"
       >
         <IconNumberedList class="w-6 h-6" />
@@ -226,6 +231,7 @@ onUnmounted(() => {
       <button
         class="hover:bg-gray-200 p-1 rounded-md"
         :class="{ 'bg-gray-200': editor?.isActive('link') }"
+        aria-label="Add/Remove Url to Text"
         @click="setLink"
       >
         <IconLink class="w-6 h-6" />
@@ -233,6 +239,7 @@ onUnmounted(() => {
       <button
         class="hover:bg-gray-200 p-1 rounded-md"
         @click="editor.chain().focus().unsetAllMarks().run()"
+        aria-label="Clear All Text Marks"
       >
         <IconClearFormat class="w-6 h-6" />
       </button>
@@ -264,7 +271,9 @@ onUnmounted(() => {
   height: 0;
 }
 
-.tiptap > p {
+.tiptap > p,
+.tiptap ol li p,
+.tiptap ul li p {
   margin-top: 4px;
   margin-bottom: 4px;
 }
@@ -280,7 +289,8 @@ onUnmounted(() => {
   overflow: hidden;
 }
 
-.menu.open {
+.menu.open,
+.menu:focus-within {
   max-height: 500px;
   transition: max-height 0.6s ease-in;
 }
