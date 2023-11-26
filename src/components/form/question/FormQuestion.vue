@@ -137,7 +137,15 @@ onMounted(() => {
               : 'Long text'
           "
         />
-        <Answer v-else v-model="questionConfig.answers" :question-type="questionConfig.type" />
+        <Answer
+          v-else-if="
+            currentQuestionOption.value === 'checkboxes' ||
+            currentQuestionOption.value === 'single-choice' ||
+            currentQuestionOption.value === 'dropdown'
+          "
+          v-model="questionConfig.answers"
+          :question-type="questionConfig.type"
+        />
       </div>
     </div>
 

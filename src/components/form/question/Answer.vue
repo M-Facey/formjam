@@ -89,12 +89,14 @@ onMounted(() => {
       class="flex items-center gap-x-4"
     >
       <div
+        v-if="questionType === 'single-choice' || questionType === 'checkboxes'"
         class="w-6 h-6 border-2 border-gray-300"
         :class="{
           'rounded-full': questionType === 'single-choice',
           'rounded-md': questionType === 'checkboxes',
         }"
       ></div>
+      <p v-else>{{ index + 1 }}.</p>
 
       <input
         type="text"
