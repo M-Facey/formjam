@@ -3,16 +3,16 @@ import type { SanitizedFormType, FormGridEmitType } from "@/types/form";
 import dayjs from "dayjs";
 
 import FormCard from "@/components/form/view/FormCard.vue";
-import CreateFormCard from "@/components/form/view/CreateFormCard.vue";
-import FormCardLoader from "./FormCardLoader.vue";
+import CreateForm from "@/components/form/view/CreateForm.vue";
+import FormCardLoader from "@/components/form/view/FormCardLoader.vue";
 
-defineProps<{ forms: SanitizedFormType[], isLoading: boolean }>();
+defineProps<{ forms: SanitizedFormType[]; isLoading: boolean }>();
 defineEmits<FormGridEmitType>();
 </script>
 
 <template>
   <div v-if="!isLoading" class="custom-grid gap-3 pt-5">
-    <CreateFormCard />
+    <CreateForm view="grid" />
     <FormCard
       v-for="form in forms"
       :title="form.title"
@@ -30,7 +30,7 @@ defineEmits<FormGridEmitType>();
   </div>
 
   <div v-else class="custom-grid gap-3 pt-5">
-    <CreateFormCard />
+    <CreateForm view="grid" />
     <FormCardLoader v-for="_ in 5" />
   </div>
 </template>
