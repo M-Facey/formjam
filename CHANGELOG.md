@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.1](https://github.com/M-Facey/formjam/compare/v1.0.0...v1.0.1) (2023-11-29)
+
+
+### Miscellaneous
+
+* renamed `CreateFormCard` component & added UI for form list ([585ce0d](https://github.com/M-Facey/formjam/commit/585ce0dd9b5aeb6cec3f903331fa36ac22e037b8))
+* updated changelog format in release action ([f969da5](https://github.com/M-Facey/formjam/commit/f969da57f1acc057428ed0ddada8455573a794ea))
+* updated create form import & added view prop ([65d2d7b](https://github.com/M-Facey/formjam/commit/65d2d7ba2209b287fe9e0ff83f022fa609bf4cd2))
+
 ## 1.0.0 (2023-11-29)
 
 
