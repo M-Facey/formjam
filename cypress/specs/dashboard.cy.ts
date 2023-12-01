@@ -8,7 +8,7 @@ describe("Dashboard tests", () => {
   it("should only have no forms", () => {
     cy.intercept(
       "GET",
-      Cypress.env("API_URL") + "/api/collections/forms/records",
+      Cypress.env("API_URL") + "/api/collections/forms/records*",
       {
         page: 1,
         perPage: 500,
