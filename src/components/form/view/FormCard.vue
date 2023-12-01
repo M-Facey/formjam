@@ -44,7 +44,7 @@ function openDialog() {
       toast.add({
         severity: "success",
         summary: "Form Deleted",
-        detail: "Form was successfully delete from the database",
+        detail: "Form was successfully deleted from the database",
         life: 2000,
       });
       confirm.close();
