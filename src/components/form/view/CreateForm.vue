@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import { useRouter } from "vue-router";
 import { useFormStore } from "@/store/forms";
+import { smallerOrEqual } from "@/utils/breakpoints";
 
 import IconAdd from "@/components/icons/controls/Add.vue";
 import Loader from "@/components/anim/Loader.vue";
@@ -27,7 +28,11 @@ async function gotoEditFormPage() {
       v-if="view === 'grid'"
       role="button"
       title="Create Form Card"
-      class="w-full h-full flex flex-col items-center justify-center bg-sky-200 py-6 px-6 border-2 border-dashed border-sky-300 hover:border-sky-500 rounded-lg cursor-pointer"
+      class="w-full h-full flex bg-sky-200 py-6 px-6 border-2 border-dashed border-sky-300 hover:border-sky-500 rounded-lg cursor-pointer"
+      :class="{
+        'flex-row items-center gap-x-4': smallerOrEqual,
+        'flex-col items-center justify-center': !smallerOrEqual,
+      }"
       data-cy="create_form_card"
       @click="gotoEditFormPage"
     >
@@ -35,18 +40,35 @@ async function gotoEditFormPage() {
         <IconAdd v-if="!isLoading" class="w-9 h-9 text-sky-600" />
         <Loader v-else class="w-9 h-9 text-sky-600" />
       </div>
-      <p class="pt-4 text-lg text-center font-bold font-epilogue">
-        Create new form
-      </p>
-      <p class="text-sm text-center text-sky-800 font-medium tracking-wide">
-        Click here to create a blank form
-      </p>
+      <div
+        class="flex flex-col"
+        :class="{
+          'items-start': smallerOrEqual,
+          'items-center': !smallerOrEqual,
+        }"
+      >
+        <p
+          class="font-bold font-epilogue"
+          :class="{
+            'text-xl': smallerOrEqual,
+            'text-lg pt-4': !smallerOrEqual,
+          }"
+        >
+          Create new form
+        </p>
+        <p class="text-sm text-sky-800 font-medium tracking-wide">
+          Click here to create a blank form
+        </p>
+      </div>
     </button>
     <div
       v-else
-      class="bg-sky-200 flex items-center justify-between mx-5 p-3 rounded-xl"
+      class="bg-sky-200 flex items-center justify-between p-3 rounded-xl"
     >
-      <h1 class="text-lg">Do you want create a new form?</h1>
+      <h1 class="text-lg">
+        <span v-if="smallerOrEqual">Want a new form?</span>
+        <span v-else>Do you want create a new form?</span>
+      </h1>
       <button
         class="custom-btn flex items-center gap-x-1 p-2 text-sky-700 font-medium rounded-lg"
         data-cy="create_form_btn"
