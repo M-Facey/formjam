@@ -1,5 +1,7 @@
 <script lang="ts" setup>
-import { ref, shallowRef } from "vue";
+import { ref, shallowRef, watch } from "vue";
+import { useRouter } from "vue-router";
+import pb from "@/db/pocketBase";
 
 import IconAdd from "@/components/icons/controls/Add.vue";
 import IconSearch from "@/components/icons/input/Search.vue";
@@ -21,6 +23,26 @@ const showSearchInput = ref(false);
 function toggleSearchInput() {
   showSearchInput.value = !showSearchInput.value;
 }
+
+const router = useRouter();
+const loading = ref(false);
+async function logout() {
+  loading.value = true;
+  setTimeout(() => {
+    loading.value = false;
+    pb.authStore.clear();
+    router.push({ name: "Login" });
+  }, 1000);
+}
+
+watch(
+  () => currentNavbarOption.value,
+  async (option) => {
+    if (option.value === "log-out") {
+      await logout();
+    }
+  }
+);
 </script>
 
 <template>

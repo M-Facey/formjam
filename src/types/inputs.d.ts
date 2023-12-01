@@ -73,6 +73,7 @@ export type DropdownPropType = {
 
 export type DropdownEmitType = {
   (e: "update:modelValue", value: DropdownOption): void;
+  (e: "triggerEvent", value: string): void;
 };
 
 export type TogglePropType = {
