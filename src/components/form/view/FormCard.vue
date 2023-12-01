@@ -1,10 +1,12 @@
 <script lang="ts" setup>
 import { computed, ref } from "vue";
 import type { FormCardPropType, FormCardEmitType } from "@/types/form";
+import { lteTablet } from "@/utils/breakpoints";
 
 import IconDots from "@/components/icons/menu/Dots.vue";
 import IconDelete from "@/components/icons/controls/Delete.vue";
 import IconEdit from "@/components/icons/controls/Edit.vue";
+import IconShareLink from "@/components/icons/controls/ShareLink.vue";
 
 // prime vue components
 import { useConfirm } from "primevue/useconfirm";
@@ -66,11 +68,24 @@ const unformattedTitle = computed(() => {
 
 <template>
   <div
-    class="flex flex-col flex-stretch w-full border border-sky-100 hover:border-sky-500 rounded-md cursor-pointer"
+    class="flex flex-col flex-stretch w-full border border-sky-100 hover:border-sky-500 rounded-md"
+    :class="{
+      'cursor-default': lteTablet,
+      'cursor-pointer': !lteTablet,
+    }"
     data-cy="form_card"
-    @click="$emit('editForm')"
+    @click="!lteTablet && $emit('editForm')"
   >
-    <div class="h-[130px] bg-sky-400 rounded-t-[5px]"></div>
+    <div class="relative h-[130px] bg-sky-400 rounded-t-[5px]">
+      <button
+        v-if="lteTablet"
+        class="absolute top-2 right-2 p-2 bg-black/40 rounded-lg"
+        v-tooltip.left="`Edit form`"
+        @click="$emit('editForm')"
+      >
+        <IconShareLink class="w-6 h-6 text-white" />
+      </button>
+    </div>
 
     <div class="relative py-2 px-2">
       <p class="pr-10 font-medium truncate" v-html="unformattedTitle"></p>
@@ -94,7 +109,10 @@ const unformattedTitle = computed(() => {
         <Menu ref="menu" :model="menuItems" id="overlay_menu" :popup="true">
           <template #item="{ item }">
             <div class="flex items-center gap-x-3 px-5 py-2">
-              <IconDelete v-if="item.label === 'Delete'" class="w-6 h-6 text-red-500" />
+              <IconDelete
+                v-if="item.label === 'Delete'"
+                class="w-6 h-6 text-red-500"
+              />
               <IconEdit v-if="item.label === 'Rename'" class="w-6 h-6" />
               {{ item.label }}
             </div>
