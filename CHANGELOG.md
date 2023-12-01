@@ -1,5 +1,29 @@
 # Changelog
 
+## [1.3.0](https://github.com/M-Facey/formjam/compare/v1.2.0...v1.3.0) (2023-12-01)
+
+
+### Features
+
+* added clear form feature ([cd49da1](https://github.com/M-Facey/formjam/commit/cd49da1da74d456b3662df4800609b7916455b66))
+* added success route ([b1c9c14](https://github.com/M-Facey/formjam/commit/b1c9c14f2751c222399b961ef0599a6e73e4ff21))
+* create form success page & added minor changes ([f89c5f9](https://github.com/M-Facey/formjam/commit/f89c5f97dac3ed07abce738aab68ec30532fe5c2))
+
+
+### Bug Fixes
+
+* removed unnecessary padding ([9c44d6c](https://github.com/M-Facey/formjam/commit/9c44d6c47ceb2dc2be20420c41ccf417906025b1))
+* stubbed all record request on dashboard test ([2900feb](https://github.com/M-Facey/formjam/commit/2900febdc18b7b9ad4072eb51174eae0bba50406))
+
+
+### Miscellaneous
+
+* added breakpoints for tablet ([fb00875](https://github.com/M-Facey/formjam/commit/fb00875635969eb9e3442b1f17f94f9dfeb8b207))
+* added share link icon ([d91cebb](https://github.com/M-Facey/formjam/commit/d91cebbe671d45310cabb37d2f055b57b461214f))
+* added success icon ([3e92981](https://github.com/M-Facey/formjam/commit/3e929811a30c7f5b68ff602305b1417564311ed6))
+* made create form component responsive ([dc0ac74](https://github.com/M-Facey/formjam/commit/dc0ac74a9545df6af2926dba5b22babfde120849))
+* updated the mobile UI for form card ([405ad13](https://github.com/M-Facey/formjam/commit/405ad1372afeee3d5b1f39cbedd01bb6627919a9))
+
 ## [1.2.0](https://github.com/M-Facey/formjam/compare/v1.1.0...v1.2.0) (2023-12-01)
 
 
