@@ -9,12 +9,30 @@ import IconEdit from "@/components/icons/controls/Edit.vue";
 // prime vue components
 import { useConfirm } from "primevue/useconfirm";
 import { useToast } from "primevue/usetoast";
+import Menu from "primevue/menu";
 
 const props = defineProps<FormCardPropType>();
 const emits = defineEmits<FormCardEmitType>();
 
+const menu = ref();
+const menuItems = ref([
+  {
+    label: "Delete",
+    icon: "pi pi-trash",
+    command: () => {
+      openDialog();
+    },
+  },
+  { label: "Rename", disabled: true },
+]);
+
+function toggle(event: Event) {
+  menu.value.toggle(event);
+}
+
 const confirm = useConfirm();
 const toast = useToast();
+
 function openDialog() {
   confirm.require({
     message: "Are you sure you want to delete the form?",
@@ -44,11 +62,6 @@ const unformattedTitle = computed(() => {
   if (titleElem.value === undefined) return props.title;
   return titleElem.value.textContent;
 });
-
-const showFormDropdown = ref(false);
-function toggleFormDropdown() {
-  showFormDropdown.value = !showFormDropdown.value;
-}
 </script>
 
 <template>
@@ -67,8 +80,10 @@ function toggleFormDropdown() {
         <span class="text-black font-medium">{{ lastEdited }}</span>
       </p>
 
-      <div class="absolute top-3 right-3" @click.stop="toggleFormDropdown">
+      <div class="absolute top-3 right-3" @click.stop="toggle">
         <button
+          aria-haspopup="true"
+          aria-controls="overlay_menu"
           aria-label="Form card dropdown menu"
           class="p-1 bg-gray-200 rounded"
           data-cy="form_card_dropdown"
@@ -76,29 +91,15 @@ function toggleFormDropdown() {
           <IconDots class="w-4 h-4" />
         </button>
 
-        <div
-          v-if="showFormDropdown"
-          class="absolute top-full translate-y-3 right-0 w-[140px] flex flex-col bg-white py-1 border border-gray-200 rounded"
-        >
-          <button
-            aria-label="Form card delete button"
-            class="flex items-center gap-x-2 hover:bg-gray-200 p-1.5 disabled:text-gray-400 disabled:bg-gray-100"
-            data-cy="form_card_delete_btn"
-            @click="openDialog()"
-          >
-            <IconDelete class="w-5 h-5" />
-            <p>Delete</p>
-          </button>
-          <button
-            aria-label="Form card rename button"
-            class="flex items-center gap-x-2 hover:bg-gray-200 p-1.5 disabled:text-gray-400 disabled:bg-gray-100"
-            data-cy="form_card_rename_btn"
-            disabled
-          >
-            <IconEdit class="w-5 h-5" />
-            <p>Rename</p>
-          </button>
-        </div>
+        <Menu ref="menu" :model="menuItems" id="overlay_menu" :popup="true">
+          <template #item="{ item }">
+            <div class="flex items-center gap-x-3 px-5 py-2">
+              <IconDelete v-if="item.label === 'Delete'" class="w-6 h-6 text-red-500" />
+              <IconEdit v-if="item.label === 'Rename'" class="w-6 h-6" />
+              {{ item.label }}
+            </div>
+          </template>
+        </Menu>
       </div>
     </div>
   </div>
