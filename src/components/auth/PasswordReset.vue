@@ -73,11 +73,11 @@ function clearErrorMessage() {
         <Loader v-if="loading" class="w-6 h-6" />
         <p v-else>Reset Password</p>
       </button>
-      <router-link
+      <RouterLink
         to="/auth/login"
         class="text-base sm:text-lg font-semibold underline"
         data-cy="reset_password_goto_login"
-        >Return to login page</router-link
+        >Return to login page</RouterLink
       >
     </div>
   </form>

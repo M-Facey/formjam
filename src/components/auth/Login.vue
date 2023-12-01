@@ -111,13 +111,13 @@ function closeErrorMessage() {
           data-cy="login_rememberme_input"
         />
 
-        <router-link
+        <RouterLink
           to="/auth/reset-your-password"
           class="text-sky-500 hover:text-sky-600 dark:hover:text-sky-200 font-semibold underline"
           data-cy="login_goto_password_reset_link"
         >
           Forgot your password
-        </router-link>
+        </RouterLink>
       </div>
 
       <div

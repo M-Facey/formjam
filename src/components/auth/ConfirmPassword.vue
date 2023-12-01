@@ -132,12 +132,12 @@ function cancelTimeout() {
           <Loader v-if="loading" class="w-6 h-6 mx-auto" />
           <p v-else>Reset Password</p>
         </button>
-        <router-link
+        <RouterLink
           to="/auth/login"
           class="text-vase sm:text-lg font-semibold underline"
           @click="cancelTimeout"
           data-cy="confirm_password_goto_login"
-          >Return to login page</router-link
+          >Return to login page</RouterLink
         >
       </div>
     </form>
