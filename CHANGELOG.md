@@ -1,5 +1,32 @@
 # Changelog
 
+## [1.1.0](https://github.com/M-Facey/formjam/compare/v1.0.0...v1.1.0) (2023-12-01)
+
+
+### Features
+
+* added delete form dialog and tost ([d159444](https://github.com/M-Facey/formjam/commit/d159444ce4f45aaebab20d1ef1bf11f3bbe578eb))
+* added link to preview form page ([1a53abf](https://github.com/M-Facey/formjam/commit/1a53abf4132561d77f575c26dbbe8f9a43fd6bb7))
+* added primevue dependency ([f9f81dd](https://github.com/M-Facey/formjam/commit/f9f81dd895e9ac02b5dfbf2885f2173bcdc2f445))
+* added primevue theme styles ([7e9233c](https://github.com/M-Facey/formjam/commit/7e9233cb9871fb602ebd5dd3761f2c9d8249f6c9))
+* added tooltip to question controls ([042d262](https://github.com/M-Facey/formjam/commit/042d262a595380a5a6c3838cb81895ada5258c5c))
+* create view form page & route ([7593166](https://github.com/M-Facey/formjam/commit/7593166571641d459ccddd0b1e6fee76d64f5c1e))
+* created texteare autosize utility ([1013741](https://github.com/M-Facey/formjam/commit/1013741458bbbd406750739ea715f755052ada69))
+* moved stylesheet import to html file ([b71c232](https://github.com/M-Facey/formjam/commit/b71c23233519c414b1ab3199a058e5dbe9ca228f))
+* replaced checkboxes & radio btns with primevue components ([3a8a85b](https://github.com/M-Facey/formjam/commit/3a8a85b82b0970647cf94337c1e4b89e4679d7f5))
+
+
+### Miscellaneous
+
+* added `id` to label ([75a4994](https://github.com/M-Facey/formjam/commit/75a4994172a05b4b0bc519a8e6b5773e89b4993f))
+* added asterisk for required questions ([0f9288e](https://github.com/M-Facey/formjam/commit/0f9288e25aecc91fa25abd20af35360730c3e69a))
+* added message to view page ([4fe2af5](https://github.com/M-Facey/formjam/commit/4fe2af51dd9c7bf3549fa8e6a20d31ee221b4f53))
+* removed console log ([bf0a5d1](https://github.com/M-Facey/formjam/commit/bf0a5d1be6c2777c18de945a07ef5b4ea6f3cc53))
+* renamed `CreateFormCard` component & added UI for form list ([585ce0d](https://github.com/M-Facey/formjam/commit/585ce0dd9b5aeb6cec3f903331fa36ac22e037b8))
+* renamed `router-link` to `RouterLink` ([f15e80e](https://github.com/M-Facey/formjam/commit/f15e80e015eca288eaa71fc69bb97360205bac86))
+* updated changelog format in release action ([f969da5](https://github.com/M-Facey/formjam/commit/f969da57f1acc057428ed0ddada8455573a794ea))
+* updated create form import & added view prop ([65d2d7b](https://github.com/M-Facey/formjam/commit/65d2d7ba2209b287fe9e0ff83f022fa609bf4cd2))
+
 ## 1.0.0 (2023-11-29)
 
 
