@@ -4,6 +4,9 @@ import { useThemeStore } from "@/store/theme";
 
 import AppLayout from "@/layout/index.vue";
 
+import ConfirmDialog from "primevue/confirmdialog";
+import Toast from "primevue/toast";
+
 const themeStore = useThemeStore();
 onMounted(() => {
   themeStore.checkTheme();
@@ -11,6 +14,8 @@ onMounted(() => {
 </script>
 
 <template>
+  <ConfirmDialog />
+  <Toast />
   <AppLayout>
     <RouterView />
   </AppLayout>

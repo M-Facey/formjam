@@ -6,8 +6,35 @@ import IconDots from "@/components/icons/menu/Dots.vue";
 import IconDelete from "@/components/icons/controls/Delete.vue";
 import IconEdit from "@/components/icons/controls/Edit.vue";
 
+// prime vue components
+import { useConfirm } from "primevue/useconfirm";
+import { useToast } from "primevue/usetoast";
+
 const props = defineProps<FormCardPropType>();
-defineEmits<FormCardEmitType>();
+const emits = defineEmits<FormCardEmitType>();
+
+const confirm = useConfirm();
+const toast = useToast();
+function openDialog() {
+  console.log("open dialog");
+  confirm.require({
+    message: "Are you sure you want to delete the form?",
+    header: "Delete the Form",
+    accept: () => {
+      emits("deleteForm");
+      toast.add({
+        severity: "success",
+        summary: "Form Deleted",
+        detail: "Form was successfully delete from the database",
+        life: 2000,
+      });
+      confirm.close();
+    },
+    reject: () => {
+      confirm.close();
+    },
+  });
+}
 
 // ** Dev note **
 // Since the title in rich text, I decided to rendered the rich text
@@ -56,17 +83,18 @@ function toggleFormDropdown() {
         >
           <button
             aria-label="Form card delete button"
-            class="flex items-center gap-x-2 hover:bg-gray-200 p-1.5"
+            class="flex items-center gap-x-2 hover:bg-gray-200 p-1.5 disabled:text-gray-400 disabled:bg-gray-100"
             data-cy="form_card_delete_btn"
-            @click="$emit('deleteForm')"
+            @click="openDialog()"
           >
             <IconDelete class="w-5 h-5" />
             <p>Delete</p>
           </button>
           <button
             aria-label="Form card rename button"
-            class="flex items-center gap-x-2 hover:bg-gray-200 p-1.5"
+            class="flex items-center gap-x-2 hover:bg-gray-200 p-1.5 disabled:text-gray-400 disabled:bg-gray-100"
             data-cy="form_card_rename_btn"
+            disabled
           >
             <IconEdit class="w-5 h-5" />
             <p>Rename</p>
