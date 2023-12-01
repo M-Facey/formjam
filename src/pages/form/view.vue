@@ -16,7 +16,26 @@ const route = useRoute();
 const router = useRouter();
 
 const questionStore = useQuestionStore();
-const answers = ref<Record<string, string | string[]>[]>([]);
+const answers = ref<{ id: string; type: string; answer: string | string[] }[]>(
+  []
+);
+
+function generateQuestionResponse(questionType: string) {
+  if (questionType === "checkboxes") {
+    return [] as string[];
+  }
+  return "";
+}
+
+function clearForm() {
+  answers.value = answers.value.map((answer) => {
+    return {
+      id: answer.id,
+      type: answer.type,
+      answer: generateQuestionResponse(answer.type),
+    };
+  });
+}
 
 onMounted(async () => {
   const formId = (route.params.formId as string) || "";
@@ -26,24 +45,17 @@ onMounted(async () => {
     let paraArr: string[] = [];
 
     answers.value = questionStore.questions.map((question) => {
-      if (question.type === "checkboxes") {
-        return {
-          id: question.id,
-          answer: [] as string[],
-        };
-      }
-
       if (question.type === "paragraph") {
         paraArr.push(question.id);
       }
 
       return {
         id: question.id,
-        answer: "",
+        type: question.type,
+        answer: generateQuestionResponse(question.type),
       };
     });
     setTimeout(() => {
-      console.log("ran");
       paraArr.map((id) => {
         autosizeTextarea("textarea-" + id);
       });
@@ -54,7 +66,7 @@ onMounted(async () => {
 
 <template>
   <div class="px-5 pt-5">
-    <div class="w-full max-w-[1000px] flex flex-col gap-3 mx-auto">
+    <form class="w-full max-w-[1000px] flex flex-col gap-3 mx-auto">
       <RouterLink
         v-if="route.query.preview"
         :to="`/form/${route.params.formId}/edit`"
@@ -65,15 +77,25 @@ onMounted(async () => {
         Go back for editing
       </RouterLink>
 
-      <Message severity="info"><b>Please Note:</b> The submissions on the preview page will not be saved to the database.</Message>
+      <Message severity="info"
+        ><b>Please Note:</b> The submissions on the preview page will not be
+        saved to the database.</Message
+      >
 
       <div
         v-for="(question, index) in questionStore.questions"
         class="w-full flex flex-col border border-gray-300 p-4 mx-auto shadow-md rounded-lg"
       >
         <h2
-          v-html="question.text + `${question.required && '<span class=\'text-red-500 select-none\'> *</span>'}`"
-          class="text-xl"
+          v-html="
+            question.text +
+            `${
+              question.required
+                ? '<span class=\'text-red-500 select-none\'> *</span>'
+                : ''
+            }`
+          "
+          class="flex gap-1 text-xl"
           :class="{
             'pb-3': !question.description,
           }"
@@ -132,6 +154,20 @@ onMounted(async () => {
           </div>
         </div>
       </div>
-    </div>
+
+      <div class="flex justify-between">
+        <button class="custom-btn py-2 px-5 font-medium rounded-lg">
+          Submit Form
+        </button>
+
+        <button
+          role="button"
+          class="hover:bg-sky-50 border border-transparent focus:bg-sky-100 focus:border-sky-400 py-2 px-5 text-sky-500 font-medium rounded-md"
+          @click.prevent="clearForm"
+        >
+          Clear Form
+        </button>
+      </div>
+    </form>
   </div>
 </template>
