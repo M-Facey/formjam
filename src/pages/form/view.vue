@@ -8,6 +8,7 @@ import { autosizeTextarea } from "@/utils/textareaAutosize";
 // prime vue components
 import Checkbox from "primevue/checkbox";
 import RadioButton from "primevue/radiobutton";
+import Message from "primevue/message";
 
 import IconArrowDown from "@/components/icons/controls/ArrowDown.vue";
 
@@ -63,6 +64,8 @@ onMounted(async () => {
         <IconArrowDown class="w-5 h-5 rotate-90" />
         Go back for editing
       </RouterLink>
+
+      <Message severity="info"><b>Please Note:</b> The submissions on the preview page will not be saved to the database.</Message>
 
       <div
         v-for="(question, index) in questionStore.questions"
