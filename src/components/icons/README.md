@@ -39,8 +39,8 @@ The icons are organized into different folders and here is what they mean:
 ### [Misc](./misc/)
 
 - Purpose: Stores all icons that doesn't fall neatly in one of the categories
-- Example: `Alert` & `Form`
-- No. of icons: 2 icon
+- Example: `Alert`, `Form` & `Success`
+- No. of icons: 3 icon
 
 ### [Question](./question/)
 
