@@ -28,7 +28,7 @@ function toggleShowMenu() {
 
 <template>
   <div
-    class="w-full flex items-center hover:bg-sky-100 px-5 py-2.5 cursor-pointer rounded-full"
+    class="w-full flex items-center hover:bg-sky-100 py-2.5 cursor-pointer rounded-full"
     @click="$emit('editForm')"
   >
     <div class="bg-sky-500 p-1.5 rounded-lg">
