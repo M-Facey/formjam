@@ -16,7 +16,6 @@ const emits = defineEmits<FormCardEmitType>();
 const confirm = useConfirm();
 const toast = useToast();
 function openDialog() {
-  console.log("open dialog");
   confirm.require({
     message: "Are you sure you want to delete the form?",
     header: "Delete the Form",
