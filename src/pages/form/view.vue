@@ -5,6 +5,10 @@ import { useRoute, useRouter } from "vue-router";
 import { useQuestionStore } from "@/store/questions";
 import { autosizeTextarea } from "@/utils/textareaAutosize";
 
+// prime vue components
+import Checkbox from "primevue/checkbox";
+import RadioButton from 'primevue/radiobutton';
+
 import IconArrowDown from "@/components/icons/controls/ArrowDown.vue";
 
 const route = useRoute();
@@ -100,26 +104,26 @@ onMounted(async () => {
             "
             v-for="answer in question.answers"
             :key="answer.id"
-            class="flex items-center"
+            class="flex items-center pb-1.5 gap-2"
           >
-            <!-- <input type="text" /> -->
-            <!-- <input
+            <Checkbox
               v-if="question.type === 'checkboxes'"
-              type="checkbox"
+              :aria-labelledby="answer.text"
+              :name="`${question.id}`"
               :value="answer.id"
+              :input-id="answer.id"
               v-model="answers[index].answer"
-            /> -->
-            <input
-              v-if="
-                question.type === 'single-choice' ||
-                question.type === 'checkboxes'
-              "
-              :type="question.type === 'single-choice' ? 'radio' : 'checkbox'"
-              :name="`question-${question.id}`"
-              v-model="answers[index].answer"
-              class="mr-3"
             />
-            <label>{{ answer.text }}</label>
+
+            <RadioButton
+              v-if="question.type === 'single-choice'"
+              :aria-labelledby="answer.text"
+              :name="`${question.id}`"
+              :value="answer.id"
+              :input-id="answer.id"
+              v-model="answers[index].answer"
+            />
+            <label :for="answer.id" class="mb-0.5 cursor-pointer">{{ answer.text }}</label>
           </div>
         </div>
       </div>
