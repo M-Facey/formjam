@@ -29,7 +29,7 @@ The form layout is used for all the pages within the form dashboard. It includes
 | Home             | /                                     | Base      | Default   | The landing page of the application, providing an overview and welcoming users to the project.  |
 | Login            | /auth/login                           | Auth      | Auth      | Allows registered users to log in using their credentials.                                      |
 | Signup           | /auth/signup                          | Auth      | Auth      | New users can create an account and sign up for the application.                                |
-| PasswordRest     | /auth/reset-your-password             | Auth      | Auth      | Allows users to send reset password instructions to their email                                 |
+| PasswordReset     | /auth/reset-your-password             | Auth      | Auth      | Allows users to send reset password instructions to their email                                 |
 | ConfirmPassword  | /auth/confirm-password-reset/`:token` | Auth      | Auth      | Users can create a new password to use for the application                                      |
 | Dashboard        | /dashboard                            | Dashboard | Dashboard | The dashboard page where registered users can access application-specific features and content. |
 | Create/Edit Form | /form/`:formId`/edit                  | Form      | Form      | The form page where registered users can create & edit form-specific features and content.      |
