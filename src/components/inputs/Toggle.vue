@@ -7,7 +7,7 @@ defineEmits<CheckboxEmitType>();
 
 <template>
   <div class="flex items-center gap-x-3">
-    <label class="relative w-[41px] h-[24px]">
+    <label :for="id" class="relative w-[41px] h-[24px]">
       <input
         :id="id"
         type="checkbox"

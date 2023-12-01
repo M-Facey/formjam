@@ -12,6 +12,7 @@ defineEmits<CheckboxEmitType>();
 <template>
   <div class="flex items-center gap-x-3">
     <label
+      :for="id"
       class="relative w-6 h-6 flex items-center justify-center hover:bg-white dark:hover:bg-primary-dark-100/30 border border-gray-300 dark:border-primary-dark-100 cursor-pointer rounded-lg"
       :class="{ 'custom-btn': modelValue }"
     >
