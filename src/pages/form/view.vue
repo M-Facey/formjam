@@ -7,7 +7,7 @@ import { autosizeTextarea } from "@/utils/textareaAutosize";
 
 // prime vue components
 import Checkbox from "primevue/checkbox";
-import RadioButton from 'primevue/radiobutton';
+import RadioButton from "primevue/radiobutton";
 
 import IconArrowDown from "@/components/icons/controls/ArrowDown.vue";
 
@@ -69,7 +69,7 @@ onMounted(async () => {
         class="w-full flex flex-col border border-gray-300 p-4 mx-auto shadow-md rounded-lg"
       >
         <h2
-          v-html="question.text"
+          v-html="question.text + `${question.required && '<span class=\'text-red-500 select-none\'> *</span>'}`"
           class="text-xl"
           :class="{
             'pb-3': !question.description,
@@ -123,7 +123,9 @@ onMounted(async () => {
               :input-id="answer.id"
               v-model="answers[index].answer"
             />
-            <label :for="answer.id" class="mb-0.5 cursor-pointer">{{ answer.text }}</label>
+            <label :for="answer.id" class="mb-0.5 cursor-pointer">{{
+              answer.text
+            }}</label>
           </div>
         </div>
       </div>
