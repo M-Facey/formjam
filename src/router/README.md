@@ -1,6 +1,7 @@
 # FormJAM Router
 
-In this README, we will provide an overview of the different layouts, routes, and pages associated with those routes to help you navigate our application effectively. 
+In this README, we will provide an overview of the different layouts, routes, and pages associated with those routes to help you navigate our application effectively.
+
 :warning: **Please Note**: I am currently defining all the routes inside the [/router/index.ts](./index.ts) file, however, I can change it use the [unplugin-vue-router](https://github.com/posva/unplugin-vue-router) to create a `Nuxt`/`Next` routing experience.
 
 ## Layouts
