@@ -47,6 +47,9 @@ dependencies:
   pocketbase:
     specifier: ^0.18.2
     version: 0.18.2
+  primevue:
+    specifier: ^3.42.0
+    version: 3.42.0(vue@3.3.4)
   vee-validate:
     specifier: ^4.11.8
     version: 4.11.8(vue@3.3.4)
@@ -2444,6 +2447,14 @@ packages:
     resolution: {integrity: sha512-FFw039TmrBqFK8ma/7OL3sDz/VytdtJr044/QUJtH0wK9lb9jLq9tJyIxUwtQJHwar2BqtiA4iCWSwo9JLkzFg==}
     engines: {node: '>=6'}
     dev: true
+
+  /primevue@3.42.0(vue@3.3.4):
+    resolution: {integrity: sha512-vY/nHBInl/k2MFfgx+5dGI3tH1P6OmO2Oj6eOLwtHk000yopPxLBUP/enALoElriy5EaPzfv02upOrsQqd+nJA==}
+    peerDependencies:
+      vue: ^3.0.0
+    dependencies:
+      vue: 3.3.4
+    dev: false
 
   /process@0.11.10:
     resolution: {integrity: sha512-cdGef/drWFoydD1JsMzuFf8100nZl+GT+yacc2bEced5f9Rjk4z+WtFUTBu9PhOi9j/jfmBPu0mMEY4wIdAF8A==}
