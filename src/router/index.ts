@@ -75,6 +75,11 @@ const router = createRouter({
           name: "ViewForm",
           component: () => import("@/pages/form/view.vue"),
         },
+        {
+          path: "success",
+          name: "SuccessForm",
+          component: () => import("@/pages/form/success.vue")
+        }
       ],
     },
     {
