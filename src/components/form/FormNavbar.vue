@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import { ref } from "vue";
+import { useRoute } from "vue-router";
 
-import XButton from "@/components/inputs/Button.vue";
 import IconEyeOpen from "@/components/icons/input/EyeOpen.vue";
+
+const { params } = useRoute();
 
 const currentSection = ref("Questions");
 function setSection(section: string) {
@@ -48,13 +50,16 @@ function setSection(section: string) {
         </div>
       </div>
 
-      <div class="flex gap-x-2">
-        <XButton text="Preview">
-          <template #icon>
-            <IconEyeOpen class="w-6 h-6 mr-1" />
-          </template>
-        </XButton>
-      </div>
+      <RouterLink :to="`/form/${params.formId}/view?preview=true`">
+        <button
+          title="View Form"
+          class="custom-btn flex gap-x-2 p-2 rounded-md"
+          data-cy="preview_btn"
+        >
+          <IconEyeOpen class="w-6 h-6 mr-1" />
+          Preview
+        </button>
+      </RouterLink>
     </div>
   </header>
 </template>
