@@ -1,5 +1,23 @@
 # Changelog
 
+## [1.2.0](https://github.com/M-Facey/formjam/compare/v1.1.0...v1.2.0) (2023-12-01)
+
+
+### Features
+
+* created breakpoints utility ([34c9354](https://github.com/M-Facey/formjam/commit/34c93542a9274384aaf6fd52499c961034547859))
+
+
+### Bug Fixes
+
+* added log out functionality to mobile nav bar ([a2ddb12](https://github.com/M-Facey/formjam/commit/a2ddb1248232c79a4e00f8ce8d907bbaa7e23ac6))
+* made filter on dashboard responsive ([7a5c11a](https://github.com/M-Facey/formjam/commit/7a5c11afd52a7305b66948c77653411fbf010de6))
+
+
+### Miscellaneous
+
+* replaced menu with primevue menu ([5f34ce0](https://github.com/M-Facey/formjam/commit/5f34ce0a7923ee4399a6843e8710f7a7052e302e))
+
 ## [1.1.0](https://github.com/M-Facey/formjam/compare/v1.0.0...v1.1.0) (2023-12-01)
 
 
