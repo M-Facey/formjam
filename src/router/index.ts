@@ -59,13 +59,23 @@ const router = createRouter({
       },
     },
     {
-      path: "/form/:formId/edit",
-      name: "EditForm",
-      component: () => import("@/pages/form/edit.vue"),
+      path: "/form/:formId",
       meta: {
         layout: "Form",
         authRequired: true,
       },
+      children: [
+        {
+          path: "edit",
+          name: "EditForm",
+          component: () => import("@/pages/form/edit.vue"),
+        },
+        {
+          path: "view",
+          name: "ViewForm",
+          component: () => import("@/pages/form/view.vue"),
+        },
+      ],
     },
     {
       path: "/error",
