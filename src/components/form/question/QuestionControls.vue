@@ -9,7 +9,7 @@ defineEmits<{ (e: "add:question"): void }>();
   <div
     class="w-14 h-min flex flex-col gap-4 items-center bg-gray-100 py-4 rounded-lg"
   >
-    <button @click="$emit('add:question')">
+    <button v-tooltip="'Add New Question'" @click="$emit('add:question')">
       <IconAdd class="w-6 h-6 text-black" />
     </button>
 
