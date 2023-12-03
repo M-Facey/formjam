@@ -1,5 +1,5 @@
 export function autosizeTextarea(id: string) {
-  if(id === "") return;
+  if (id === "") return;
 
   const textarea = document.getElementById(id);
   if (textarea === null) return;
