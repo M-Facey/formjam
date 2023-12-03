@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.1](https://github.com/M-Facey/formjam/compare/v1.4.0...v1.4.1) (2023-12-03)
+
+
+### Documentation
+
+* fixed changelog ([b80c298](https://github.com/M-Facey/formjam/commit/b80c29846ea579a20a45a86f9afa6cf04fa41362))
+
 ## [1.4.0](https://github.com/M-Facey/formjam/compare/v1.3.0...v1.4.0) (2023-12-03)
 
 
