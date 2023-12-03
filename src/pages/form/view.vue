@@ -4,6 +4,7 @@ import { useRoute, useRouter } from "vue-router";
 
 import { useQuestionStore } from "@/store/questions";
 import { autosizeTextarea } from "@/utils/textareaAutosize";
+import IconLongText from "@/components/icons/question/LongText.vue";
 
 // prime vue components
 import Checkbox from "primevue/checkbox";
@@ -107,20 +108,33 @@ onMounted(async () => {
         ></p>
 
         <div v-if="answers[index]" class="flex-grow">
-          <input
+          <div
             v-if="question.type === 'short-text'"
-            type="text"
-            v-model="answers[index].answer"
-            placeholder="Enter your answer here"
-            class="w-full"
-          />
+            class="flex items-center gap-x-3"
+          >
+            <p class="font-rokkitt text-[26px]">T</p>
+            <input
+              type="text"
+              v-model="answers[index].answer"
+              placeholder="Enter your answer here"
+              class="w-full py-2 border-b border-gray-200 hover:border-gray-400 focus:border-sky-500 outline-none"
+              @keypress.prevent
+            />
+          </div>
 
-          <textarea
+          <div
             v-if="question.type === 'paragraph'"
-            :id="`textarea-${question.id}`"
-            class="w-full h-6 resize-none"
-            placeholder="Long para"
-          />
+            class="flex items-start gap-x-3"
+          >
+            <IconLongText class="w-6 h-6 mt-2.5" />
+            <textarea
+              :id="`textarea-${question.id}`"
+              placeholder="Enter your answer here"
+              v-model="answers[index].answer"
+              data-lpignore="true"
+              class="w-full h-8 py-2 border-b border-gray-200 hover:border-gray-400 focus:border-sky-500 resize-none outline-none"
+            />
+          </div>
 
           <div
             v-else-if="
@@ -156,13 +170,20 @@ onMounted(async () => {
       </div>
 
       <div class="flex justify-between">
-        <button class="custom-btn py-2 px-5 font-medium rounded-lg">
-          Submit Form
-        </button>
+        <RouterLink
+          :to="{
+            path: `/form/${route.params.formId}/success`,
+            query: route.query,
+          }"
+        >
+          <button class="custom-btn py-2 px-5 font-medium rounded-lg">
+            Submit Form
+          </button>
+        </RouterLink>
 
         <button
           role="button"
-          class="hover:bg-sky-50 border border-transparent focus:bg-sky-100 focus:border-sky-400 py-2 px-5 text-sky-500 font-medium rounded-md"
+          class="hover:bg-sky-50 border border-transparent active:border-sky-400 py-2 px-5 text-sky-500 font-medium rounded-md"
           @click.prevent="clearForm"
         >
           Clear Form
