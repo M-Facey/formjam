@@ -10,7 +10,7 @@ The icons are organized into different folders and here is what they mean:
 
 - Purpose: Stores all icons related to performing a specific functions. **Please note**: this are general functions used in diferent areas of the app, there are folders for domain-specific icons.
 - Examples: `Logout`, `Add`, `Edit`, ...etc
-- No. of icons: 9 icons
+- No. of icons: 10 icons
 
 ### [Emojis](./emojis/)
 
