@@ -11,9 +11,7 @@
 }
 
 /* General styles */
-*,
-*::before,
-*::after {
+body {
   font-family: "Inter", sans-serif;
 }
 
