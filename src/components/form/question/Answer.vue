@@ -75,7 +75,6 @@ onMounted(() => {
 
 <template>
   <div class="flex flex-col gap-y-1">
-    <div tabindex="1" class="" id="focusBlank" />
     <div
       v-for="(answer, index) in answers"
       :key="answer.id"
