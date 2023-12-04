@@ -68,7 +68,7 @@ const unformattedTitle = computed(() => {
 
 <template>
   <div
-    class="flex flex-col flex-stretch w-full border border-sky-100 hover:border-sky-500 rounded-md"
+    class="flex flex-col flex-stretch w-full border border-sky-100 dark:border-neutral-600 hover:border-sky-500 dark:hover:border-sky-500 rounded-[11px]"
     :class="{
       'cursor-default': lteTablet,
       'cursor-pointer': !lteTablet,
@@ -76,7 +76,7 @@ const unformattedTitle = computed(() => {
     data-cy="form_card"
     @click="!lteTablet && $emit('editForm')"
   >
-    <div class="relative h-[130px] bg-sky-400 rounded-t-[5px]">
+    <div class="relative h-[130px] bg-sky-400 dark:bg-neutral-700 rounded-t-[10px]">
       <button
         v-if="lteTablet"
         class="absolute top-2 right-2 p-2 bg-black/40 rounded-lg"
@@ -87,23 +87,23 @@ const unformattedTitle = computed(() => {
       </button>
     </div>
 
-    <div class="relative py-2 px-2">
-      <p class="pr-10 font-medium truncate" v-html="unformattedTitle"></p>
+    <div class="relative bg-transparent dark:bg-sky-500 py-2 px-2 rounded-b-[10px]">
+      <p class="pr-10 dark:text-black text-lg font-medium truncate" v-html="unformattedTitle"></p>
       <div ref="titleElem" class="hidden" v-html="title"></div>
-      <p class="text-sm text-gray-600 mt-auto py-2">
+      <p class="text-sm text-gray-600 mt-auto pb-2">
         Last edited:
         <span class="text-black font-medium">{{ lastEdited }}</span>
       </p>
 
-      <div class="absolute top-3 right-3" @click.stop="toggle">
+      <div class="absolute top-2 right-2" @click.stop="toggle">
         <button
           aria-haspopup="true"
           aria-controls="overlay_menu"
           aria-label="Form card dropdown menu"
-          class="p-1 bg-gray-200 rounded"
+          class="p-1 bg-gray-200 dark:bg-neutral-900 dark:hover:bg-neutral-700 rounded-md"
           data-cy="form_card_dropdown"
         >
-          <IconDots class="w-4 h-4" />
+          <IconDots class="w-5 h-5" />
         </button>
 
         <Menu ref="menu" :model="menuItems" id="overlay_menu" :popup="true">
