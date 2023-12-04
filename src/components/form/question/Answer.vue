@@ -13,6 +13,7 @@ const props = defineProps<{
   modelValue: Answer[] | null;
   questionType: string;
 }>();
+
 const emit = defineEmits<{ (e: "update:modelValue", value: Answer[]): void }>();
 
 const answers = ref<Answer[]>([]);
@@ -35,18 +36,9 @@ function addAnswer(index: number) {
   emit("update:modelValue", answers.value);
 }
 
-const timeoutId = ref<NodeJS.Timeout>();
 function updateAnswer(id: string, text: string) {
   const index = answers.value.findIndex((answer) => answer.id === id);
   answers.value[index].text = text;
-
-  if (timeoutId.value !== undefined) {
-    clearTimeout(timeoutId.value);
-  }
-
-  timeoutId.value = setTimeout(() => {
-    emit("update:modelValue", answers.value);
-  }, 1000);
 }
 
 function moveToAnswer(index: number, increment: number) {
@@ -83,40 +75,24 @@ onMounted(() => {
 
 <template>
   <div class="flex flex-col gap-y-1">
-    <div
-      v-for="(answer, index) in answers"
-      :key="answer.id"
-      class="flex items-center gap-x-4"
-    >
-      <div
-        v-if="questionType === 'single-choice' || questionType === 'checkboxes'"
-        class="w-6 h-6 border-2 border-gray-300"
-        :class="{
+    <div tabindex="1" class="" id="focusBlank"/>
+    <div v-for="(answer, index) in answers" :key="answer.id" class="flex items-center gap-x-4">
+      <div v-if="questionType === 'single-choice' || questionType === 'checkboxes'"
+        class="w-6 h-6 border-2 border-gray-300" :class="{
           'rounded-full': questionType === 'single-choice',
           'rounded-md': questionType === 'checkboxes',
-        }"
-      ></div>
+        }"></div>
       <p v-else>{{ index + 1 }}.</p>
 
-      <input
-        type="text"
-        name="answer"
-        :id="`ans-${answer.id}`"
-        :value="answer.text"
-        @change="
-          updateAnswer(answer.id, ($event.target as HTMLInputElement).value)
-        "
+      <input type="text" name="answer" :id="`ans-${answer.id}`" :value="answer.text"
+        @input="updateAnswer(answer.id, ($event.target as HTMLInputElement).value)"
         @keypress.enter="addAnswer(index)"
         @keydown.delete="removeAnswer(answer.id, answer.text)"
         @keydown.up.prevent="moveToAnswer(index, -1)"
         @keydown.down.prevent="moveToAnswer(index, 1)"
-        class="flex-grow bg-transparent border-b border-transparent hover:border-gray-300 focus:border-sky-500 outline-none py-2"
-      />
+        class="flex-grow bg-transparent border-b border-transparent hover:border-gray-300 focus:border-sky-500 outline-none py-2" />
 
-      <button
-        class="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-md"
-        @click="removeAnswer(answer.id)"
-      >
+      <button class="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-md" @click="removeAnswer(answer.id)">
         <IconClose class="w-6 h-6" />
       </button>
     </div>
