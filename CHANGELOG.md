@@ -1,5 +1,22 @@
 # Changelog
 
+## [1.4.4](https://github.com/M-Facey/formjam/compare/v1.4.3...v1.4.4) (2023-12-04)
+
+
+### Bug Fixes
+
+* removed unused element ([6369ac3](https://github.com/M-Facey/formjam/commit/6369ac39a58aa6282e1d58a2b7ac353894d098e2))
+
+
+### Miscellaneous
+
+* updated .gitignore ([de3b6ef](https://github.com/M-Facey/formjam/commit/de3b6ef3f98431f5ae77e98f67e215bdea157a89))
+
+
+### Documentation
+
+* added ([65432c0](https://github.com/M-Facey/formjam/commit/65432c04c809671bf07a3656a6a854c7987f6a51))
+
 ## [1.4.3](https://github.com/M-Facey/formjam/compare/v1.4.2...v1.4.3) (2023-12-04)
 
 
