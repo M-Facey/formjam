@@ -1,5 +1,9 @@
 name: E2E test using Cypress
-on: [push]
+on:
+  workflow_run:
+    workflows: ["Format Project with Prettier"]
+    types:
+      - completed
 
 jobs:
   cypress-run:
