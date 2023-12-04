@@ -20,13 +20,13 @@ const currentSortOption = ref<DropdownOption>(sortOptions.value[0]);
 
 <template>
   <div
-    class="flex items-center"
+    class="flex"
     :class="{
       'flex-col items-center gap-y-3': smallerOrEqual,
-      'flex-row': !smallerOrEqual,
+      'flex-row items-end': !smallerOrEqual,
     }"
   >
-    <p class="text-xl">Recent Forms</p>
+    <p class="text-2xl">Recent Forms</p>
 
     <div
       class="flex gap-x-3"
@@ -36,7 +36,7 @@ const currentSortOption = ref<DropdownOption>(sortOptions.value[0]);
         <p class="pb-1 text-xs uppercase tracking-widest select-none">Layout</p>
 
         <button
-          class="custom-btn flex items-center justify-center px-3 py-1.5 select-none cursor-pointer rounded-md"
+          class="custom-btn flex items-center justify-center px-3 py-1.5 text-sky-900 select-none cursor-pointer rounded-md"
           :class="{
             'w-full': smallerOrEqual,
             'w-[127px]': !smallerOrEqual,

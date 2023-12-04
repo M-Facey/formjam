@@ -19,7 +19,7 @@ function toggleDropdown() {
 </script>
 
 <template>
-  <div class="relative">
+  <div class="relative dark:text-black">
     <div
       v-if="showSelectedOption"
       class="flex items-center justify-between bg-neutral-50 hover:bg-neutral-100 border border-neutral-200 hover:border-neutral-300 px-2 py-2 rounded-md cursor-pointer"
