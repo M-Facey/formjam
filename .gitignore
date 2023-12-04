@@ -32,3 +32,4 @@ cypress/videos
 *.njsproj
 *.sln
 *.sw?
+creds
