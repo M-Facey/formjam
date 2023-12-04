@@ -71,3 +71,7 @@ pnpm test:e2e
 ```sh
 pnpm cypress:open
 ```
+
+## How to contribute
+
+Please check out [CONTRIBUTING.md](./CONTRIBUTING.md)
