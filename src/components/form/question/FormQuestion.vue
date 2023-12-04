@@ -33,7 +33,7 @@ const props = withDefaults(
   {
     disableDown: false,
     disableUp: false,
-  }
+  },
 );
 
 const emits = defineEmits<{
@@ -48,12 +48,12 @@ const questionTypeOptions = shallowRef<
   {
     name: string;
     value:
-    | "short-text"
-    | "paragraph"
-    | "single-choice"
-    | "dropdown"
-    | "checkboxes"
-    | "linear-scale";
+      | "short-text"
+      | "paragraph"
+      | "single-choice"
+      | "dropdown"
+      | "checkboxes"
+      | "linear-scale";
     icon: Component;
   }[]
 >([
@@ -77,9 +77,8 @@ watch(
     timeoutId.value = setTimeout(() => {
       emits("update:question", questionData);
     }, 350);
-
   },
-  { deep: true }
+  { deep: true },
 );
 
 watch(currentQuestionOption, (typeOption) => {
@@ -103,7 +102,7 @@ function moveQuestion(direction: "up" | "down") {
 
 onMounted(() => {
   const _ = questionTypeOptions.value.find(
-    (question) => question.value === props.question.type
+    (question) => question.value === props.question.type,
   );
 
   if (_ !== undefined) {
@@ -115,30 +114,58 @@ onMounted(() => {
 <template>
   <div class="group flex bg-gray-100 divide-x divide-gray-300 rounded-lg">
     <div class="flex-grow p-3">
-      <XEditor type="question" placeholder="Question" v-model="questionConfig.text" />
+      <XEditor
+        type="question"
+        placeholder="Question"
+        v-model="questionConfig.text"
+      />
       <div class="pt-1">
-        <XEditor type="description" placeholder="Description" v-model="questionConfig.description" />
+        <XEditor
+          type="description"
+          placeholder="Description"
+          v-model="questionConfig.description"
+        />
       </div>
       <div class="pt-3">
-        <input v-if="currentQuestionOption.value === 'short-text' ||
-          currentQuestionOption.value === 'paragraph'
-          " :id="`text-answer-${question.id}`" type="text"
-          class="w-full border border-gray-400 py-2 px-4 outline-none rounded-md" readonly :placeholder="currentQuestionOption.value === 'short-text'
-            ? 'Short text'
-            : 'Long text'
-            " />
-        <Answer v-else-if="currentQuestionOption.value === 'checkboxes' ||
-          currentQuestionOption.value === 'single-choice' ||
-          currentQuestionOption.value === 'dropdown'
-          " v-model="questionConfig.answers" :question-type="questionConfig.type" />
+        <input
+          v-if="
+            currentQuestionOption.value === 'short-text' ||
+            currentQuestionOption.value === 'paragraph'
+          "
+          :id="`text-answer-${question.id}`"
+          type="text"
+          class="w-full border border-gray-400 py-2 px-4 outline-none rounded-md"
+          readonly
+          :placeholder="
+            currentQuestionOption.value === 'short-text'
+              ? 'Short text'
+              : 'Long text'
+          "
+        />
+        <Answer
+          v-else-if="
+            currentQuestionOption.value === 'checkboxes' ||
+            currentQuestionOption.value === 'single-choice' ||
+            currentQuestionOption.value === 'dropdown'
+          "
+          v-model="questionConfig.answers"
+          :question-type="questionConfig.type"
+        />
       </div>
     </div>
 
     <div class="w-full max-w-[220px] divide-y divide-gray-300">
       <div class="flex flex-col gap-y-2 p-3">
-        <XDropdown v-model="currentQuestionOption" :options="questionTypeOptions" />
+        <XDropdown
+          v-model="currentQuestionOption"
+          :options="questionTypeOptions"
+        />
 
-        <XToggle label="Required" :id="`toggle-${question.id}`" v-model="questionConfig.required" />
+        <XToggle
+          label="Required"
+          :id="`toggle-${question.id}`"
+          v-model="questionConfig.required"
+        />
 
         <button class="flex items-center bg-sky-400 p-2 text-sm rounded-md">
           <IconAdjustment class="w-5 h-5 mr-2" />
@@ -146,27 +173,38 @@ onMounted(() => {
         </button>
       </div>
 
-      <div class="justify-between p-3" :class="{ hidden: !isSelected, flex: isSelected }">
+      <div
+        class="justify-between p-3"
+        :class="{ hidden: !isSelected, flex: isSelected }"
+      >
         <button
           class="w-10 h-10 flex items-center justify-center bg-sky-500 disabled:bg-sky-600 text-white disabled:text-sky-900 rounded-md"
-          @click="moveQuestion('up')" :disabled="disableUp">
+          @click="moveQuestion('up')"
+          :disabled="disableUp"
+        >
           <IconArrowDown class="w-6 h-6 rotate-180" />
         </button>
 
         <button
           class="w-10 h-10 flex items-center justify-center bg-sky-500 disabled:bg-sky-600 text-white disabled:text-sky-900 rounded-md"
-          @click="moveQuestion('down')" :disabled="disableDown">
+          @click="moveQuestion('down')"
+          :disabled="disableDown"
+        >
           <IconArrowDown class="w-6 h-6" />
         </button>
 
         <button
           class="w-10 h-10 flex items-center justify-center bg-sky-500 disabled:bg-sky-600 text-white disabled:text-sky-800 rounded-md"
-          @click="$emit('duplicate:question', questionConfig)" disabled>
+          @click="$emit('duplicate:question', questionConfig)"
+          disabled
+        >
           <IconCopy class="w-6 h-6" />
         </button>
 
-        <button class="w-10 h-10 flex items-center justify-center bg-sky-500 text-white rounded-md"
-          @click="$emit('delete:question', questionConfig.id)">
+        <button
+          class="w-10 h-10 flex items-center justify-center bg-sky-500 text-white rounded-md"
+          @click="$emit('delete:question', questionConfig.id)"
+        >
           <IconDelete class="w-6 h-6" />
         </button>
       </div>
