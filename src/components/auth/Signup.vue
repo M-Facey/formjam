@@ -94,7 +94,9 @@ function closeErrorMessage() {
 </script>
 
 <template>
-  <div class="w-full">
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[540px] px-5"
+  >
     <h2
       class="text-primary-dark-500 dark:text-white text-3xl xs:text-4xl text-center font-bold pb-7"
     >
@@ -107,10 +109,7 @@ function closeErrorMessage() {
       >
     </h2>
 
-    <form
-      id="signup_form"
-      class="w-full max-w-[540px] flex flex-col gap-y-3 px-5 mx-auto"
-    >
+    <form id="signup_form" class="w-full flex flex-col gap-y-3 mx-auto">
       <FormErrorMessage
         v-if="hasErrorMessage"
         :message="errorMessage"

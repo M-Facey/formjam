@@ -57,7 +57,9 @@ function closeErrorMessage() {
 </script>
 
 <template>
-  <div class="w-full max-w-[520px] px-5">
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-full max-w-[540px] px-5"
+  >
     <h2
       class="text-primary-dark-500 dark:text-white text-3xl xs:text-4xl text-center font-bold"
     >

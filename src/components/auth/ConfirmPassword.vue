@@ -71,7 +71,9 @@ function cancelTimeout() {
 </script>
 
 <template>
-  <div class="text-black dark:text-white px-5">
+  <div
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-black dark:text-white px-5"
+  >
     <h2 class="text-center text-2xl xs:text-4xl font-epilogue font-bold pb-6">
       Confirm New Password
     </h2>

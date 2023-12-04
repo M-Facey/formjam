@@ -37,7 +37,7 @@ function clearErrorMessage() {
 <template>
   <form
     id="password_reset_form"
-    class="text-black dark:text-white px-5"
+    class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-black dark:text-white px-5"
     @submit="onSubmit"
   >
     <h2 class="text-center text-3xl xs:text-4xl font-epilogue font-bold">
