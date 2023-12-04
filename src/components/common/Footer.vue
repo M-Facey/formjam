@@ -3,7 +3,7 @@ import IconHandHeart from "@/components/icons/emojis/HandHeart.vue";
 </script>
 
 <template>
-  <footer class="absolute bottom-4 flex flex-col xs:flex-row items-center">
+  <footer class="flex flex-col xs:flex-row items-center mt-auto mx-auto py-4">
     <p class="pt-1 text-xs xs:text-sm md:text-base text-black dark:text-white">
       Copyright © {{ new Date().getFullYear() }}
       <a
