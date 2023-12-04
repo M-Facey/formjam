@@ -20,7 +20,6 @@ const menu = ref();
 const menuItems = ref([
   {
     label: "Delete",
-    icon: "pi pi-trash",
     command: () => {
       openDialog();
     },
