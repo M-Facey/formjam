@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.5.0](https://github.com/M-Facey/formjam/compare/v1.4.4...v1.5.0) (2023-12-04)
+
+
+### Features
+
+* created footer component ([53a823d](https://github.com/M-Facey/formjam/commit/53a823dd31919b302bc5e79ff92975bb4122f4d5))
+
+
+### Miscellaneous
+
+* added  or changed to use `dvh` ([23bcbb3](https://github.com/M-Facey/formjam/commit/23bcbb3dff96206b180fb48b670218cb84f7d65c))
+* added theme styles & primevue menu to form item ([96a40cc](https://github.com/M-Facey/formjam/commit/96a40ccd3e3bee41d539bd1e8bf3bb4be2877294))
+* added theme styles to create form component ([534f59a](https://github.com/M-Facey/formjam/commit/534f59a1c7ed5fb8fae5e6f306e37c48c6e9e4d5))
+* added theme styles to dashboard filter section ([68a208e](https://github.com/M-Facey/formjam/commit/68a208e9452c1b43c3b9d9909b8ac09900cf20b7))
+* added theme styles to dashboard layout ([18c313a](https://github.com/M-Facey/formjam/commit/18c313a4b2956253913598f0ea24b4aaf7044d42))
+* added theme styles to form card ([e116b34](https://github.com/M-Facey/formjam/commit/e116b342b336d998ed24e8bb84cfe409f9f7bf84))
+* positioned auth forms to center of the screen ([d347557](https://github.com/M-Facey/formjam/commit/d34755708aa20adec5592fc850a2992d4fd35dcc))
+* positioned footer at the bottom of the screen ([a632d9f](https://github.com/M-Facey/formjam/commit/a632d9f8a35a9f6536dd43d3b51301be37757ed9))
+* removed unused icons ([faab21a](https://github.com/M-Facey/formjam/commit/faab21a07f82560c46e74e00c5f86c4359d0a438))
+
 ## [1.4.4](https://github.com/M-Facey/formjam/compare/v1.4.3...v1.4.4) (2023-12-04)
 
 
