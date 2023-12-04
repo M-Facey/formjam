@@ -7,8 +7,51 @@ import IconForm from "@/components/icons/misc/Form.vue";
 import IconDots from "@/components/icons/menu/Dots.vue";
 import IconEdit from "@/components/icons/controls/Edit.vue";
 
+// prime vue components
+import { useConfirm } from "primevue/useconfirm";
+import { useToast } from "primevue/usetoast";
+import Menu from "primevue/menu";
+
 const props = defineProps<FormItemPropType>();
-defineEmits<FormCardEmitType>();
+const emits = defineEmits<FormCardEmitType>();
+
+const menu = ref();
+const menuItems = ref([
+  {
+    label: "Delete",
+    command: () => {
+      openDialog();
+    },
+  },
+  { label: "Rename", disabled: true },
+]);
+
+function toggle(event: Event) {
+  menu.value.toggle(event);
+}
+
+const confirm = useConfirm();
+const toast = useToast();
+
+function openDialog() {
+  confirm.require({
+    message: "Are you sure you want to delete the form?",
+    header: "Delete the Form",
+    accept: () => {
+      emits("deleteForm");
+      toast.add({
+        severity: "success",
+        summary: "Form Deleted",
+        detail: "Form was successfully deleted from the database",
+        life: 2000,
+      });
+      confirm.close();
+    },
+    reject: () => {
+      confirm.close();
+    },
+  });
+}
 
 // ** Dev note **
 // Since the title in rich text, I decided to rendered the rich text
@@ -19,20 +62,15 @@ const unformattedTitle = computed(() => {
   if (titleElem.value === undefined) return props.title;
   return titleElem.value.textContent;
 });
-
-const showMenu = ref(false);
-function toggleShowMenu() {
-  showMenu.value = !showMenu.value;
-}
 </script>
 
 <template>
   <div
-    class="w-full flex items-center hover:bg-sky-100 py-2.5 cursor-pointer rounded-full"
+    class="w-full flex items-center hover:bg-sky-100 dark:hover:bg-neutral-900 px-5 py-3 cursor-pointer rounded-full"
     @click="$emit('editForm')"
   >
-    <div class="bg-sky-500 p-1.5 rounded-lg">
-      <IconForm class="w-6 h-6 text-white" />
+    <div class="bg-sky-500 dark:bg-sky-500 p-1.5 rounded-lg">
+      <IconForm class="w-6 h-6 text-white dark:text-neutral-900" />
     </div>
     <div class="flex flex-wrap items-center justify-between flex-grow ml-3">
       <div ref="titleElem" class="hidden" v-html="title"></div>
@@ -46,24 +84,25 @@ function toggleShowMenu() {
       </p>
     </div>
 
-    <div class="relative flex-shrink-0 ml-20" @click.stop="toggleShowMenu">
-      <button class="hover:bg-black/10 p-1 rounded-full">
+    <div class="relative flex-shrink-0 ml-20" @click.stop="toggle">
+      <button
+        class="hover:bg-black/10 dark:hover:bg-neutral-700 p-1 rounded-full"
+      >
         <IconDots class="w-[24px] h-[24px]" />
       </button>
 
-      <div
-        v-if="showMenu"
-        class="absolute top-full right-0 translate-y-1 flex flex-col gap-y-1 bg-slate-200 px-3 py-2 rounded-lg z-50"
-      >
-        <button class="flex items-center gap-2" @click="$emit('deleteForm')">
-          <IconDelete class="w-5 h-5" />
-          <p>Delete</p>
-        </button>
-        <button class="flex items-center gap-2">
-          <IconEdit class="w-5 h-5" />
-          <p>Rename</p>
-        </button>
-      </div>
+      <Menu ref="menu" :model="menuItems" id="overlay_menu" :popup="true">
+        <template #item="{ item }">
+          <div class="flex items-center gap-x-3 px-5 py-2">
+            <IconDelete
+              v-if="item.label === 'Delete'"
+              class="w-6 h-6 text-red-500"
+            />
+            <IconEdit v-if="item.label === 'Rename'" class="w-6 h-6" />
+            {{ item.label }}
+          </div>
+        </template>
+      </Menu>
     </div>
   </div>
 </template>
