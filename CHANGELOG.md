@@ -1,5 +1,17 @@
 # Changelog
 
+## [1.4.2](https://github.com/M-Facey/formjam/compare/v1.4.1...v1.4.2) (2023-12-04)
+
+
+### Bug Fixes
+
+* added form question debouncing ([79c10b4](https://github.com/M-Facey/formjam/commit/79c10b4f617fb83c424b467683260349747d4afe))
+
+
+### Miscellaneous
+
+* **main:** formatted codebase ([1498600](https://github.com/M-Facey/formjam/commit/149860044fc1d63263034bb21a3c9738060e0687))
+
 ## [1.4.1](https://github.com/M-Facey/formjam/compare/v1.4.0...v1.4.1) (2023-12-03)
 
 
