@@ -1,5 +1,12 @@
 # Changelog
 
+## [1.4.3](https://github.com/M-Facey/formjam/compare/v1.4.2...v1.4.3) (2023-12-04)
+
+
+### Miscellaneous
+
+* made format & e2e action run sequentially ([092325e](https://github.com/M-Facey/formjam/commit/092325e01441d629b06f3aec694229f35b99cdcc))
+
 ## [1.4.2](https://github.com/M-Facey/formjam/compare/v1.4.1...v1.4.2) (2023-12-04)
 
 
