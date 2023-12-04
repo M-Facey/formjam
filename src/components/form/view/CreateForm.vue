@@ -28,7 +28,7 @@ async function gotoEditFormPage() {
       v-if="view === 'grid'"
       role="button"
       title="Create Form Card"
-      class="w-full h-full flex bg-sky-200 py-6 px-6 border-2 border-dashed border-sky-300 hover:border-sky-500 rounded-lg cursor-pointer"
+      class="w-full h-full flex bg-sky-200 dark:bg-neutral-900 py-6 px-6 border-2 border-dashed border-sky-300 dark:border-neutral-700 hover:border-sky-500 dark:hover:border-sky-600 rounded-lg cursor-pointer"
       :class="{
         'flex-row items-center gap-x-4': smallerOrEqual,
         'flex-col items-center justify-center': !smallerOrEqual,
@@ -56,21 +56,21 @@ async function gotoEditFormPage() {
         >
           Create new form
         </p>
-        <p class="text-sm text-sky-800 font-medium tracking-wide">
+        <p class="text-sm text-sky-800 dark:text-sky-500 font-medium tracking-wide">
           Click here to create a blank form
         </p>
       </div>
     </button>
     <div
       v-else
-      class="bg-sky-200 flex items-center justify-between p-3 rounded-xl"
+      class="bg-sky-200 dark:bg-neutral-700 dark:border dark:border-transparent dark:hover:border-neutral-600 flex items-center justify-between p-3 rounded-2xl"
     >
       <h1 class="text-lg">
         <span v-if="smallerOrEqual">Want a new form?</span>
         <span v-else>Do you want create a new form?</span>
       </h1>
       <button
-        class="custom-btn flex items-center gap-x-1 p-2 text-sky-700 font-medium rounded-lg"
+        class="custom-btn flex items-center gap-x-1 p-2 text-sky-700 dark:text-neutral-800 font-medium rounded-lg"
         data-cy="create_form_btn"
       >
         <IconAdd class="hidden sm:block w-6 h-6" />
