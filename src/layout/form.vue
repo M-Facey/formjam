@@ -3,7 +3,7 @@ import FormNavbar from "@/components/form/FormNavbar.vue";
 </script>
 
 <template>
-  <main>
+  <main class="min-h-[100dvh]">
     <FormNavbar />
     <slot />
   </main>

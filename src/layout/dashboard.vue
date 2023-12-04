@@ -4,7 +4,7 @@ import XMobileNavbar from "@/components/dashboard/MobileNavbar.vue";
 </script>
 
 <template>
-  <main>
+  <main class="min-h-[100dvh]">
     <XNavbar class="hidden md:block" />
     <XMobileNavbar class="block md:hidden" />
     <slot />
