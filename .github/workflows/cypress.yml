@@ -25,7 +25,6 @@ jobs:
         uses: cypress-io/github-action@v6
         with:
           install-command: pnpm install
-          record: true
         env:
           BASE_URL: ${{ secrets.BASE_URL }}
           API_URL: ${{ secrets.API_URL }}
