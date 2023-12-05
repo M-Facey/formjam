@@ -44,6 +44,14 @@ async function logout() {
   pb.authStore.clear();
   router.push({ name: "Login" });
 }
+
+function getCypressAttribute(label: any) {
+  if (!label) return;
+
+  if (label === "Log out") {
+    return "dashboard_logout_btn";
+  }
+}
 </script>
 
 <template>
@@ -69,14 +77,17 @@ async function logout() {
           <button
             class="custom-btn ml-2 p-2 text-neutral-900 rounded-lg"
             @click="toggle"
-            data-cy="mobile_nav_open_menu"
+            data-cy="navbar_open_menu"
           >
             <IconUser class="w-6 h-6" />
           </button>
 
           <Menu ref="menu" :model="menuItems" id="overlay_menu" :popup="true">
             <template #item="{ item }">
-              <div class="flex items-center gap-x-3 px-5 py-2">
+              <div
+                class="flex items-center gap-x-3 px-5 py-2"
+                :data-cy="getCypressAttribute(item.label)"
+              >
                 <IconLogout v-if="item.label === 'Log out'" class="w-6 h-6" />
                 {{ item.label }}
               </div>

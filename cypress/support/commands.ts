@@ -65,6 +65,7 @@ Cypress.Commands.add("logout", () => {
   cy.visit("/");
   cy.location("pathname").should("equal", "/dashboard");
 
+  cy.get('[data-cy="navbar_open_menu"]').first().click();
   cy.get('[data-cy="dashboard_logout_btn"]').click();
   cy.location("pathname").should("equal", "/auth/login");
 });
