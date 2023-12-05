@@ -48,7 +48,7 @@ export type ButtonEmitType = {
 };
 
 export type CheckboxPropType = {
-  id?: string;
+  id: string;
   text: string;
   modelValue: boolean;
   dataCy?: string;
