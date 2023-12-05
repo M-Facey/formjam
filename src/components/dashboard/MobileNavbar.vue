@@ -1,48 +1,49 @@
 <script lang="ts" setup>
-import { ref, shallowRef, watch } from "vue";
+import { ref } from "vue";
 import { useRouter } from "vue-router";
 import pb from "@/db/pocketBase";
 
-import IconAdd from "@/components/icons/controls/Add.vue";
+import Menu from "primevue/menu";
+
 import IconSearch from "@/components/icons/input/Search.vue";
 import IconLogout from "@/components/icons/controls/Logout.vue";
+import IconUser from "@/components/icons/menu/User.vue";
 
 import XTextInput from "@/components/inputs/TextInput.vue";
-import XButton from "@/components/inputs/Button.vue";
-import XDropdown from "@/components/inputs/Dropdown.vue";
+
+const router = useRouter();
 
 const searchParam = ref("");
+const menu = ref();
 
-const navbarOptions = shallowRef([
-  { name: "Create Form", value: "create-form", icon: IconAdd },
-  { name: "Log out", value: "log-out", icon: IconLogout },
+const menuItems = ref([
+  {
+    label: "Profile",
+    command: () => {
+      router.push("/profile");
+    },
+  },
+  {
+    label: "Log out",
+    command: () => {
+      logout();
+    },
+  },
 ]);
-const currentNavbarOption = shallowRef(navbarOptions.value[0]);
+
+function toggle(event: Event) {
+  menu.value.toggle(event);
+}
 
 const showSearchInput = ref(false);
 function toggleSearchInput() {
   showSearchInput.value = !showSearchInput.value;
 }
 
-const router = useRouter();
-const loading = ref(false);
 async function logout() {
-  loading.value = true;
-  setTimeout(() => {
-    loading.value = false;
-    pb.authStore.clear();
-    router.push({ name: "Login" });
-  }, 1000);
+  pb.authStore.clear();
+  router.push({ name: "Login" });
 }
-
-watch(
-  () => currentNavbarOption.value,
-  async (option) => {
-    if (option.value === "log-out") {
-      await logout();
-    }
-  }
-);
 </script>
 
 <template>
@@ -56,23 +57,31 @@ watch(
           </p>
         </RouterLink>
 
-        <div class="flex items-center gap-x-3">
-          <XButton
-            class="font-medium"
-            text=""
-            :has-icon="false"
-            @trigger-event="toggleSearchInput"
+        <div>
+          <button
+            class="custom-btn p-2 text-neutral-900 rounded-lg"
+            @click="toggleSearchInput"
+            data-cy="mobile_nav_open_search"
           >
-            <template #icon>
-              <IconSearch class="w-6 h-6" />
-            </template>
-          </XButton>
+            <IconSearch class="w-6 h-6" />
+          </button>
 
-          <XDropdown
-            v-model="currentNavbarOption"
-            :options="navbarOptions"
-            :show-selected-option="false"
-          />
+          <button
+            class="custom-btn ml-2 p-2 text-neutral-900 rounded-lg"
+            @click="toggle"
+            data-cy="mobile_nav_open_menu"
+          >
+            <IconUser class="w-6 h-6" />
+          </button>
+
+          <Menu ref="menu" :model="menuItems" id="overlay_menu" :popup="true">
+            <template #item="{ item }">
+              <div class="flex items-center gap-x-3 px-5 py-2">
+                <IconLogout v-if="item.label === 'Log out'" class="w-6 h-6" />
+                {{ item.label }}
+              </div>
+            </template>
+          </Menu>
         </div>
       </div>
     </div>

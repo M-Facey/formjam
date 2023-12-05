@@ -3,21 +3,40 @@ import { ref } from "vue";
 import { useRouter } from "vue-router";
 import pb from "@/db/pocketBase";
 
+import Menu from "primevue/menu";
+
 import IconLogout from "@/components/icons/controls/Logout.vue";
+import IconUser from "@/components/icons/menu/User.vue";
+
 import XTextInput from "@/components/inputs/TextInput.vue";
-import XButton from "@/components/inputs/Button.vue";
+
+const router = useRouter();
 
 const searchParam = ref("");
-const router = useRouter();
-const loading = ref(false);
+const menu = ref();
+
+const menuItems = ref([
+  {
+    label: "Profile",
+    command: () => {
+      router.push("/profile");
+    },
+  },
+  {
+    label: "Log out",
+    command: () => {
+      logout();
+    },
+  },
+]);
+
+function toggle(event: Event) {
+  menu.value.toggle(event);
+}
 
 async function logout() {
-  loading.value = true;
-  setTimeout(() => {
-    loading.value = false;
-    pb.authStore.clear();
-    router.push({ name: "Login" });
-  }, 1000);
+  pb.authStore.clear();
+  router.push({ name: "Login" });
 }
 </script>
 
@@ -39,18 +58,23 @@ async function logout() {
         v-model="searchParam"
       />
 
-      <XButton
-        class="font-medium"
-        text="Log out"
-        data-cy="dashboard_logout_btn"
-        :has-icon="false"
-        :loading="loading"
-        @trigger-event="logout"
-      >
-        <template #icon>
-          <IconLogout class="w-6 h-6 mr-2" />
-        </template>
-      </XButton>
+      <div>
+        <button
+          class="custom-btn p-2 text-neutral-900 rounded-lg"
+          @click="toggle"
+        >
+          <IconUser class="w-6 h-6" />
+        </button>
+
+        <Menu ref="menu" :model="menuItems" id="overlay_menu" :popup="true">
+          <template #item="{ item }">
+            <div class="flex items-center gap-x-3 px-5 py-2">
+              <IconLogout v-if="item.label === 'Log out'" class="w-6 h-6" />
+              {{ item.label }}
+            </div>
+          </template>
+        </Menu>
+      </div>
     </div>
   </header>
 </template>
