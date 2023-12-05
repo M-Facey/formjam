@@ -2,8 +2,6 @@
 
 ![App Banner](https://github.com/M-Facey/formjam/blob/main/public/banner.png?raw=true)
 
-[![Default Project](https://img.shields.io/endpoint?url=https://cloud.cypress.io/badge/detailed/qecres&style=flat&logo=cypress)](https://cloud.cypress.io/projects/qecres/runs)
-
 This is a simple app created using Vue 3 and Pocketbase. The `src` documentation found [here](./src/README.md) can help newcomers understand how the project is broken down based on folder structure. :warning: The docs for different folders are still being worked on.
 
 ## :computer: The Tech I Used
