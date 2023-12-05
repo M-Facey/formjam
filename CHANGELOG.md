@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.6.0](https://github.com/M-Facey/formjam/compare/v1.5.0...v1.6.0) (2023-12-05)
+
+
+### Features
+
+* added change password form ([6a89e4b](https://github.com/M-Facey/formjam/commit/6a89e4b5d88242b3419aed192b8bcede0707cc0b))
+* added personal info form ([7ecfb9c](https://github.com/M-Facey/formjam/commit/7ecfb9cbd02475ff01b20d4ffd185dc0f38cbeb9))
+* added profile page & route ([721f521](https://github.com/M-Facey/formjam/commit/721f521216f2f8c62558da23e940153d34e967fd))
+
+
+### Miscellaneous
+
+* added prime menu to navbars ([bb9f78c](https://github.com/M-Facey/formjam/commit/bb9f78c1bfe5cd38d09d16a30a21681dc42db514))
+* made id mandatory for checkbox input ([e4db604](https://github.com/M-Facey/formjam/commit/e4db604f0d9b15fcd068b93c8b79f584fc38a8bc))
+* removed unused icon ([3a5b92a](https://github.com/M-Facey/formjam/commit/3a5b92ae4d3ec5227ad57c966d2f9ce5fe9d5ac7))
+
 ## [1.5.0](https://github.com/M-Facey/formjam/compare/v1.4.4...v1.5.0) (2023-12-04)
 
 
