@@ -2,6 +2,7 @@ name: E2E test using Cypress
 on:
   workflow_run:
     workflows: ["Format Project with Prettier"]
+    branches: ["main"]
     types:
       - completed
 
