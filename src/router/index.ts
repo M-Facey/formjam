@@ -59,6 +59,15 @@ const router = createRouter({
       },
     },
     {
+      path: "/profile",
+      name: "Profile",
+      component: () => import("@/pages/profile.vue"),
+      meta: {
+        layout: "Dashboard",
+        authRequired: true,
+      },
+    },
+    {
       path: "/form/:formId",
       meta: {
         layout: "Form",
@@ -78,8 +87,8 @@ const router = createRouter({
         {
           path: "success",
           name: "SuccessForm",
-          component: () => import("@/pages/form/success.vue")
-        }
+          component: () => import("@/pages/form/success.vue"),
+        },
       ],
     },
     {
