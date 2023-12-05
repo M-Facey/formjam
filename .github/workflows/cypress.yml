@@ -27,7 +27,6 @@ jobs:
           install-command: pnpm install
           record: true
         env:
-          CYPRESS_RECORD_KEY: ${{ secrets.CYPRESS_RECORD_KEY }}
           BASE_URL: ${{ secrets.BASE_URL }}
           API_URL: ${{ secrets.API_URL }}
           USER_EMAIL: ${{ secrets.USER_EMAIL }}
