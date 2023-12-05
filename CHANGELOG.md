@@ -1,5 +1,21 @@
 # Changelog
 
+## [1.6.1](https://github.com/M-Facey/formjam/compare/v1.6.0...v1.6.1) (2023-12-05)
+
+
+### Bug Fixes
+
+* removed record option ([d075f08](https://github.com/M-Facey/formjam/commit/d075f08e3283716939f3883eee481008234a0469))
+* resolved logout command failing ([8fa5235](https://github.com/M-Facey/formjam/commit/8fa52351ca6fd4601cb9a9a53b133a0fb7faf704))
+
+
+### Miscellaneous
+
+* added branches to cypress action ([4bba7b6](https://github.com/M-Facey/formjam/commit/4bba7b6b40ff94435b76c810d1e5f768d921f220))
+* commented out failing test ([f254d3d](https://github.com/M-Facey/formjam/commit/f254d3dd8d19b619ba3ffd2bb32dc2f3fbcea13b))
+* removed cypress badge ([b57a916](https://github.com/M-Facey/formjam/commit/b57a916e2436c88fc231ca0e244d1caa8990b276))
+* removed cypress record id ([26c81f6](https://github.com/M-Facey/formjam/commit/26c81f67a8516bf3941987f3334b88e288aa0e7c))
+
 ## [1.6.0](https://github.com/M-Facey/formjam/compare/v1.5.0...v1.6.0) (2023-12-05)
 
 
