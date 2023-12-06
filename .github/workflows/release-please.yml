@@ -1,4 +1,4 @@
-name: Create Release 
+name: Create Release
 
 on:
   push:
@@ -8,8 +8,6 @@ on:
 permissions:
   contents: write
   pull-requests: write
-
-name: release-please
 
 jobs:
   release-please:
