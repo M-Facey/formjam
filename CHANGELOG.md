@@ -1,5 +1,24 @@
 # Changelog
 
+## [1.7.0](https://github.com/M-Facey/formjam/compare/v1.6.2...v1.7.0) (2023-12-06)
+
+
+### Features
+
+* added search form functionality ([549ca01](https://github.com/M-Facey/formjam/commit/549ca010051cb7fb9ab01a703fdb20a09bf159a6))
+
+
+### Bug Fixes
+
+* removed duplicate name in release action ([e4b29fb](https://github.com/M-Facey/formjam/commit/e4b29fb9b08ddfb096038f4a6c69ccb7653757c5))
+
+
+### Miscellaneous
+
+* added name to release action ([0476ecb](https://github.com/M-Facey/formjam/commit/0476ecb6574df55d01206760510cf375a3d3cd2b))
+* **deps:** updated dependencies ([f259a41](https://github.com/M-Facey/formjam/commit/f259a4119aed6287652e9363a00d39a614b6d9b1))
+* **main:** formatted codebase ([56cb3a4](https://github.com/M-Facey/formjam/commit/56cb3a446ab098cfc67515c910b857d08a6d8ed9))
+
 ## [1.6.2](https://github.com/M-Facey/formjam/compare/v1.6.1...v1.6.2) (2023-12-06)
 
 
