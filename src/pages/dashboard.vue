@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref } from "vue";
-import { useRouter } from "vue-router";
+import { useRouter, useRoute } from "vue-router";
 import type { SanitizedFormType, FormCardEvent } from "@/types/form";
 import { useFormStore } from "@/store/forms";
 
@@ -9,6 +9,7 @@ import FormCardGrid from "@/components/form/view/FormCardGrid.vue";
 import FormList from "@/components/form/view/FormList.vue";
 
 const router = useRouter();
+const route = useRoute();
 const formStore = useFormStore();
 
 const isLoading = ref(false);
@@ -16,7 +17,7 @@ const isLoading = ref(false);
 const sanitizedForms = computed<SanitizedFormType[]>(() => {
   if (!formStore.forms) return [];
 
-  return formStore.forms.map((form) => {
+  return formStore.getFilteredForms.map((form) => {
     // remove unused & sensitive data
     const { collectionId, collectionName, user, ...rest } = form;
     return rest;
@@ -40,7 +41,10 @@ function toggleView() {
 
 onMounted(async () => {
   isLoading.value = true;
-  formStore.fetchForms();
+  await formStore.fetchForms();
+  if(route.query.search) {
+    formStore.searchTerm = route.query.search as string;
+  }
   isLoading.value = false;
 });
 </script>

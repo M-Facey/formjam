@@ -7,7 +7,18 @@ export const useFormStore = defineStore({
   id: "forms",
   state: () => ({
     forms: [] as Form[],
+    searchTerm: "",
   }),
+  getters: {
+    getFilteredForms(state) {
+      if (state.searchTerm === "") {
+        return state.forms;
+      }
+      return state.forms.filter((form) =>
+        form.title.toLowerCase().includes(state.searchTerm.toLowerCase())
+      );
+    },
+  },
   actions: {
     async fetchForms() {
       this.forms = await pb

@@ -1,6 +1,7 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-import { useRouter } from "vue-router";
+import { ref, watch } from "vue";
+import { useRouter, useRoute } from "vue-router";
+import { useFormStore } from "@/store/forms";
 import pb from "@/db/pocketBase";
 
 import Menu from "primevue/menu";
@@ -11,10 +12,10 @@ import IconUser from "@/components/icons/menu/User.vue";
 import XTextInput from "@/components/inputs/TextInput.vue";
 
 const router = useRouter();
+const route = useRoute();
+const formStore = useFormStore();
 
-const searchParam = ref("");
 const menu = ref();
-
 const menuItems = ref([
   {
     label: "Profile",
@@ -46,6 +47,24 @@ function getCypressAttribute(label: any) {
     return "dashboard_logout_btn";
   }
 }
+
+watch(
+  () => formStore.searchTerm,
+  (term: string) => {
+    if (term !== "") {
+      router.push({
+        path: route.path,
+        query: {
+          search: term,
+        },
+      });
+    } else {
+      router.push({
+        path: route.path,
+      });
+    }
+  }
+);
 </script>
 
 <template>
@@ -63,7 +82,7 @@ function getCypressAttribute(label: any) {
         type="text"
         placeholder="Search"
         is-searchable
-        v-model="searchParam"
+        v-model="formStore.searchTerm"
       />
 
       <div>
