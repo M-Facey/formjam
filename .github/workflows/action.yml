@@ -1,4 +1,4 @@
-name: Format And e2e test the project
+name: Format And End to End Test Project
 
 on:
   pull_request:
