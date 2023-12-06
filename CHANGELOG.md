@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.6.2](https://github.com/M-Facey/formjam/compare/v1.6.1...v1.6.2) (2023-12-06)
+
+
+### Miscellaneous
+
+* **deps-dev:** bump vite from 4.4.10 to 4.4.12 ([6f7903e](https://github.com/M-Facey/formjam/commit/6f7903eec7556c36522de8dbca0b93a592472505))
+* refactored format & test action into one file ([7e6172a](https://github.com/M-Facey/formjam/commit/7e6172a54df41c2a9172c3958bec85f79a2d9da9))
+* renamed format & test action ([ae187f5](https://github.com/M-Facey/formjam/commit/ae187f53312d39589b51fadf03bb127fc8ea14fb))
+
 ## [1.6.1](https://github.com/M-Facey/formjam/compare/v1.6.0...v1.6.1) (2023-12-05)
 
 
