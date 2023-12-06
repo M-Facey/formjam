@@ -42,7 +42,7 @@ function toggleView() {
 onMounted(async () => {
   isLoading.value = true;
   await formStore.fetchForms();
-  if(route.query.search) {
+  if (route.query.search) {
     formStore.searchTerm = route.query.search as string;
   }
   isLoading.value = false;

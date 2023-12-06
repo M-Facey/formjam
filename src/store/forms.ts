@@ -15,7 +15,7 @@ export const useFormStore = defineStore({
         return state.forms;
       }
       return state.forms.filter((form) =>
-        form.title.toLowerCase().includes(state.searchTerm.toLowerCase())
+        form.title.toLowerCase().includes(state.searchTerm.toLowerCase()),
       );
     },
   },

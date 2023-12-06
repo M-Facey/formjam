@@ -69,7 +69,7 @@ watch(
         path: route.path,
       });
     }
-  }
+  },
 );
 </script>
 
