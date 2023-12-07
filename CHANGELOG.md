@@ -1,5 +1,19 @@
 # Changelog
 
+## [1.7.1](https://github.com/M-Facey/formjam/compare/v1.7.0...v1.7.1) (2023-12-07)
+
+
+### Bug Fixes
+
+* added cypress attributes to delete form dialog ([42efb5a](https://github.com/M-Facey/formjam/commit/42efb5ae8113f7c70d2b8d01d0d64e304e527e74))
+* added cypress attributes to form card ([914e5c8](https://github.com/M-Facey/formjam/commit/914e5c8746140e8c307e92c114b1249327768340))
+
+
+### Miscellaneous
+
+* added delete form test & refactored no form test ([4f9ea50](https://github.com/M-Facey/formjam/commit/4f9ea506defac13d0517d51f2aa4421c9b593a34)), closes [#33](https://github.com/M-Facey/formjam/issues/33)
+* **main:** formatted codebase ([5406c34](https://github.com/M-Facey/formjam/commit/5406c3464aae26d81af5a8a8ce68d213e8c65ace))
+
 ## [1.7.0](https://github.com/M-Facey/formjam/compare/v1.6.2...v1.7.0) (2023-12-06)
 
 
