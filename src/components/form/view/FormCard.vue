@@ -37,8 +37,8 @@ const toast = useToast();
 
 function openDialog() {
   confirm.require({
+    group: "headless",
     message: "Are you sure you want to delete the form?",
-    header: "Delete the Form",
     accept: () => {
       emits("deleteForm");
       toast.add({
@@ -64,6 +64,14 @@ const unformattedTitle = computed(() => {
   if (titleElem.value === undefined) return props.title;
   return titleElem.value.textContent;
 });
+
+function getCypressAttribute(label: string) {
+  if (label === "Delete") {
+    return "form_card_delete_btn";
+  } else if (label === "Rename") {
+    return "form_card_rename_btn";
+  }
+}
 </script>
 
 <template>
@@ -76,7 +84,9 @@ const unformattedTitle = computed(() => {
     data-cy="form_card"
     @click="!lteTablet && $emit('editForm')"
   >
-    <div class="relative h-[130px] bg-sky-400 dark:bg-neutral-700 rounded-t-[10px]">
+    <div
+      class="relative h-[130px] bg-sky-400 dark:bg-neutral-700 rounded-t-[10px]"
+    >
       <button
         v-if="lteTablet"
         class="absolute top-2 right-2 p-2 bg-black/40 rounded-lg"
@@ -87,8 +97,13 @@ const unformattedTitle = computed(() => {
       </button>
     </div>
 
-    <div class="relative bg-transparent dark:bg-sky-500 py-2 px-2 rounded-b-[10px]">
-      <p class="pr-10 dark:text-black text-lg font-medium truncate" v-html="unformattedTitle"></p>
+    <div
+      class="relative bg-transparent dark:bg-sky-500 py-2 px-2 rounded-b-[10px]"
+    >
+      <p
+        class="pr-10 dark:text-black text-lg font-medium truncate"
+        v-html="unformattedTitle"
+      ></p>
       <div ref="titleElem" class="hidden" v-html="title"></div>
       <p class="text-sm text-gray-600 mt-auto pb-2">
         Last edited:
@@ -108,7 +123,10 @@ const unformattedTitle = computed(() => {
 
         <Menu ref="menu" :model="menuItems" id="overlay_menu" :popup="true">
           <template #item="{ item }">
-            <div class="flex items-center gap-x-3 px-5 py-2">
+            <div
+              class="flex items-center gap-x-3 px-5 py-2"
+              :data-cy="getCypressAttribute(item.label as string)"
+            >
               <IconDelete
                 v-if="item.label === 'Delete'"
                 class="w-6 h-6 text-red-500"
