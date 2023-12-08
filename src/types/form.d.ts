@@ -4,6 +4,8 @@ import { Question } from "./pocketbase";
 export interface FormItemPropType {
   title: string;
   lastEdited: string;
+  selectMode: boolean;
+  isSelected: boolean;
   hasStar?: boolean;
 }
 
@@ -16,6 +18,7 @@ export interface FormCardPropType extends FormItemPropType {
 export type FormCardEmitType = {
   (e: "deleteForm"): void;
   (e: "editForm"): void;
+  (e: "selectForm"): void;
 };
 
 export type FormGridEmitType = {
@@ -33,7 +36,7 @@ export type ErrorMessageEmitType = {
 // general types
 export type FormCardEvent = {
   id: string;
-  name: "delete" | "rename" | "edit";
+  name: "delete" | "rename" | "edit" | "select";
   value: string | null;
 };
 
