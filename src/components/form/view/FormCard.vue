@@ -8,6 +8,8 @@ import IconDelete from "@/components/icons/controls/Delete.vue";
 import IconEdit from "@/components/icons/controls/Edit.vue";
 import IconShareLink from "@/components/icons/controls/ShareLink.vue";
 
+import Checkbox from "primevue/checkbox";
+
 // prime vue components
 import { useConfirm } from "primevue/useconfirm";
 import { useToast } from "primevue/usetoast";
@@ -20,7 +22,6 @@ const menu = ref();
 const menuItems = ref([
   {
     label: "Delete",
-    icon: "pi pi-trash",
     command: () => {
       openDialog();
     },
@@ -72,17 +73,32 @@ function getCypressAttribute(label: string) {
     return "form_card_rename_btn";
   }
 }
+
+const timeoutId = ref<NodeJS.Timeout>();
+function triggerSelect() {
+  timeoutId.value = setTimeout(() => {
+    emits("selectForm");
+  }, 500);
+}
+
+function cancel() {
+  clearTimeout(timeoutId.value);
+}
 </script>
 
 <template>
   <div
-    class="flex flex-col flex-stretch w-full border border-sky-100 dark:border-neutral-600 hover:border-sky-500 dark:hover:border-sky-500 rounded-[11px]"
+    class="relative flex flex-col flex-stretch w-full border border-sky-100 dark:border-neutral-600 hover:border-sky-500 dark:hover:border-sky-500 rounded-[11px]"
     :class="{
       'cursor-default': lteTablet,
       'cursor-pointer': !lteTablet,
     }"
     data-cy="form_card"
-    @click="!lteTablet && $emit('editForm')"
+    @mousedown="!selectMode && triggerSelect()"
+    @mouseup="!selectMode && cancel"
+    @click="
+      !lteTablet && (!selectMode ? $emit('editForm') : $emit('selectForm'))
+    "
   >
     <div
       class="relative h-[130px] bg-sky-400 dark:bg-neutral-700 rounded-t-[10px]"
@@ -95,6 +111,14 @@ function getCypressAttribute(label: string) {
       >
         <IconShareLink class="w-6 h-6 text-white" />
       </button>
+    </div>
+
+    <div v-if="selectMode" class="absolute top-3 left-3" @click.stop>
+      <Checkbox
+        :model-value="isSelected"
+        @update:model-value="$emit('selectForm')"
+        :binary="true"
+      />
     </div>
 
     <div

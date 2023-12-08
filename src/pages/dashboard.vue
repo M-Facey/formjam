@@ -8,9 +8,15 @@ import FilterTab from "@/components/dashboard/FilterTab.vue";
 import FormCardGrid from "@/components/form/view/FormCardGrid.vue";
 import FormList from "@/components/form/view/FormList.vue";
 
+// import Checkbox from "primevue/checkbox";
+import { useConfirm } from "primevue/useconfirm";
+import { useToast } from "primevue/usetoast";
+
 const router = useRouter();
 const route = useRoute();
 const formStore = useFormStore();
+const confirm = useConfirm();
+const toast = useToast();
 
 const isLoading = ref(false);
 
@@ -31,12 +37,51 @@ async function executeEvent(event: FormCardEvent) {
     isLoading.value = false;
   } else if (event.name === "edit") {
     router.push({ name: "EditForm", params: { formId: event.id } });
+  } else if (event.name === "select") {
+    formStore.selectForm(event.id);
   }
 }
 
 const currentView = ref("Grid");
 function toggleView() {
   currentView.value = currentView.value === "Grid" ? "List" : "Grid";
+}
+
+// bulk action related functions
+const hasOneSelectedForm = computed(() => {
+  return formStore.selectedForms.length <= 1;
+});
+
+function triggerSelectEvent() {
+  if (formStore.selectedForms.length === formStore.forms.length) {
+    formStore.selectedForms = [];
+  } else {
+    formStore.selectAllForms();
+  }
+}
+
+function triggerDeleteFormsEvent() {
+  confirm.require({
+    group: "headless",
+    message:
+      "Are you sure you want to delete " +
+      (hasOneSelectedForm.value
+        ? " this form?"
+        : ` these ${formStore.selectedForms.length} forms?`),
+    accept: () => {
+      formStore.deleteSelectedForms();
+      toast.add({
+        severity: "success",
+        summary: "Form(s) Deleted",
+        detail: "Form(s) was/were successfully deleted from the database",
+        life: 2000,
+      });
+      confirm.close();
+    },
+    reject: () => {
+      confirm.close();
+    },
+  });
 }
 
 onMounted(async () => {
@@ -53,6 +98,35 @@ onMounted(async () => {
   <div class="pt-7 px-5">
     <div class="container">
       <FilterTab :view="currentView" @set-view="toggleView" />
+      <!-- bulk delete section -->
+      <div
+        v-if="formStore.selectedForms.length > 0"
+        class="w-fit bg-neutral-900 p-3 flex items-center gap-3 mt-3 rounded-xl"
+      >
+        <p class="text-lg ml-2">
+          {{ formStore.selectedForms.length }}
+          {{ hasOneSelectedForm ? "form" : "forms" }} selected
+        </p>
+
+        <button
+          class="custom-btn p-2 text-neutral-900 text-sm font-medium tracking-wide rounded-lg"
+          @click="triggerSelectEvent"
+        >
+          {{
+            formStore.totalSelectedForms === formStore.totalForms
+              ? "Deselect"
+              : "Select"
+          }}
+          All
+        </button>
+
+        <button
+          class="w-full sm:w-fit bg-gradient-to-b from-red-500 to-rose-700 border border-red-500 pr-3 p-2 text-white text-sm font-medium tracking-wide rounded-lg shadow-lg shadow-rose-900 disabled:shadow-neutral-600"
+          @click="triggerDeleteFormsEvent"
+        >
+          Delete {{ hasOneSelectedForm ? "Form" : "Forms" }}
+        </button>
+      </div>
 
       <FormCardGrid
         v-if="currentView === 'Grid'"

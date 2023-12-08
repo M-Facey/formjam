@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { SanitizedFormType, FormGridEmitType } from "@/types/form";
 import dayjs from "dayjs";
+import { useFormStore } from "@/store/forms";
 
 import FormCard from "@/components/form/view/FormCard.vue";
 import CreateForm from "@/components/form/view/CreateForm.vue";
@@ -8,6 +9,8 @@ import FormCardLoader from "@/components/form/view/FormCardLoader.vue";
 
 defineProps<{ forms: SanitizedFormType[]; isLoading: boolean }>();
 defineEmits<FormGridEmitType>();
+
+const formStore = useFormStore();
 </script>
 
 <template>
@@ -19,12 +22,18 @@ defineEmits<FormGridEmitType>();
       :description="form.description"
       :last-edited="dayjs(form.updated).format('MMM DD, YYYY')"
       :created-at="form.created"
+      :select-mode="formStore.selectedForms.length > 0"
+      :is-selected="formStore.isSelected(form.id)"
       @delete-form="
         () =>
           $emit('trigger-event', { id: form.id, name: 'delete', value: null })
       "
       @edit-form="
         () => $emit('trigger-event', { id: form.id, name: 'edit', value: null })
+      "
+      @select-form="
+        () =>
+          $emit('trigger-event', { id: form.id, name: 'select', value: null })
       "
     />
   </div>

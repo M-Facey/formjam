@@ -6,6 +6,7 @@ import IconDelete from "@/components/icons/controls/Delete.vue";
 import IconForm from "@/components/icons/misc/Form.vue";
 import IconDots from "@/components/icons/menu/Dots.vue";
 import IconEdit from "@/components/icons/controls/Edit.vue";
+import IconCheck from "@/components/icons/input/Check.vue";
 
 // prime vue components
 import { useConfirm } from "primevue/useconfirm";
@@ -62,16 +63,41 @@ const unformattedTitle = computed(() => {
   if (titleElem.value === undefined) return props.title;
   return titleElem.value.textContent;
 });
+
+function getCypressAttribute(label: string) {
+  if (label === "Delete") {
+    return "form_card_delete_btn";
+  } else if (label === "Rename") {
+    return "form_card_rename_btn";
+  }
+}
+
+const timeoutId = ref<NodeJS.Timeout>();
+function triggerSelect() {
+  timeoutId.value = setTimeout(() => {
+    emits("selectForm");
+  }, 500);
+}
+
+function cancel() {
+  clearTimeout(timeoutId.value);
+}
 </script>
 
 <template>
   <div
     class="w-full flex items-center hover:bg-sky-100 dark:hover:bg-neutral-900 px-5 py-3 cursor-pointer rounded-full"
-    @click="$emit('editForm')"
+    @click="selectMode ? $emit('selectForm') : $emit('editForm')"
+    @mousedown="!selectMode && triggerSelect()"
+    @mouseup="!selectMode && cancel"
   >
-    <div class="bg-sky-500 dark:bg-sky-500 p-1.5 rounded-lg">
+    <div v-if="isSelected" class="bg-green-500 p-1.5 rounded-lg">
+      <IconCheck class="icon-check w-6 h-6 text-white dark:text-neutral-900" />
+    </div>
+    <div v-else class="bg-sky-500 p-1.5 rounded-lg">
       <IconForm class="w-6 h-6 text-white dark:text-neutral-900" />
     </div>
+
     <div class="flex flex-wrap items-center justify-between flex-grow ml-3">
       <div ref="titleElem" class="hidden" v-html="title"></div>
       <p
@@ -93,7 +119,10 @@ const unformattedTitle = computed(() => {
 
       <Menu ref="menu" :model="menuItems" id="overlay_menu" :popup="true">
         <template #item="{ item }">
-          <div class="flex items-center gap-x-3 px-5 py-2">
+          <div
+            class="flex items-center gap-x-3 px-5 py-2"
+            :data-cy="getCypressAttribute(item.label as string)"
+          >
             <IconDelete
               v-if="item.label === 'Delete'"
               class="w-6 h-6 text-red-500"
@@ -106,3 +135,9 @@ const unformattedTitle = computed(() => {
     </div>
   </div>
 </template>
+
+<style>
+.icon-check * {
+  stroke-width: 3px;
+}
+</style>
