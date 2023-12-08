@@ -8,6 +8,8 @@ export const useFormStore = defineStore({
   state: () => ({
     forms: [] as Form[],
     searchTerm: "",
+    selectedForms: [] as string[],
+    selectAll: false,
   }),
   getters: {
     getFilteredForms(state) {
@@ -15,11 +17,42 @@ export const useFormStore = defineStore({
         return state.forms;
       }
       return state.forms.filter((form) =>
-        form.title.toLowerCase().includes(state.searchTerm.toLowerCase()),
+        form.title.toLowerCase().includes(state.searchTerm.toLowerCase())
       );
+    },
+    totalForms(): number {
+      return this.forms.length;
+    },
+    totalSelectedForms(): number {
+      return this.selectedForms.length;
     },
   },
   actions: {
+    // general functions
+    selectForm(id: string) {
+      if (this.selectedForms.includes(id)) {
+        this.selectedForms = this.selectedForms.filter(
+          (formId) => formId !== id
+        );
+      } else {
+        this.selectedForms.push(id);
+      }
+    },
+    selectAllForms() {
+      this.selectedForms = this.forms.map((form) => form.id);
+    },
+    isSelected(id: string) {
+      return this.selectedForms.includes(id);
+    },
+    deleteSelectedForms() {
+      this.selectedForms.forEach((id) => {
+        pb.collection("forms").delete(id);
+      });
+
+      this.selectedForms = [];
+      this.fetchForms();
+    },
+    // api functions
     async fetchForms() {
       this.forms = await pb
         .collection("forms")
