@@ -25,10 +25,8 @@ onMounted(() => {
         >
           <IconDelete class="w-12 h-12" />
         </div>
-
         <p class="mb-4">{{ message.message }}</p>
-
-        <div class="flex gap-x-2">
+        <div class="w-full flex justify-center gap-x-2">
           <button
             class="w-[150px] border-[2px] border-sky-500 p-2 text-sky-500 font-bold rounded-lg"
             data-cy="dialog_cancel_delete_btn"
