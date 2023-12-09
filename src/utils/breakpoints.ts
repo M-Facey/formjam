@@ -1,6 +1,7 @@
-import { useBreakpoints } from "@vueuse/core";
+import { useBreakpoints, breakpointsTailwind } from "@vueuse/core";
 
-const breakpoints = useBreakpoints({
+export const breakpoints = useBreakpoints({
+  ...breakpointsTailwind,
   phone: "495px",
   tablet: "810px",
 });
