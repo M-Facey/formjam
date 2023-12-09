@@ -71,8 +71,7 @@ const questionConfig = ref(props.question);
 
 watch(
   questionConfig,
-  (questionData) =>
-    debounce(() => emits("update:question", questionData)),
+  (questionData) => debounce(() => emits("update:question", questionData)),
   { deep: true },
 );
 
