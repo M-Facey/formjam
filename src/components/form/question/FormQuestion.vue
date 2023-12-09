@@ -22,6 +22,7 @@ import IconArrowDown from "@/components/icons/controls/ArrowDown.vue";
 import IconCopy from "@/components/icons/controls/Copy.vue";
 import IconDelete from "@/components/icons/controls/Delete.vue";
 import IconAdjustment from "@/components/icons/menu/Adjustments.vue";
+import debounce from "@/utils/debouncer";
 
 const props = withDefaults(
   defineProps<{
@@ -68,16 +69,10 @@ const currentQuestionOption = shallowRef(questionTypeOptions.value[0]);
 
 const questionConfig = ref(props.question);
 
-const timeoutId = ref<NodeJS.Timeout>();
 watch(
   questionConfig,
-  (questionData) => {
-    if (timeoutId.value !== undefined) clearTimeout(timeoutId.value);
-
-    timeoutId.value = setTimeout(() => {
-      emits("update:question", questionData);
-    }, 350);
-  },
+  (questionData) =>
+    debounce(() => emits("update:question", questionData)),
   { deep: true },
 );
 
