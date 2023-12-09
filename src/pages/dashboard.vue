@@ -131,10 +131,12 @@ onMounted(async () => {
       <FormCardGrid
         v-if="currentView === 'Grid'"
         :forms="sanitizedForms"
+        :key="formStore.searchTerm"
         :is-loading="isLoading"
         @trigger-event="executeEvent"
       />
-      <FormList v-else :forms="sanitizedForms" @trigger-event="executeEvent" />
+      <FormList v-if="currentView == 'List'" :key="formStore.searchTerm" :forms="sanitizedForms" @trigger-event="executeEvent" />
+
     </div>
   </div>
 </template>
