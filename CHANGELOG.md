@@ -1,5 +1,51 @@
 # Changelog
 
+## [1.8.0](https://github.com/M-Facey/formjam/compare/v1.7.1...v1.8.0) (2023-12-10)
+
+
+### Features
+
+* added select & bulk delete form actions ([91533b7](https://github.com/M-Facey/formjam/commit/91533b7117afc4e2ab739d8a9f1d012ff3b3f138))
+* added select & bulk delete form functionality ([a0014d5](https://github.com/M-Facey/formjam/commit/a0014d5d6650aa83cfde635952450af45a6d09ac))
+* added tailwind breakpoints ([e1b69dc](https://github.com/M-Facey/formjam/commit/e1b69dc349895d9772a31c3d54f362987e621570))
+
+
+### Bug Fixes
+
+* `watcher`being triggered for both components ([5a79dbe](https://github.com/M-Facey/formjam/commit/5a79dbebe64476c46b1421993117abe8a928461d))
+* changed duration for select function on touch event ([a446435](https://github.com/M-Facey/formjam/commit/a446435e9ca1161650a2f439b9298108c3f1466f))
+* prevent deselecting from triggering edit form ([6bf8ae6](https://github.com/M-Facey/formjam/commit/6bf8ae656b89846ae9167026921de7579848fcbf))
+* resolved glitchy event when triggering select mode ([7363999](https://github.com/M-Facey/formjam/commit/73639991a37c42a785c8b773fe6b07faecce0feb))
+* searching now updates accordingly ([41ddaaf](https://github.com/M-Facey/formjam/commit/41ddaaff94a1fb57c2b5742a33e630a5ad1fe04b))
+* triggered cancel function when touch ends ([98888bc](https://github.com/M-Facey/formjam/commit/98888bc9a8f514c7a06f4fb4a2ea21f4ea6952e3))
+
+
+### Miscellaneous
+
+* aligned buttons to center in delete dialog ([7e9ce6c](https://github.com/M-Facey/formjam/commit/7e9ce6caefdcc2332559a8fd639d4d91e81f84bc))
+* **main:** formatted codebase ([2f6c8a6](https://github.com/M-Facey/formjam/commit/2f6c8a6f299ef0f70783da74e0cb94b41a25e321))
+* **main:** formatted codebase ([6bfa9eb](https://github.com/M-Facey/formjam/commit/6bfa9eba67aeba3727d45ca38b5962414bb2daba))
+* removed console logs & reduced duration for touch event ([890414d](https://github.com/M-Facey/formjam/commit/890414d62eec67355510b485012ae13d5db3ceed))
+* updated form type to handle selecting forms ([3e92201](https://github.com/M-Facey/formjam/commit/3e922010615b1e7fae39c3676753e5293def3cf0))
+* used touch events for selecting forms on mobile devices ([d3a9af7](https://github.com/M-Facey/formjam/commit/d3a9af7af4a64f9358e6b253a5c14d695fe8f296))
+
+
+### Code Refactors
+
+* added pure debouncer function ([1c3d00b](https://github.com/M-Facey/formjam/commit/1c3d00bb336271b3b7cefec78ab592413033fb49))
+* debounce method now reusable ([25711ff](https://github.com/M-Facey/formjam/commit/25711fffe556a835800bb3fb8207d1889c457cb3))
+
+
+### CI/CD
+
+* added all changelog types to release action ([67f9a46](https://github.com/M-Facey/formjam/commit/67f9a4668c6bcb8767389422140f611455a7c6ae))
+* updated release to improve changelog ([46eae20](https://github.com/M-Facey/formjam/commit/46eae2054f3c3e8a456d6ac7715cbff69a1b709d))
+
+
+### UI Updates
+
+* made select box responsive ([a460a33](https://github.com/M-Facey/formjam/commit/a460a337abe071be58b7028ce478162bb85c8aad))
+
 ## [1.7.1](https://github.com/M-Facey/formjam/compare/v1.7.0...v1.7.1) (2023-12-07)
 
 
