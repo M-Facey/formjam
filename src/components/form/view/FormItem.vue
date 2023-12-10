@@ -89,9 +89,9 @@ function cancel() {
     class="w-full flex items-center hover:bg-sky-100 dark:hover:bg-neutral-900 px-5 py-3 cursor-pointer rounded-full"
     @click="!selectMode && $emit('editForm')"
     @mousedown="!selectMode && triggerSelect()"
-    @mouseup="!selectMode && cancel"
+    @mouseup="!selectMode && cancel()"
     @touchstart="!selectMode && triggerSelect()"
-    @touchend="!selectMode && cancel"
+    @touchend="!selectMode && cancel()"
   >
     <button @click.stop="selectMode && $emit('selectForm')">
       <div v-if="isSelected" class="bg-green-500 p-1.5 rounded-lg">
