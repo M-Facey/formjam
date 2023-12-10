@@ -73,10 +73,10 @@ function getCypressAttribute(label: string) {
 }
 
 const timeoutId = ref<NodeJS.Timeout>();
-function triggerSelect() {
+function triggerSelect(duration: number = 500) {
   timeoutId.value = setTimeout(() => {
     emits("selectForm");
-  }, 500);
+  }, duration);
 }
 
 function cancel() {
@@ -90,7 +90,7 @@ function cancel() {
     @click="selectMode ? $emit('selectForm') : $emit('editForm')"
     @mousedown="!selectMode && triggerSelect()"
     @mouseup="!selectMode && cancel"
-    @touchstart="selectMode ? triggerSelect() : $emit('selectForm')"
+    @touchstart="!selectMode && triggerSelect()"
     @touchend="!selectMode && cancel"
   >
     <div v-if="isSelected" class="bg-green-500 p-1.5 rounded-lg">

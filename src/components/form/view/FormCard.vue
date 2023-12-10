@@ -75,10 +75,10 @@ function getCypressAttribute(label: string) {
 }
 
 const timeoutId = ref<NodeJS.Timeout>();
-function triggerSelect() {
+function triggerSelect(duration: number = 500) {
   timeoutId.value = setTimeout(() => {
     emits("selectForm");
-  }, 500);
+  }, duration);
 }
 
 function cancel() {
@@ -102,11 +102,11 @@ function handleClick() {
       'cursor-pointer': !lteTablet,
     }"
     data-cy="form_card"
+    @click="!lteTablet && handleClick()"
     @mousedown="!selectMode && triggerSelect()"
     @mouseup="!selectMode && cancel"
-    @touchstart="selectMode ? triggerSelect() : $emit('selectForm')"
+    @touchstart="!selectMode && triggerSelect(1500)"
     @touchend="!selectMode && cancel"
-    @click="!lteTablet && handleClick()"
   >
     <div
       class="relative h-[130px] bg-sky-400 dark:bg-neutral-700 rounded-t-[10px]"
