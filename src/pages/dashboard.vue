@@ -101,31 +101,33 @@ onMounted(async () => {
       <!-- bulk delete section -->
       <div
         v-if="formStore.selectedForms.length > 0"
-        class="w-fit bg-neutral-900 p-3 flex items-center gap-3 mt-3 rounded-xl"
+        class="w-full sm:w-max bg-neutral-900 flex flex-col sm:flex-row items-center gap-3 mt-3 p-3 rounded-xl"
       >
         <p class="text-lg ml-2">
           {{ formStore.selectedForms.length }}
           {{ hasOneSelectedForm ? "form" : "forms" }} selected
         </p>
 
-        <button
-          class="custom-btn p-2 text-neutral-900 text-sm font-medium tracking-wide rounded-lg"
-          @click="triggerSelectEvent"
-        >
-          {{
-            formStore.totalSelectedForms === formStore.totalForms
-              ? "Deselect"
-              : "Select"
-          }}
-          All
-        </button>
+        <div class="w-full sm:w-fit flex gap-x-3">
+          <button
+            class="w-full sm:w-fit custom-btn p-2 text-neutral-900 text-sm font-medium tracking-wide rounded-lg"
+            @click="triggerSelectEvent"
+          >
+            {{
+              formStore.totalSelectedForms === formStore.totalForms
+                ? "Deselect"
+                : "Select"
+            }}
+            All
+          </button>
 
-        <button
-          class="w-full sm:w-fit bg-gradient-to-b from-red-500 to-rose-700 border border-red-500 pr-3 p-2 text-white text-sm font-medium tracking-wide rounded-lg shadow-lg shadow-rose-900 disabled:shadow-neutral-600"
-          @click="triggerDeleteFormsEvent"
-        >
-          Delete {{ hasOneSelectedForm ? "Form" : "Forms" }}
-        </button>
+          <button
+            class="w-full sm:w-fit bg-gradient-to-b from-red-500 to-rose-700 border border-red-500 pr-3 p-2 text-white text-sm font-medium tracking-wide rounded-lg shadow-lg shadow-rose-900 disabled:shadow-neutral-600"
+            @click="triggerDeleteFormsEvent"
+          >
+            Delete {{ hasOneSelectedForm ? "Form" : "Forms" }}
+          </button>
+        </div>
       </div>
 
       <FormCardGrid
@@ -135,8 +137,12 @@ onMounted(async () => {
         :is-loading="isLoading"
         @trigger-event="executeEvent"
       />
-      <FormList v-if="currentView == 'List'" :key="formStore.searchTerm" :forms="sanitizedForms" @trigger-event="executeEvent" />
-
+      <FormList
+        v-if="currentView == 'List'"
+        :key="formStore.searchTerm"
+        :forms="sanitizedForms"
+        @trigger-event="executeEvent"
+      />
     </div>
   </div>
 </template>
