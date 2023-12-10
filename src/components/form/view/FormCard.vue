@@ -76,12 +76,15 @@ function getCypressAttribute(label: string) {
 
 const timeoutId = ref<NodeJS.Timeout>();
 function triggerSelect(duration: number = 500) {
+  console.log("please waiting for 1 sec");
   timeoutId.value = setTimeout(() => {
     emits("selectForm");
   }, duration);
 }
 
 function cancel() {
+  console.log("damn, it was cancelled");
+
   clearTimeout(timeoutId.value);
 }
 
@@ -98,15 +101,15 @@ function handleClick() {
   <div
     class="relative flex flex-col flex-stretch w-full border border-sky-100 dark:border-neutral-600 hover:border-sky-500 dark:hover:border-sky-500 rounded-[11px]"
     :class="{
-      'cursor-default': lteTablet,
+      'cursor-default select-none': lteTablet,
       'cursor-pointer': !lteTablet,
     }"
     data-cy="form_card"
     @click="!lteTablet && handleClick()"
-    @mousedown="!selectMode && triggerSelect()"
-    @mouseup="!selectMode && cancel"
-    @touchstart="!selectMode && triggerSelect(1500)"
-    @touchend="!selectMode && cancel"
+    @mousedown="!lteTablet && !selectMode && triggerSelect()"
+    @mouseup="!lteTablet && !selectMode && cancel"
+    @touchstart="!selectMode && triggerSelect(1000)"
+    @touchend="!selectMode && cancel()"
   >
     <div
       class="relative h-[130px] bg-sky-400 dark:bg-neutral-700 rounded-t-[10px]"
