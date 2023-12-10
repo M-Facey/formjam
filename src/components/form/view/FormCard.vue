@@ -76,15 +76,12 @@ function getCypressAttribute(label: string) {
 
 const timeoutId = ref<NodeJS.Timeout>();
 function triggerSelect(duration: number = 500) {
-  console.log("please waiting for 1 sec");
   timeoutId.value = setTimeout(() => {
     emits("selectForm");
   }, duration);
 }
 
 function cancel() {
-  console.log("damn, it was cancelled");
-
   clearTimeout(timeoutId.value);
 }
 
@@ -108,7 +105,7 @@ function handleClick() {
     @click="!lteTablet && handleClick()"
     @mousedown="!lteTablet && !selectMode && triggerSelect()"
     @mouseup="!lteTablet && !selectMode && cancel"
-    @touchstart="!selectMode && triggerSelect(1000)"
+    @touchstart="!selectMode && triggerSelect(750)"
     @touchend="!selectMode && cancel()"
   >
     <div
