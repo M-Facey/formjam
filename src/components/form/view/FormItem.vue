@@ -90,6 +90,8 @@ function cancel() {
     @click="selectMode ? $emit('selectForm') : $emit('editForm')"
     @mousedown="!selectMode && triggerSelect()"
     @mouseup="!selectMode && cancel"
+    @touchstart="selectMode ? triggerSelect() : $emit('selectForm')"
+    @touchend="!selectMode && cancel"
   >
     <div v-if="isSelected" class="bg-green-500 p-1.5 rounded-lg">
       <IconCheck class="icon-check w-6 h-6 text-white dark:text-neutral-900" />

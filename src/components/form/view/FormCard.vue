@@ -84,6 +84,14 @@ function triggerSelect() {
 function cancel() {
   clearTimeout(timeoutId.value);
 }
+
+function handleClick() {
+  if (!props.selectMode) {
+    emits("editForm");
+    return;
+  }
+  emits("selectForm");
+}
 </script>
 
 <template>
@@ -96,9 +104,9 @@ function cancel() {
     data-cy="form_card"
     @mousedown="!selectMode && triggerSelect()"
     @mouseup="!selectMode && cancel"
-    @click="
-      !lteTablet && (!selectMode ? $emit('editForm') : $emit('selectForm'))
-    "
+    @touchstart="selectMode ? triggerSelect() : $emit('selectForm')"
+    @touchend="!selectMode && cancel"
+    @click="!lteTablet && handleClick()"
   >
     <div
       class="relative h-[130px] bg-sky-400 dark:bg-neutral-700 rounded-t-[10px]"
