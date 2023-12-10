@@ -93,7 +93,7 @@ function cancel() {
     @touchstart="!selectMode && triggerSelect()"
     @touchend="!selectMode && cancel"
   >
-    <button @click="selectMode && $emit('selectForm')">
+    <button @click.stop="selectMode && $emit('selectForm')">
       <div v-if="isSelected" class="bg-green-500 p-1.5 rounded-lg">
         <IconCheck
           class="icon-check w-6 h-6 text-white dark:text-neutral-900"
