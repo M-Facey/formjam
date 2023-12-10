@@ -87,18 +87,22 @@ function cancel() {
 <template>
   <div
     class="w-full flex items-center hover:bg-sky-100 dark:hover:bg-neutral-900 px-5 py-3 cursor-pointer rounded-full"
-    @click="selectMode ? $emit('selectForm') : $emit('editForm')"
+    @click="!selectMode && $emit('editForm')"
     @mousedown="!selectMode && triggerSelect()"
     @mouseup="!selectMode && cancel"
     @touchstart="!selectMode && triggerSelect()"
     @touchend="!selectMode && cancel"
   >
-    <div v-if="isSelected" class="bg-green-500 p-1.5 rounded-lg">
-      <IconCheck class="icon-check w-6 h-6 text-white dark:text-neutral-900" />
-    </div>
-    <div v-else class="bg-sky-500 p-1.5 rounded-lg">
-      <IconForm class="w-6 h-6 text-white dark:text-neutral-900" />
-    </div>
+    <button @click="selectMode && $emit('selectForm')">
+      <div v-if="isSelected" class="bg-green-500 p-1.5 rounded-lg">
+        <IconCheck
+          class="icon-check w-6 h-6 text-white dark:text-neutral-900"
+        />
+      </div>
+      <div v-else class="bg-sky-500 p-1.5 rounded-lg">
+        <IconForm class="w-6 h-6 text-white dark:text-neutral-900" />
+      </div>
+    </button>
 
     <div class="flex flex-wrap items-center justify-between flex-grow ml-3">
       <div ref="titleElem" class="hidden" v-html="title"></div>

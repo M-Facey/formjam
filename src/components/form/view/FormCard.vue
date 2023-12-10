@@ -90,7 +90,6 @@ function handleClick() {
     emits("editForm");
     return;
   }
-  emits("selectForm");
 }
 </script>
 
