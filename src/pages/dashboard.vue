@@ -45,7 +45,6 @@ async function executeEvent(event: FormCardEvent) {
   }
 }
 
-
 // bulk action related functions
 const hasOneSelectedForm = computed(() => {
   return formStore.selectedForms.length <= 1;
