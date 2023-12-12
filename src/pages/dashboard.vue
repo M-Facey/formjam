@@ -1,8 +1,10 @@
 <script lang="ts" setup>
 import { computed, onMounted, ref } from "vue";
 import { useRouter, useRoute } from "vue-router";
+
 import type { SanitizedFormType, FormCardEvent } from "@/types/form";
 import { useFormStore } from "@/store/forms";
+import { useSettingsStore } from "@/store/settings";
 
 import FilterTab from "@/components/dashboard/FilterTab.vue";
 import FormCardGrid from "@/components/form/view/FormCardGrid.vue";
@@ -14,9 +16,10 @@ import { useToast } from "primevue/usetoast";
 
 const router = useRouter();
 const route = useRoute();
-const formStore = useFormStore();
 const confirm = useConfirm();
 const toast = useToast();
+const formStore = useFormStore();
+const settingsStore = useSettingsStore();
 
 const isLoading = ref(false);
 
@@ -42,10 +45,6 @@ async function executeEvent(event: FormCardEvent) {
   }
 }
 
-const currentView = ref("Grid");
-function toggleView() {
-  currentView.value = currentView.value === "Grid" ? "List" : "Grid";
-}
 
 // bulk action related functions
 const hasOneSelectedForm = computed(() => {
@@ -97,7 +96,7 @@ onMounted(async () => {
 <template>
   <div class="pt-7 px-5">
     <div class="container">
-      <FilterTab :view="currentView" @set-view="toggleView" />
+      <FilterTab v-model:view="settingsStore.formLayout.view" />
       <!-- bulk delete section -->
       <div
         v-if="formStore.selectedForms.length > 0"
@@ -131,14 +130,15 @@ onMounted(async () => {
       </div>
 
       <FormCardGrid
-        v-if="currentView === 'Grid'"
+        v-if="settingsStore.currentView === 'Grid'"
         :forms="sanitizedForms"
         :key="formStore.searchTerm"
         :is-loading="isLoading"
         @trigger-event="executeEvent"
       />
+
       <FormList
-        v-if="currentView == 'List'"
+        v-if="settingsStore.currentView === 'List'"
         :key="formStore.searchTerm"
         :forms="sanitizedForms"
         @trigger-event="executeEvent"
