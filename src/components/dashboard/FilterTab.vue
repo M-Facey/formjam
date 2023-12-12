@@ -9,7 +9,7 @@ import IconGrid from "@/components/icons/layout/Grid.vue";
 import IconList from "@/components/icons/layout/List.vue";
 
 defineProps<{ view: string }>();
-defineEmits<{ (e: "setView"): void }>();
+defineEmits<{ (e: "update:view", val: string): void }>();
 
 const sortOptions = ref([
   { name: "Last Opened", value: "last_opened" },
@@ -41,7 +41,7 @@ const currentSortOption = ref<DropdownOption>(sortOptions.value[0]);
             'w-full': smallerOrEqual,
             'w-[127px]': !smallerOrEqual,
           }"
-          @click="$emit('setView')"
+          @click="$emit('update:view', view === 'Grid' ? 'List' : 'Grid')"
         >
           <IconGrid v-show="view === 'Grid'" class="w-5 h-5 mr-2" />
           <IconList v-show="view === 'List'" class="w-5 h-5 mr-2" />
