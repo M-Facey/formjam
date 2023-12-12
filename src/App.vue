@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from "vue";
-import { useThemeStore } from "@/store/theme";
+import { useSettingsStore } from "@/store/settings";
 
 import AppLayout from "@/layout/index.vue";
 import IconDelete from "@/components/icons/controls/Delete.vue";
@@ -8,9 +8,9 @@ import IconDelete from "@/components/icons/controls/Delete.vue";
 import ConfirmDialog from "primevue/confirmdialog";
 import Toast from "primevue/toast";
 
-const themeStore = useThemeStore();
+const settingsStore = useSettingsStore();
 onMounted(() => {
-  themeStore.checkTheme();
+  settingsStore.checkTheme();
 });
 </script>
 

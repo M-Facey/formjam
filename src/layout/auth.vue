@@ -1,10 +1,10 @@
 <script lang="ts" setup>
-import { useThemeStore } from "@/store/theme";
+import { useSettingsStore } from "@/store/settings";
 
 import ThemeToggle from "@/components/common/ThemeToggle.vue";
 import TheFooter from "@/components/common/Footer.vue";
 
-const themeStore = useThemeStore();
+const settingsStore = useSettingsStore();
 </script>
 
 <template>
@@ -17,17 +17,17 @@ const themeStore = useThemeStore();
       <p class="hidden sm:block pb-1 font-medium">
         <span
           :class="{
-            'font-extrabold': themeStore.currentTheme === 'light',
-            'text-gray-400 font-light': themeStore.currentTheme === 'dark',
+            'font-extrabold': settingsStore.currentTheme === 'light',
+            'text-gray-400 font-light': settingsStore.currentTheme === 'dark',
           }"
           >Light</span
         >
         /
         <span
           :class="{
-            'font-extrabold': themeStore.currentTheme === 'dark',
+            'font-extrabold': settingsStore.currentTheme === 'dark',
 
-            'text-gray-400 font-light': themeStore.currentTheme === 'light',
+            'text-gray-400 font-light': settingsStore.currentTheme === 'light',
           }"
           >Dark</span
         >
