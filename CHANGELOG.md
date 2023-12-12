@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.8.1](https://github.com/M-Facey/formjam/compare/v1.8.0...v1.8.1) (2023-12-12)
+
+
+### Bug Fixes
+
+* triggered cancel function on mouse & touch events ([cdf3bf4](https://github.com/M-Facey/formjam/commit/cdf3bf4307fa76bd934554861c76b1c6fc604ee9))
+
+
+### Miscellaneous
+
+* **deps:** added crypto-js ([da838ce](https://github.com/M-Facey/formjam/commit/da838cea785d59332e9dbe18c800897a3d86345f))
+* renamed the theme store to settings ([1cdb858](https://github.com/M-Facey/formjam/commit/1cdb858d85142f6dd596ef7b4eca88aeb305516c))
+* used custom `view` v-model ([eaf259a](https://github.com/M-Facey/formjam/commit/eaf259a839a1cde2f2fcef428d4d534c632864b0))
+
+
+### Code Refactors
+
+* changed theme store imports to settings & updated props for filter tab component ([2d85513](https://github.com/M-Facey/formjam/commit/2d85513c155b054fe4d1ac0382368ed51d2de665))
+* updated theme store imports to settings store ([51d9a76](https://github.com/M-Facey/formjam/commit/51d9a762685b3b3d8ace86e71ff794dc67442cb2))
+
 ## [1.8.0](https://github.com/M-Facey/formjam/compare/v1.7.1...v1.8.0) (2023-12-10)
 
 
