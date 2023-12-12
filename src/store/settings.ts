@@ -1,15 +1,30 @@
 import { defineStore } from "pinia";
-import { usePreferredColorScheme } from "@vueuse/core";
+import { usePreferredColorScheme, useStorage } from "@vueuse/core";
 
-export const useThemeStore = defineStore({
+export const useSettingsStore = defineStore({
   id: "theme",
-  state: () => ({
-    currentTheme: "",
-  }),
+  state: () =>
+    useStorage(
+      "settings",
+      {
+        currentTheme: "",
+        formLayout: {
+          view: "Grid",
+          filter: [] as string[],
+        },
+      },
+      localStorage,
+      { mergeDefaults: false }
+    ),
+  getters: {
+    currentView(): string {
+      return this.formLayout.view;
+    },
+  },
   actions: {
+    // theme related functions
     checkTheme(): string {
       const systemTheme = usePreferredColorScheme();
-      this.currentTheme = localStorage.getItem("x-theme") || "";
 
       if (this.currentTheme === "") {
         if (systemTheme.value === "dark") {
@@ -17,7 +32,6 @@ export const useThemeStore = defineStore({
         } else {
           this.currentTheme = "light";
         }
-        localStorage.setItem("x-theme", this.currentTheme);
       }
       if (
         this.currentTheme === "dark" &&
@@ -43,7 +57,6 @@ export const useThemeStore = defineStore({
           document.documentElement.classList.add("dark");
         }
       }
-      localStorage.setItem("x-theme", this.currentTheme);
     },
   },
 });
