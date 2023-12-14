@@ -141,7 +141,12 @@ function handleClick() {
         <span class="text-black font-medium">{{ lastEdited }}</span>
       </p>
 
-      <div class="absolute top-2 right-2" @click.stop="toggle">
+      <div
+        class="absolute top-2 right-2"
+        @click.stop="toggle"
+        @mousedown.stop
+        @mouseup.stop
+      >
         <button
           aria-haspopup="true"
           aria-controls="overlay_menu"
