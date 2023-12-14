@@ -40,9 +40,9 @@ function copyText() {
 
 <template>
   <div
-    class="w-14 h-min flex flex-col gap-4 items-center bg-gray-100 py-4 rounded-lg"
+    class="fixed bottom-4 md:bottom-0 left-1/2 md:left-0 -translate-x-1/2 md:translate-x-0 md:relative w-max md:w-14 h-min flex md:flex-col gap-4 items-center bg-gray-200 border-2 border-gray-400 px-4 md:px-0 py-4 rounded-xl"
   >
-    <button v-tooltip="'Add New Question'" @click="$emit('add:question')">
+    <button @click="$emit('add:question')">
       <IconAdd class="w-6 h-6 text-black" />
     </button>
 
