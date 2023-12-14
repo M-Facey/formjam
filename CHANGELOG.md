@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.8.2](https://github.com/M-Facey/formjam/compare/v1.8.1...v1.8.2) (2023-12-14)
+
+
+### Bug Fixes
+
+* allowed for select mode to triggered of small screen (desktop) ([2fcebd3](https://github.com/M-Facey/formjam/commit/2fcebd331cae90ef04eaf7f623360505560e6a55))
+* prevented form card button from triggering select mode ([c667068](https://github.com/M-Facey/formjam/commit/c667068b7389a63ebcb083b6d212dd5badd29e2d))
+
+
+### Miscellaneous
+
+* added theme toggle to navbars ([5a3fd6f](https://github.com/M-Facey/formjam/commit/5a3fd6f77655d5e72a8becb88a1f7f29c53e30ef))
+* **deps:** removed crypto-js ([de23d3c](https://github.com/M-Facey/formjam/commit/de23d3cbb14eb2b0b360237640f799c1954098ab))
+* removed unused component ([28b46cf](https://github.com/M-Facey/formjam/commit/28b46cf89793dce97c833a38c24048987c860805))
+
+
+### UI Updates
+
+* added theme styles to select bar ([a6a5095](https://github.com/M-Facey/formjam/commit/a6a5095d05857a074672188e872b0cf2220cefff))
+
 ## [1.8.1](https://github.com/M-Facey/formjam/compare/v1.8.0...v1.8.1) (2023-12-12)
 
 
