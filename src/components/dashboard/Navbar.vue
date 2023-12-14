@@ -10,6 +10,7 @@ import IconLogout from "@/components/icons/controls/Logout.vue";
 import IconUser from "@/components/icons/menu/User.vue";
 
 import XTextInput from "@/components/inputs/TextInput.vue";
+import ThemeToggle from "@/components/common/ThemeToggle.vue";
 
 const router = useRouter();
 const route = useRoute();
@@ -63,7 +64,7 @@ watch(
         path: route.path,
       });
     }
-  },
+  }
 );
 </script>
 
@@ -85,7 +86,8 @@ watch(
         v-model="formStore.searchTerm"
       />
 
-      <div>
+      <div class="flex items-center gap-x-4">
+        <ThemeToggle />
         <button
           class="custom-btn p-2 text-neutral-900 rounded-lg"
           @click="toggle"

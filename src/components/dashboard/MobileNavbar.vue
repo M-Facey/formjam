@@ -11,6 +11,7 @@ import IconLogout from "@/components/icons/controls/Logout.vue";
 import IconUser from "@/components/icons/menu/User.vue";
 
 import XTextInput from "@/components/inputs/TextInput.vue";
+import ThemeToggle from "@/components/common/ThemeToggle.vue";
 
 const router = useRouter();
 const route = useRoute();
@@ -69,7 +70,7 @@ watch(
         path: route.path,
       });
     }
-  },
+  }
 );
 </script>
 
@@ -84,7 +85,8 @@ watch(
           </p>
         </RouterLink>
 
-        <div>
+        <div class="flex gap-x-3">
+          <ThemeToggle />
           <button
             class="custom-btn p-2 text-neutral-900 rounded-lg"
             @click="toggleSearchInput"
@@ -94,7 +96,7 @@ watch(
           </button>
 
           <button
-            class="custom-btn ml-2 p-2 text-neutral-900 rounded-lg"
+            class="custom-btn p-2 text-neutral-900 rounded-lg"
             @click="toggle"
             data-cy="navbar_open_menu"
           >
