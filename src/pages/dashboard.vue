@@ -98,7 +98,7 @@ onMounted(async () => {
       <!-- bulk delete section -->
       <div
         v-if="formStore.selectedForms.length > 0"
-        class="w-full sm:w-max bg-neutral-900 flex flex-col sm:flex-row items-center gap-3 mt-3 p-3 rounded-xl"
+        class="w-full sm:w-max bg-slate-100 dark:bg-neutral-900 flex flex-col sm:flex-row items-center gap-3 mt-3 p-3 border border-slate-200 dark:border-transparent rounded-xl"
       >
         <p class="text-lg ml-2">
           {{ formStore.selectedForms.length }}
@@ -119,7 +119,7 @@ onMounted(async () => {
           </button>
 
           <button
-            class="w-full sm:w-fit bg-gradient-to-b from-red-500 to-rose-700 border border-red-500 pr-3 p-2 text-white text-sm font-medium tracking-wide rounded-lg shadow-lg shadow-rose-900 disabled:shadow-neutral-600"
+            class="w-full sm:w-fit bg-gradient-to-b from-red-500 to-rose-600 border border-red-500 pr-3 p-2 text-white text-sm font-medium tracking-wide rounded-lg shadow-lg shadow-rose-800/50 disabled:shadow-neutral-600"
             @click="triggerDeleteFormsEvent"
           >
             Delete {{ hasOneSelectedForm ? "Form" : "Forms" }}
