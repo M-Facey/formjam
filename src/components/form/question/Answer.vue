@@ -102,16 +102,21 @@ onMounted(() => {
         @keydown.delete="removeAnswer(answer.id, answer.text)"
         @keydown.up.prevent="moveToAnswer(index, -1)"
         @keydown.down.prevent="moveToAnswer(index, 1)"
-        class="flex-grow bg-transparent border-b border-transparent hover:border-gray-300 focus:border-sky-500 outline-none py-2"
+        class="flex-grow bg-transparent border-b border-transparent hover:border-neutral-300 focus:border-sky-500 outline-none py-2 text-neutral-700 dark:text-white"
       />
 
       <button
-        class="w-8 h-8 flex items-center justify-center bg-gray-200 rounded-md"
+        class="w-8 h-8 flex items-center justify-center bg-neutral-200 dark:bg-neutral-800 text-black dark:text-red-500 rounded-md"
         @click="removeAnswer(answer.id)"
       >
         <IconClose class="w-6 h-6" />
       </button>
     </div>
-    <button @click="addAnswer(answers.length)">Add Others</button>
+    <button
+      class="w-fit hover:bg-neutral-200 dark:hover:bg-neutral-800 mt-0.5 mx-auto  py-1 px-4 text-neutral-700 dark:text-neutral-300 rounded-md"
+      @click="addAnswer(answers.length)"
+    >
+      Add Option
+    </button>
   </div>
 </template>
