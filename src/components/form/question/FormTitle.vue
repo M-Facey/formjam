@@ -44,7 +44,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="flex flex-col gap-y-2 p-4 bg-gray-100 rounded-lg">
+  <div class="flex flex-col gap-y-2 p-4 bg-neutral-100 dark:bg-neutral-700 rounded-lg">
     <XEditor type="title" placeholder="Untitled Form" v-model.lazy="title" />
     <XEditor
       type="description"
