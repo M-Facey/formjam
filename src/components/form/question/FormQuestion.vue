@@ -34,7 +34,7 @@ const props = withDefaults(
   {
     disableDown: false,
     disableUp: false,
-  },
+  }
 );
 
 const emits = defineEmits<{
@@ -72,7 +72,7 @@ const questionConfig = ref(props.question);
 watch(
   questionConfig,
   (questionData) => debounce(() => emits("update:question", questionData)),
-  { deep: true },
+  { deep: true }
 );
 
 watch(currentQuestionOption, (typeOption) => {
@@ -96,7 +96,7 @@ function moveQuestion(direction: "up" | "down") {
 
 onMounted(() => {
   const _ = questionTypeOptions.value.find(
-    (question) => question.value === props.question.type,
+    (question) => question.value === props.question.type
   );
 
   if (_ !== undefined) {
@@ -106,7 +106,9 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="group flex bg-gray-100 divide-x divide-gray-300 rounded-lg">
+  <div
+    class="group flex flex-col sm:flex-row bg-gray-100 divide-y md:divide-y-0 md:divide-x divide-gray-300 rounded-lg"
+  >
     <div class="flex-grow p-3">
       <XEditor
         type="question"
@@ -148,8 +150,10 @@ onMounted(() => {
       </div>
     </div>
 
-    <div class="w-full max-w-[220px] divide-y divide-gray-300">
-      <div class="flex flex-col gap-y-2 p-3">
+    <div
+      class="w-full sm:max-w-[220px] flex flex-col md:divide-y md:divide-gray-300"
+    >
+      <div class="flex flex-grow flex-col gap-y-2 p-3">
         <XDropdown
           v-model="currentQuestionOption"
           :options="questionTypeOptions"
@@ -168,11 +172,11 @@ onMounted(() => {
       </div>
 
       <div
-        class="justify-between p-3"
-        :class="{ hidden: !isSelected, flex: isSelected }"
+        class="justify-between gap-y-2 gap-x-2 px-3 sm:pt-3 pb-3"
+        :class="{ 'flex md:hidden': !isSelected, flex: isSelected }"
       >
         <button
-          class="w-10 h-10 flex items-center justify-center bg-sky-500 disabled:bg-sky-600 text-white disabled:text-sky-900 rounded-md"
+          class="w-1/4 h-10 flex items-center justify-center bg-sky-500 disabled:bg-sky-600 text-white disabled:text-sky-900 rounded-md"
           @click="moveQuestion('up')"
           :disabled="disableUp"
         >
@@ -180,7 +184,7 @@ onMounted(() => {
         </button>
 
         <button
-          class="w-10 h-10 flex items-center justify-center bg-sky-500 disabled:bg-sky-600 text-white disabled:text-sky-900 rounded-md"
+          class="w-1/4 h-10 flex items-center justify-center bg-sky-500 disabled:bg-sky-600 text-white disabled:text-sky-900 rounded-md"
           @click="moveQuestion('down')"
           :disabled="disableDown"
         >
@@ -188,7 +192,7 @@ onMounted(() => {
         </button>
 
         <button
-          class="w-10 h-10 flex items-center justify-center bg-sky-500 disabled:bg-sky-600 text-white disabled:text-sky-800 rounded-md"
+          class="w-1/4 h-10 flex items-center justify-center bg-sky-500 disabled:bg-sky-600 text-white disabled:text-sky-800 rounded-md"
           @click="$emit('duplicate:question', questionConfig)"
           disabled
         >
@@ -196,7 +200,7 @@ onMounted(() => {
         </button>
 
         <button
-          class="w-10 h-10 flex items-center justify-center bg-sky-500 text-white rounded-md"
+          class="w-1/4 h-10 flex items-center justify-center bg-sky-500 text-white rounded-md"
           @click="$emit('delete:question', questionConfig.id)"
         >
           <IconDelete class="w-6 h-6" />

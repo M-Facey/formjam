@@ -23,7 +23,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="flex gap-4 pb-10">
+  <div class="flex flex-col md:flex-row gap-x-4 pb-10">
     <div class="flex flex-col flex-grow gap-y-3">
       <FormTitle :form-id="formId" @click="setCurrentQuestion(-1)" />
       <FormQuestion
