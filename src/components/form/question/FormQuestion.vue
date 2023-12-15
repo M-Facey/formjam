@@ -107,7 +107,7 @@ onMounted(() => {
 
 <template>
   <div
-    class="group flex flex-col sm:flex-row bg-gray-100 divide-y md:divide-y-0 md:divide-x divide-gray-300 rounded-lg"
+    class="group flex flex-col sm:flex-row bg-neutral-100 dark:bg-neutral-700 divide-y md:divide-y-0 md:divide-x divide-neutral-300 dark:divide-neutral-500 rounded-lg"
   >
     <div class="flex-grow p-3">
       <XEditor
@@ -130,7 +130,7 @@ onMounted(() => {
           "
           :id="`text-answer-${question.id}`"
           type="text"
-          class="w-full border border-gray-400 py-2 px-4 outline-none rounded-md"
+          class="w-full bg-white dark:bg-neutral-800 border border-neutral-300 dark:border-neutral-600 py-2 px-4 placeholder:text-neutral-400 outline-none rounded-md"
           readonly
           :placeholder="
             currentQuestionOption.value === 'short-text'
@@ -151,7 +151,7 @@ onMounted(() => {
     </div>
 
     <div
-      class="w-full sm:max-w-[220px] flex flex-col md:divide-y md:divide-gray-300"
+      class="w-full sm:max-w-[220px] flex flex-col md:divide-y md:divide-neutral-300 dark:md:divide-neutral-500"
     >
       <div class="flex flex-grow flex-col gap-y-2 p-3">
         <XDropdown
