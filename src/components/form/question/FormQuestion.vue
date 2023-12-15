@@ -34,7 +34,7 @@ const props = withDefaults(
   {
     disableDown: false,
     disableUp: false,
-  },
+  }
 );
 
 const emits = defineEmits<{
@@ -72,7 +72,7 @@ const questionConfig = ref(props.question);
 watch(
   questionConfig,
   (questionData) => debounce(() => emits("update:question", questionData)),
-  { deep: true },
+  { deep: true }
 );
 
 watch(currentQuestionOption, (typeOption) => {
@@ -96,7 +96,7 @@ function moveQuestion(direction: "up" | "down") {
 
 onMounted(() => {
   const _ = questionTypeOptions.value.find(
-    (question) => question.value === props.question.type,
+    (question) => question.value === props.question.type
   );
 
   if (_ !== undefined) {
@@ -122,7 +122,7 @@ onMounted(() => {
           v-model="questionConfig.description"
         />
       </div>
-      <div class="pt-3">
+      <div class="sm:pt-3">
         <input
           v-if="
             currentQuestionOption.value === 'short-text' ||
