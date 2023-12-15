@@ -19,7 +19,8 @@ defineEmits<CheckboxEmitType>();
         class="absolute inset-0 p-2 transition duration-75 cursor-pointer border border-transparent rounded-full"
         :class="{
           'bg-sky-400 hover:border-sky-700': modelValue,
-          'bg-gray-200 hover:border-gray-400': !modelValue,
+          'bg-gray-200 dark:bg-neutral-800 hover:border-gray-400 dark:hover:border-neutral-500':
+            !modelValue,
         }"
       >
         <div
@@ -32,6 +33,8 @@ defineEmits<CheckboxEmitType>();
       </div>
     </label>
 
-    <label :for="id" class="select-none">{{ label }}</label>
+    <label :for="id" class="text-neutral-700 dark:text-white select-none">{{
+      label
+    }}</label>
   </div>
 </template>
