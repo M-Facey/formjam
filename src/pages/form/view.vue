@@ -18,7 +18,7 @@ const router = useRouter();
 
 const questionStore = useQuestionStore();
 const answers = ref<{ id: string; type: string; answer: string | string[] }[]>(
-  []
+  [],
 );
 
 function generateQuestionResponse(questionType: string) {
@@ -200,5 +200,4 @@ onMounted(async () => {
   margin-top: 3px;
   margin-bottom: 3px;
 }
-
 </style>
