@@ -6,7 +6,7 @@ const route = useRoute();
 </script>
 
 <template>
-  <div class="px-5 pt-5">
+  <div class="bg-white dark:bg-neutral-900 px-5 pt-5">
     <div class="w-full max-w-[1000px] mx-auto">
       <FormQuestionList :form-id="(route.params.formId as string)" />
     </div>
