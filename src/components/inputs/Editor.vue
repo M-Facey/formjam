@@ -154,12 +154,14 @@ function setList(listType: "bulletList" | "orderedList") {
 function createInputClass() {
   let baseClasses = "prose max-w-[100%] outline-none ";
   if (props.type === "question") {
-    baseClasses += "py-0.5 text-lg";
+    baseClasses +=
+      "py-0.5 text-lg dark:text-white  dark:prose-strong:text-white";
   } else if (props.type === "title") {
-    baseClasses += "border-b border-gray-200 pb-1 text-3xl";
+    baseClasses +=
+      "border-b border-neutral-200 dark:border-neutral-500 pb-1 dark:text-white dark:prose-strong:text-white text-3xl";
   } else if (props.type === "description") {
     baseClasses +=
-      "prose-sm border-b border-gray-200 pb-1 text-sm text-black/50";
+      "prose-sm border-b border-neutral-200 dark:border-neutral-600 pb-1 text-sm text-black/50 dark:text-neutral-300  dark:prose-strong:text-white";
   }
 
   return baseClasses;
@@ -175,17 +177,17 @@ onUnmounted(() => {
 
 <template>
   <div class="w-full max-w-[896px] overflow-hidden relative">
-    <editor-content :editor="editor" class="peer" />
+    <editor-content :editor="editor" class="peer text-white prose" />
 
     <div
       v-if="editor"
       ref="menu"
-      class="menu h-12 flex items-center gap-x-1 pl-1 overflow-hidden"
+      class="menu h-12 flex items-center gap-x-1 pl-1 text-black dark:text-white overflow-hidden"
       :class="{ open: isMenuOpen }"
     >
       <button
-        class="hover:bg-gray-200 p-1 rounded-md"
-        :class="{ 'bg-gray-200': editor?.isActive('bold') }"
+        class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
+        :class="{ 'bg-gray-200 dark:bg-neutral-800': editor?.isActive('bold') }"
         :disabled="!editor.can().chain().focus().toggleBold().run()"
         aria-label="Bold Text"
         @click="editor.chain().focus().toggleBold().run()"
@@ -193,8 +195,10 @@ onUnmounted(() => {
         <IconBold class="w-6 h-6" />
       </button>
       <button
-        class="hover:bg-gray-200 p-1 rounded-md"
-        :class="{ 'bg-gray-200': editor?.isActive('italic') }"
+        class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
+        :class="{
+          'bg-gray-200 dark:bg-neutral-800': editor?.isActive('italic'),
+        }"
         :disabled="!editor.can().chain().focus().toggleItalic().run()"
         aria-label="Italicize Text"
         @click="editor.chain().focus().toggleItalic().run()"
@@ -202,8 +206,10 @@ onUnmounted(() => {
         <IconItalics class="w-6 h-6" />
       </button>
       <button
-        class="hover:bg-gray-200 p-1 rounded-md"
-        :class="{ 'bg-gray-200': editor?.isActive('underline') }"
+        class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
+        :class="{
+          'bg-gray-200 dark:bg-neutral-800': editor?.isActive('underline'),
+        }"
         :disabled="editor.isActive('link')"
         aria-label="Underline Text"
         @click="editor.chain().focus().toggleUnderline().run()"
@@ -212,8 +218,10 @@ onUnmounted(() => {
       </button>
       <button
         v-if="type === 'description'"
-        class="hover:bg-gray-200 p-1 rounded-md"
-        :class="{ 'bg-gray-200': editor?.isActive('bulletList') }"
+        class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
+        :class="{
+          'bg-gray-200 dark:bg-neutral-800': editor?.isActive('bulletList'),
+        }"
         aria-label="Toggle Bullet List"
         @click="setList('bulletList')"
       >
@@ -221,23 +229,25 @@ onUnmounted(() => {
       </button>
       <button
         v-if="type === 'description'"
-        class="hover:bg-gray-200 p-1 rounded-md"
-        :class="{ 'bg-gray-200': editor?.isActive('orderedList') }"
+        class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
+        :class="{
+          'bg-gray-200 dark:bg-neutral-800': editor?.isActive('orderedList'),
+        }"
         aria-label="Toggle Numbered List"
         @click="setList('orderedList')"
       >
         <IconNumberedList class="w-6 h-6" />
       </button>
       <button
-        class="hover:bg-gray-200 p-1 rounded-md"
-        :class="{ 'bg-gray-200': editor?.isActive('link') }"
+        class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
+        :class="{ 'bg-gray-200 dark:bg-neutral-800': editor?.isActive('link') }"
         aria-label="Add/Remove Url to Text"
         @click="setLink"
       >
         <IconLink class="w-6 h-6" />
       </button>
       <button
-        class="hover:bg-gray-200 p-1 rounded-md"
+        class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
         @click="editor.chain().focus().unsetAllMarks().run()"
         aria-label="Clear All Text Marks"
       >
@@ -245,12 +255,14 @@ onUnmounted(() => {
       </button>
 
       <div class="h-full flex items-center gap-x-4 p-4">
-        <span class="block w-2 h-2 bg-black rounded-full"></span>
-        <p class="leading-0 text-lg text-gray-400">
-          <span class="text-black/70 font-bold">{{
+        <span
+          class="block w-2 h-2 bg-black dark:bg-sky-500 rounded-full"
+        ></span>
+        <p class="leading-0 text-lg text-neutral-400">
+          <span class="text-black/70 dark:text-white font-bold">{{
             editor.storage.characterCount.characters()
-          }}</span
-          >/{{ characterLimit }}
+          }}</span>
+          / {{ characterLimit }}
         </p>
       </div>
     </div>
