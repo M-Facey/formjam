@@ -66,7 +66,7 @@ onMounted(async () => {
 </script>
 
 <template>
-  <div class="px-5 pt-5">
+  <div class="px-5 py-6">
     <form class="w-full max-w-[1000px] flex flex-col gap-3 mx-auto">
       <RouterLink
         v-if="route.query.preview"
@@ -104,7 +104,7 @@ onMounted(async () => {
         <p
           v-if="question.description"
           v-html="question.description"
-          class="text-gray-600 pb-3 text-sm"
+          class="question-description prose prose-p:my-0.3 prose-li:my-0.5 text-gray-600 pb-3 text-sm"
         ></p>
 
         <div v-if="answers[index]" class="flex-grow">
@@ -192,3 +192,13 @@ onMounted(async () => {
     </form>
   </div>
 </template>
+
+<style>
+.question-description > p,
+.question-description ol li p,
+.question-description ul li p {
+  margin-top: 3px;
+  margin-bottom: 3px;
+}
+
+</style>
