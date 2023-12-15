@@ -1,5 +1,36 @@
 # Changelog
 
+## [1.8.3](https://github.com/M-Facey/formjam/compare/v1.8.2...v1.8.3) (2023-12-15)
+
+
+### Bug Fixes
+
+* called cancel function on mouse up event ([66132e2](https://github.com/M-Facey/formjam/commit/66132e225e723a243aa8be49fc837e148c590bb6))
+* prevented mouse down event on smaller screen ([761ca2d](https://github.com/M-Facey/formjam/commit/761ca2d999d7838d881df65930affc673756ac95))
+
+
+### Miscellaneous
+
+* **main:** formatted codebase ([62196b0](https://github.com/M-Facey/formjam/commit/62196b08a13506b288640073078fb695faaf7e9b))
+
+
+### UI Updates
+
+* added `prose` class for description & added bottom padding for the view page ([52f0f4e](https://github.com/M-Facey/formjam/commit/52f0f4edfc01ac68917ec87eb18ed68467234a03))
+* added extra bottom padding on smaller screens ([35a0a2d](https://github.com/M-Facey/formjam/commit/35a0a2dd42157177c16c4c440bd4869c293f1df2))
+* added theme styles & responsiveness to form navbar ([2e7668c](https://github.com/M-Facey/formjam/commit/2e7668c0c2d8e8ffc6db567f9043b25c013ac503))
+* added theme styles to answer component ([174f02d](https://github.com/M-Facey/formjam/commit/174f02d6451f1e1ca44b402f27f4867c1e62cd22))
+* added theme styles to create/edit form page ([4cdbd7d](https://github.com/M-Facey/formjam/commit/4cdbd7d96f908c0d31c29c1c79c7450b64367e39))
+* added theme styles to editor component ([906461e](https://github.com/M-Facey/formjam/commit/906461eab4596d2d88978caf1289a0244d6fab3b))
+* added theme styles to form question component ([c522261](https://github.com/M-Facey/formjam/commit/c52226122d692e6f04d9425aeafeb7ad387d2a68))
+* added theme styles to form title component ([4345e66](https://github.com/M-Facey/formjam/commit/4345e66034922d9b389f5d69add12926b9efc12e))
+* added theme styles to toggle component ([2ea417c](https://github.com/M-Facey/formjam/commit/2ea417c3322bcf749b6bdf449cb88c6bb60cd584))
+* fixed responsiveness for editor controls and character count ([7a771b6](https://github.com/M-Facey/formjam/commit/7a771b63c68978e9342970bfa04cfcd153f88af6))
+* made editor input full width ([16e023f](https://github.com/M-Facey/formjam/commit/16e023fb880e64371f86250b479f0196a88954e5))
+* made form question responsive ([3417ce1](https://github.com/M-Facey/formjam/commit/3417ce1e871eaddf297eef7bcdc46f9cff1e5208))
+* made question controls responsive ([cd698f4](https://github.com/M-Facey/formjam/commit/cd698f4f3db6bf071bfd5ba1e85bef7efded9dcc))
+* removed extra padding from form question ([744b1d1](https://github.com/M-Facey/formjam/commit/744b1d1e34506b01b4bc2dc2bb23e76489326a52))
+
 ## [1.8.2](https://github.com/M-Facey/formjam/compare/v1.8.1...v1.8.2) (2023-12-14)
 
 
