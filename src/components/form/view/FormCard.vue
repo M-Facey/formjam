@@ -102,7 +102,7 @@ function handleClick() {
     }"
     data-cy="form_card"
     @click="!lteTablet && handleClick()"
-    @mousedown="!selectMode && triggerSelect()"
+    @mousedown="!lteTablet && !selectMode && triggerSelect(750)"
     @mouseup="!lteTablet && !selectMode && cancel()"
     @touchstart="!selectMode && triggerSelect(750)"
     @touchend="!selectMode && cancel()"
