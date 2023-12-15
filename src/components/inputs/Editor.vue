@@ -182,83 +182,91 @@ onUnmounted(() => {
     <div
       v-if="editor"
       ref="menu"
-      class="menu h-12 flex items-center gap-x-1 pl-1 text-black dark:text-white overflow-hidden"
+      class="menu md:h-12 flex flex-col sm:flex-row items-center gap-x-1 pt-3 md:pt-0 pl-1 text-black dark:text-white overflow-hidden"
       :class="{ open: isMenuOpen }"
     >
-      <button
-        class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
-        :class="{ 'bg-gray-200 dark:bg-neutral-800': editor?.isActive('bold') }"
-        :disabled="!editor.can().chain().focus().toggleBold().run()"
-        aria-label="Bold Text"
-        @click="editor.chain().focus().toggleBold().run()"
-      >
-        <IconBold class="w-6 h-6" />
-      </button>
-      <button
-        class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
-        :class="{
-          'bg-gray-200 dark:bg-neutral-800': editor?.isActive('italic'),
-        }"
-        :disabled="!editor.can().chain().focus().toggleItalic().run()"
-        aria-label="Italicize Text"
-        @click="editor.chain().focus().toggleItalic().run()"
-      >
-        <IconItalics class="w-6 h-6" />
-      </button>
-      <button
-        class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
-        :class="{
-          'bg-gray-200 dark:bg-neutral-800': editor?.isActive('underline'),
-        }"
-        :disabled="editor.isActive('link')"
-        aria-label="Underline Text"
-        @click="editor.chain().focus().toggleUnderline().run()"
-      >
-        <IconUnderline class="w-6 h-6" />
-      </button>
-      <button
-        v-if="type === 'description'"
-        class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
-        :class="{
-          'bg-gray-200 dark:bg-neutral-800': editor?.isActive('bulletList'),
-        }"
-        aria-label="Toggle Bullet List"
-        @click="setList('bulletList')"
-      >
-        <IconList class="w-6 h-6" />
-      </button>
-      <button
-        v-if="type === 'description'"
-        class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
-        :class="{
-          'bg-gray-200 dark:bg-neutral-800': editor?.isActive('orderedList'),
-        }"
-        aria-label="Toggle Numbered List"
-        @click="setList('orderedList')"
-      >
-        <IconNumberedList class="w-6 h-6" />
-      </button>
-      <button
-        class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
-        :class="{ 'bg-gray-200 dark:bg-neutral-800': editor?.isActive('link') }"
-        aria-label="Add/Remove Url to Text"
-        @click="setLink"
-      >
-        <IconLink class="w-6 h-6" />
-      </button>
-      <button
-        class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
-        @click="editor.chain().focus().unsetAllMarks().run()"
-        aria-label="Clear All Text Marks"
-      >
-        <IconClearFormat class="w-6 h-6" />
-      </button>
+      <div class="flex items-center gap-x-1">
+        <button
+          class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
+          :class="{
+            'bg-gray-200 dark:bg-neutral-800': editor?.isActive('bold'),
+          }"
+          :disabled="!editor.can().chain().focus().toggleBold().run()"
+          aria-label="Bold Text"
+          @click="editor.chain().focus().toggleBold().run()"
+        >
+          <IconBold class="w-6 h-6" />
+        </button>
+        <button
+          class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
+          :class="{
+            'bg-gray-200 dark:bg-neutral-800': editor?.isActive('italic'),
+          }"
+          :disabled="!editor.can().chain().focus().toggleItalic().run()"
+          aria-label="Italicize Text"
+          @click="editor.chain().focus().toggleItalic().run()"
+        >
+          <IconItalics class="w-6 h-6" />
+        </button>
+        <button
+          class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
+          :class="{
+            'bg-gray-200 dark:bg-neutral-800': editor?.isActive('underline'),
+          }"
+          :disabled="editor.isActive('link')"
+          aria-label="Underline Text"
+          @click="editor.chain().focus().toggleUnderline().run()"
+        >
+          <IconUnderline class="w-6 h-6" />
+        </button>
+        <button
+          v-if="type === 'description'"
+          class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
+          :class="{
+            'bg-gray-200 dark:bg-neutral-800': editor?.isActive('bulletList'),
+          }"
+          aria-label="Toggle Bullet List"
+          @click="setList('bulletList')"
+        >
+          <IconList class="w-6 h-6" />
+        </button>
+        <button
+          v-if="type === 'description'"
+          class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
+          :class="{
+            'bg-gray-200 dark:bg-neutral-800': editor?.isActive('orderedList'),
+          }"
+          aria-label="Toggle Numbered List"
+          @click="setList('orderedList')"
+        >
+          <IconNumberedList class="w-6 h-6" />
+        </button>
+        <button
+          class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
+          :class="{
+            'bg-gray-200 dark:bg-neutral-800': editor?.isActive('link'),
+          }"
+          aria-label="Add/Remove Url to Text"
+          @click="setLink"
+        >
+          <IconLink class="w-6 h-6" />
+        </button>
+        <button
+          class="hover:bg-gray-200 dark:hover:bg-neutral-800 p-1 rounded-md"
+          @click="editor.chain().focus().unsetAllMarks().run()"
+          aria-label="Clear All Text Marks"
+        >
+          <IconClearFormat class="w-6 h-6" />
+        </button>
+      </div>
 
-      <div class="h-full flex items-center gap-x-4 p-4">
+      <div
+        class="h-full flex flex-col sm:flex-row items-center gap-1 py-2 md:px-4 text-base md:text-lg"
+      >
         <span
-          class="block w-2 h-2 bg-black dark:bg-sky-500 rounded-full"
+          class="block w-12 sm:w-2 h-0.5 sm:h-2 bg-black dark:bg-sky-500 rounded-full"
         ></span>
-        <p class="leading-0 text-lg text-neutral-400">
+        <p class="leading-0 text-neutral-400">
           <span class="text-black/70 dark:text-white font-bold">{{
             editor.storage.characterCount.characters()
           }}</span>
