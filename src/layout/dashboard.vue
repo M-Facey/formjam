@@ -9,8 +9,8 @@ const mdBP = breakpoints.greaterOrEqual("md");
 
 <template>
   <main class="min-h-[100dvh] dark:bg-neutral-800 flex flex-col dark:text-white">
-    <XNavbar v-if="mdBP" class="hidden md:block" />
-    <XMobileNavbar v-else class="block md:hidden" />
+    <XNavbar v-if="mdBP" />
+    <XMobileNavbar v-else />
     <slot />
     <TheFooter />
   </main>
