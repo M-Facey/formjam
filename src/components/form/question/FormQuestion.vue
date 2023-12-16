@@ -194,7 +194,6 @@ onMounted(() => {
         <button
           class="w-1/4 h-10 flex items-center justify-center bg-sky-500 disabled:bg-sky-600 text-white disabled:text-sky-800 rounded-md"
           @click="$emit('duplicate:question', questionConfig)"
-          disabled
         >
           <IconCopy class="w-6 h-6" />
         </button>

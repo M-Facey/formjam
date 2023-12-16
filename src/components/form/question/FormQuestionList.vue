@@ -28,7 +28,7 @@ onMounted(async () => {
       <FormTitle :form-id="formId" @click="setCurrentQuestion(-1)" />
       <FormQuestion
         v-for="(question, index) in questionStore.questions"
-        :key="question.id"
+        :key="question.id + question.order"
         :question="question"
         :is-selected="index === selectedCurrentQuestion"
         :disable-up="question.order === 1"
@@ -42,6 +42,7 @@ onMounted(async () => {
         "
         @update:question="questionStore.updateQuestion"
         @delete:question="(id) => questionStore.deleteQuestion(id, formId)"
+        @duplicate:question="(question) => questionStore.duplicateQuestion(question)"
       />
     </div>
     <QuestionControls

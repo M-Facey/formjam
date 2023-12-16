@@ -38,28 +38,26 @@ export const useQuestionStore = defineStore({
       await this.fetchQuestions(formId);
       return question.id;
     },
-    // TODO: The duplicate funcion needs to be fixed as well as the correct order function
-    // async duplicateQuestion(question: Question) {
-    //   const { id, text, description, type, required, answers, form, order } =
-    //     question;
+    async duplicateQuestion(question: Question) {
+      const { text, description, type, required, answers, form, order } =
+        question;
 
-    //   const index = this.questions.findIndex((question) => question.id === id);
-    //   await pb.collection("questions").create({
-    //     text,
-    //     description,
-    //     type,
-    //     required,
-    //     answers,
-    //     form,
-    //     order: order + 1,
-    //   });
-    //   if (index < this.questions.length) {
-    //     console.log(index + 1, this.questions.length);
-    //     this.correctOrder(index + 1, this.questions.length, order + 1);
-    //   }
+      await pb.collection("questions").create({
+        text,
+        description,
+        type,
+        required,
+        answers,
+        form,
+        order: order + 1,
+      });
 
-    //   this.fetchQuestions(form);
-    // },
+      if (order - 1 < this.questions.length) {
+        await this.correctOrder(order, "insert");
+      }
+
+      await this.fetchQuestions(form);
+    },
     async shuffleQuestions(idx1: number, idx2: number) {
       await pb.collection("questions").update(this.questions[idx1].id, {
         ...this.questions[idx1],
@@ -71,18 +69,20 @@ export const useQuestionStore = defineStore({
         order: this.questions[idx1].order,
       });
 
-      this.fetchQuestions(this.questions[idx1].form);
+      await this.fetchQuestions(this.questions[idx1].form);
     },
     async updateQuestion(question: Question) {
       await pb.collection("questions").update(question.id, question);
       await this.fetchQuestions(question.form);
     },
-    async correctOrder(index: number, operation: string) {
-      for (let i = index; i < this.questions.length; i++) {
-        const increment = operation === "delete" ? -1 : 1;
+    async correctOrder(order: number, operation: "insert" | "delete") {
+      for (let i = order; i < this.questions.length; i++) {
+        const incr = operation === "insert" ? 1 : -1;
+        const currQuestion: Question = this.questions[i];
+
         await pb.collection("questions").update(this.questions[i].id, {
-          ...this.questions[i],
-          order: this.questions[i].order + increment,
+          ...currQuestion,
+          order: currQuestion.order + incr
         });
       }
     },
