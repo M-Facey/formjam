@@ -12,7 +12,7 @@ const router = createRouter({
       component: HomePage,
       meta: {
         layout: "Default",
-        title: "Home"
+        title: "Home",
       },
     },
     {
@@ -33,7 +33,7 @@ const router = createRouter({
           name: "Login",
           component: () => import("@/components/auth/Login.vue"),
           meta: {
-            title: "Login"
+            title: "Login",
           },
         },
         {
@@ -41,7 +41,7 @@ const router = createRouter({
           name: "Signup",
           component: () => import("@/components/auth/Signup.vue"),
           meta: {
-            title: "Signup"
+            title: "Signup",
           },
         },
         {
@@ -49,7 +49,7 @@ const router = createRouter({
           name: "PasswordRest",
           component: () => import("@/components/auth/PasswordReset.vue"),
           meta: {
-            title: "PasswordReset"
+            title: "PasswordReset",
           },
         },
         {
@@ -57,7 +57,7 @@ const router = createRouter({
           name: "ConfirmPasswordReset",
           component: () => import("@/components/auth/ConfirmPassword.vue"),
           meta: {
-            title: "ConfirmPasswordReset"
+            title: "ConfirmPasswordReset",
           },
         },
       ],
@@ -69,7 +69,7 @@ const router = createRouter({
       meta: {
         layout: "Dashboard",
         authRequired: true,
-        title: "Dashboard"
+        title: "Dashboard",
       },
     },
     {
@@ -79,7 +79,7 @@ const router = createRouter({
       meta: {
         layout: "Dashboard",
         authRequired: true,
-        title: "Profile"
+        title: "Profile",
       },
     },
     {
@@ -112,7 +112,7 @@ const router = createRouter({
       component: () => import("@/pages/error.vue"),
       meta: {
         layout: "Default",
-        title: "Error"
+        title: "Error",
       },
     },
     {
@@ -121,7 +121,7 @@ const router = createRouter({
       component: () => import("@/pages/404.vue"),
       meta: {
         layout: "Default",
-        title: "NotFound"
+        title: "NotFound",
       },
     },
   ],

@@ -25,9 +25,10 @@ watch(
 
     let matches = newTitle.match(/>(.*?)</);
     if (matches && matches.length > 1)
-      document.title = `${newTitle !== "<p></p>" ? matches?.[1] : "Untitled Form"} | FormJAM`;
-
-  }
+      document.title = `${
+        newTitle !== "<p></p>" ? matches?.[1] : "Untitled Form"
+      } | FormJAM`;
+  },
 );
 
 watch(
@@ -38,20 +39,27 @@ watch(
       ...formData,
       description: newDescription,
     });
-  }
+  },
 );
 
 onMounted(async () => {
   const formData = await pb.collection("forms").getOne(props.formId);
   title.value = formData.title === "Untitled Form" ? "" : formData.title;
   description.value = formData.description;
-  document.title = (title.value.length ? title.value : "Untitled Form") + " | FormJAM";
+  document.title =
+    (title.value.length ? title.value : "Untitled Form") + " | FormJAM";
 });
 </script>
 
 <template>
-  <div class="flex flex-col gap-y-2 p-4 bg-neutral-100 dark:bg-neutral-700 rounded-lg">
+  <div
+    class="flex flex-col gap-y-2 p-4 bg-neutral-100 dark:bg-neutral-700 rounded-lg"
+  >
     <XEditor type="title" placeholder="Untitled Form" v-model.lazy="title" />
-    <XEditor type="description" placeholder="Form description" v-model.lazy="description" />
+    <XEditor
+      type="description"
+      placeholder="Form description"
+      v-model.lazy="description"
+    />
   </div>
 </template>

@@ -4,7 +4,7 @@ import pb from "@/db/pocketBase";
 export const middleware = (
   to: RouteLocationNormalized,
   _: RouteLocationNormalized,
-  next: NavigationGuardNext
+  next: NavigationGuardNext,
 ) => {
   const isAuthenticated = pb.authStore.isValid;
   const authBlackList = ["Login", "Signup", "Home"];
