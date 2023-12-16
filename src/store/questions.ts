@@ -82,13 +82,13 @@ export const useQuestionStore = defineStore({
 
         await pb.collection("questions").update(this.questions[i].id, {
           ...currQuestion,
-          order: currQuestion.order + incr
+          order: currQuestion.order + incr,
         });
       }
     },
     async deleteQuestion(questionId: string, formId: string) {
       const index = this.questions.findIndex(
-        (question) => question.id === questionId
+        (question) => question.id === questionId,
       );
 
       this.correctOrder(index + 1, "delete");

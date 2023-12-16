@@ -42,7 +42,9 @@ onMounted(async () => {
         "
         @update:question="questionStore.updateQuestion"
         @delete:question="(id) => questionStore.deleteQuestion(id, formId)"
-        @duplicate:question="(question) => questionStore.duplicateQuestion(question)"
+        @duplicate:question="
+          (question) => questionStore.duplicateQuestion(question)
+        "
       />
     </div>
     <QuestionControls
