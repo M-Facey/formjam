@@ -12,6 +12,7 @@ const router = createRouter({
       component: HomePage,
       meta: {
         layout: "Default",
+        title: "Home"
       },
     },
     {
@@ -31,21 +32,33 @@ const router = createRouter({
           path: "/auth/login",
           name: "Login",
           component: () => import("@/components/auth/Login.vue"),
+          meta: {
+            title: "Login"
+          },
         },
         {
           path: "signup",
           name: "Signup",
           component: () => import("@/components/auth/Signup.vue"),
+          meta: {
+            title: "Signup"
+          },
         },
         {
           path: "reset-your-password",
           name: "PasswordRest",
           component: () => import("@/components/auth/PasswordReset.vue"),
+          meta: {
+            title: "PasswordReset"
+          },
         },
         {
           path: "confirm-password-reset/:token(.*)",
           name: "ConfirmPasswordReset",
           component: () => import("@/components/auth/ConfirmPassword.vue"),
+          meta: {
+            title: "ConfirmPasswordReset"
+          },
         },
       ],
     },
@@ -56,6 +69,7 @@ const router = createRouter({
       meta: {
         layout: "Dashboard",
         authRequired: true,
+        title: "Dashboard"
       },
     },
     {
@@ -65,6 +79,7 @@ const router = createRouter({
       meta: {
         layout: "Dashboard",
         authRequired: true,
+        title: "Profile"
       },
     },
     {
@@ -97,6 +112,7 @@ const router = createRouter({
       component: () => import("@/pages/error.vue"),
       meta: {
         layout: "Default",
+        title: "Error"
       },
     },
     {
@@ -105,6 +121,7 @@ const router = createRouter({
       component: () => import("@/pages/404.vue"),
       meta: {
         layout: "Default",
+        title: "NotFound"
       },
     },
   ],

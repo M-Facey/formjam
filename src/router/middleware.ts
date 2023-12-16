@@ -8,6 +8,7 @@ export const middleware = (
 ) => {
   const isAuthenticated = pb.authStore.isValid;
   const authBlackList = ["Login", "Signup", "Home"];
+  const routeName = to.meta?.title;
 
   if (to.meta.authRequired && !isAuthenticated) {
     next({ name: "Login" });
@@ -20,4 +21,6 @@ export const middleware = (
   } else {
     next();
   }
+
+  if (routeName) document.title = `${routeName} | FormJAM`;
 };
