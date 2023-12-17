@@ -37,7 +37,7 @@ const { values, handleSubmit, resetForm } = useForm({
       .required("Confirm Password is required")
       .oneOf(
         [yup.ref("password")],
-        "Confirm Password must match your password"
+        "Confirm Password must match your password",
       ),
   }),
 });
@@ -48,30 +48,32 @@ const fullName = computed(() => {
 
 const router = useRouter();
 const loading = ref(false);
-const onSubmit = handleSubmit(async ({ email, firstName, lastName, password, confirmPassword }) => {
-  loading.value = true;
-  const data = {
-    username: "",
-    email,
-    password,
-    lastName,
-    firstName,
-    passwordConfirm: confirmPassword,
-    name: fullName.value,
-  };
+const onSubmit = handleSubmit(
+  async ({ email, firstName, lastName, password, confirmPassword }) => {
+    loading.value = true;
+    const data = {
+      username: "",
+      email,
+      password,
+      lastName,
+      firstName,
+      passwordConfirm: confirmPassword,
+      name: fullName.value,
+    };
 
-  try {
-    await pb.collection("users").create(data);
-    resetForm();
-    router.push("/auth/login");
-  } catch (error: any) {
-    const errorResponse = error.data as FormError;
-    let errorFields = Object.keys(errorResponse.data);
-    errorMessage.value = errorResponse.data[errorFields[0]].message;
-    resetErrorMessage();
-  }
-  loading.value = false;
-});
+    try {
+      await pb.collection("users").create(data);
+      resetForm();
+      router.push("/auth/login");
+    } catch (error: any) {
+      const errorResponse = error.data as FormError;
+      let errorFields = Object.keys(errorResponse.data);
+      errorMessage.value = errorResponse.data[errorFields[0]].message;
+      resetErrorMessage();
+    }
+    loading.value = false;
+  },
+);
 
 // error message functions
 const hasErrorMessage = computed(() => {
