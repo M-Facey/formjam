@@ -48,12 +48,14 @@ const fullName = computed(() => {
 
 const router = useRouter();
 const loading = ref(false);
-const onSubmit = handleSubmit(async ({ email, password, confirmPassword }) => {
+const onSubmit = handleSubmit(async ({ email, firstName, lastName, password, confirmPassword }) => {
   loading.value = true;
   const data = {
     username: "",
     email,
     password,
+    lastName,
+    firstName,
     passwordConfirm: confirmPassword,
     name: fullName.value,
   };
