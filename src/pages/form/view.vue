@@ -1,87 +1,143 @@
 <script lang="ts" setup>
-import { onMounted, ref } from "vue";
+import { computed, onMounted, ref, watch } from "vue";
 import { useRoute, useRouter } from "vue-router";
+import { useTitle } from "@vueuse/core";
+import type { SubmittedForm } from "@/types/form";
+import pb from "@/db/pocketBase";
 
+import debounce from "@/utils/debouncer";
+import { getDefaultAnswer, setupParagraphInputs } from "@/utils/form";
+
+import { useFormStore } from "@/store/forms";
 import { useQuestionStore } from "@/store/questions";
-import { autosizeTextarea } from "@/utils/textareaAutosize";
+import { useSettingsStore } from "@/store/settings";
 import IconLongText from "@/components/icons/question/LongText.vue";
 
 // prime vue components
 import Checkbox from "primevue/checkbox";
 import RadioButton from "primevue/radiobutton";
-import Message from "primevue/message";
-
-import IconArrowDown from "@/components/icons/controls/ArrowDown.vue";
 
 const route = useRoute();
 const router = useRouter();
 
+const formStore = useFormStore();
 const questionStore = useQuestionStore();
-const answers = ref<{ id: string; type: string; answer: string | string[] }[]>(
-  [],
-);
+const settingsStore = useSettingsStore();
 
-function generateQuestionResponse(questionType: string) {
-  if (questionType === "checkboxes") {
-    return [] as string[];
-  }
-  return "";
-}
+const formTitle = ref("");
+const formTitleElem = ref<HTMLHeadingElement | null>(null);
+const formResponse = ref<SubmittedForm>({
+  form: "",
+  user: "",
+  is_submitted: false,
+  form_data: [],
+});
+
+const title = computed(() => {
+  const elem = document.createElement("h1");
+  elem.innerHTML = formTitle.value;
+  return elem.innerText
+    ? elem.innerText + " | FormJAM"
+    : "Untitled Form | FormJAM";
+});
+useTitle(title);
 
 function clearForm() {
-  answers.value = answers.value.map((answer) => {
+  formResponse.value.form_data = formResponse.value.form_data.map((answer) => {
     return {
       id: answer.id,
       type: answer.type,
-      answer: generateQuestionResponse(answer.type),
+      answer: getDefaultAnswer(answer.type),
     };
   });
 }
 
-onMounted(async () => {
-  const formId = (route.params.formId as string) || "";
-  if (formId !== "") {
-    await questionStore.fetchQuestions(formId);
+watch(
+  () => formResponse.value.form_data,
+  async (formValue) => {
+    debounce(async () => {
+      await pb
+        .collection("submitted_forms")
+        .update(settingsStore.formData.form_id, {
+          form_data: formValue,
+        });
+    }, 1000);
+  },
+  { deep: true }
+);
 
-    let paraArr: string[] = [];
+async function newForm(formId: string) {
+  formResponse.value.user = pb.authStore.model?.id;
+  formResponse.value.form = formId;
+  const record = await pb
+    .collection("submitted_forms")
+    .create(formResponse.value);
 
-    answers.value = questionStore.questions.map((question) => {
-      if (question.type === "paragraph") {
-        paraArr.push(question.id);
-      }
+  settingsStore.formData.form_id = record.id;
+  settingsStore.formData.is_submitted = false;
 
-      return {
-        id: question.id,
-        type: question.type,
-        answer: generateQuestionResponse(question.type),
-      };
+  let paragraphInputs: string[] = [];
+
+  formResponse.value.form_data = questionStore.questions.map(({ type, id }) => {
+    if (type === "paragraph") paragraphInputs.push(id);
+    return { id, type, answer: getDefaultAnswer(type) };
+  });
+
+  setupParagraphInputs(paragraphInputs);
+}
+
+async function submit() {
+  formResponse.value.is_submitted = true;
+  settingsStore.formData.is_submitted = true;
+
+  await pb
+    .collection("submitted_forms")
+    .update(settingsStore.formData.form_id, {
+      is_submitted: true,
     });
-    setTimeout(() => {
-      paraArr.map((id) => {
-        autosizeTextarea("textarea-" + id);
-      });
-    }, 10);
+
+  router.push({
+    path: `/form/${route.params.formId}/success`,
+    query: route.query,
+  });
+}
+
+onMounted(async () => {
+  const formId = route.params.formId as string;
+
+  if (formStore.forms.length === 0) {
+    await formStore.fetchForms();
   }
+
+  formTitle.value =
+    formStore.forms.find((form) => form.id === formId)?.title || "";
+  await questionStore.fetchQuestions(formId);
+
+  if (settingsStore.formData.form_id && !settingsStore.formData.is_submitted) {
+    try {
+      const response = await pb
+        .collection("submitted_forms")
+        .getOne(settingsStore.formData.form_id);
+
+      formResponse.value.form_data = response.form_data;
+      return;
+    } catch (e) {
+      console.error(e);
+    }
+  }
+
+  await newForm(formId);
 });
 </script>
 
 <template>
   <div class="px-5 py-6">
     <form class="w-full max-w-[1000px] flex flex-col gap-3 mx-auto">
-      <RouterLink
-        v-if="route.query.preview"
-        :to="`/form/${route.params.formId}/edit`"
-        class="w-fit custom-btn flex items-center gap-x-2 py-1.5 pl-1.5 pr-3 rounded-md"
-        @click="router.go(-1)"
-      >
-        <IconArrowDown class="w-5 h-5 rotate-90" />
-        Go back for editing
-      </RouterLink>
-
-      <Message severity="info"
-        ><b>Please Note:</b> The submissions on the preview page will not be
-        saved to the database.</Message
-      >
+      <h1
+        ref="formTitleElem"
+        v-html="formTitle"
+        class="prose prose-2xl text-center"
+      ></h1>
 
       <div
         v-for="(question, index) in questionStore.questions"
@@ -107,7 +163,7 @@ onMounted(async () => {
           class="question-description prose prose-p:my-0.3 prose-li:my-0.5 text-gray-600 pb-3 text-sm"
         ></p>
 
-        <div v-if="answers[index]" class="flex-grow">
+        <div v-if="formResponse.form_data[index]" class="flex-grow">
           <div
             v-if="question.type === 'short-text'"
             class="flex items-center gap-x-3"
@@ -115,10 +171,10 @@ onMounted(async () => {
             <p class="font-rokkitt text-[26px]">T</p>
             <input
               type="text"
-              v-model="answers[index].answer"
+              v-model="formResponse.form_data[index].answer"
               placeholder="Enter your answer here"
               class="w-full py-2 border-b border-gray-200 hover:border-gray-400 focus:border-sky-500 outline-none"
-              @keypress.prevent
+              @keypress.enter.prevent
             />
           </div>
 
@@ -130,7 +186,7 @@ onMounted(async () => {
             <textarea
               :id="`textarea-${question.id}`"
               placeholder="Enter your answer here"
-              v-model="answers[index].answer"
+              v-model="formResponse.form_data[index].answer"
               data-lpignore="true"
               class="w-full h-8 py-2 border-b border-gray-200 hover:border-gray-400 focus:border-sky-500 resize-none outline-none"
             />
@@ -151,7 +207,7 @@ onMounted(async () => {
               :name="`${question.id}`"
               :value="answer.id"
               :input-id="answer.id"
-              v-model="answers[index].answer"
+              v-model="formResponse.form_data[index].answer"
             />
 
             <RadioButton
@@ -160,7 +216,7 @@ onMounted(async () => {
               :name="`${question.id}`"
               :value="answer.id"
               :input-id="answer.id"
-              v-model="answers[index].answer"
+              v-model="formResponse.form_data[index].answer"
             />
             <label :for="answer.id" class="mb-0.5 cursor-pointer">{{
               answer.text
@@ -170,16 +226,12 @@ onMounted(async () => {
       </div>
 
       <div class="flex justify-between">
-        <RouterLink
-          :to="{
-            path: `/form/${route.params.formId}/success`,
-            query: route.query,
-          }"
+        <button
+          @click.prevent="submit"
+          class="custom-btn py-2 px-5 font-medium rounded-lg"
         >
-          <button class="custom-btn py-2 px-5 font-medium rounded-lg">
-            Submit Form
-          </button>
-        </RouterLink>
+          Submit Form
+        </button>
 
         <button
           role="button"
