@@ -1,4 +1,5 @@
 import pb from "@/db/pocketBase";
+import { autosizeTextarea } from "@/utils/textareaAutosize";
 
 // create form
 export async function createForm(): Promise<string> {
@@ -25,4 +26,16 @@ export async function createForm(): Promise<string> {
   });
 
   return formData.id;
+}
+
+export function getDefaultAnswer(questionType: string) {
+  return questionType === "checkboxes" ? ([] as string[]) : "";
+}
+
+export function setupParagraphInputs(inputs: string[]) {
+  setTimeout(() => {
+    inputs.map((id) => {
+      autosizeTextarea("textarea-" + id);
+    });
+  }, 10);
 }
