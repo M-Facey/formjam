@@ -12,8 +12,12 @@ export const useSettingsStore = defineStore({
           view: "Grid",
           filter: [] as string[],
         },
+        formData: {
+          form_id: "",
+          is_submitted: false
+        }
       },
-      localStorage,
+      sessionStorage,
       { mergeDefaults: false }
     ),
   getters: {
