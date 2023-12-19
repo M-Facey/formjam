@@ -75,3 +75,16 @@ export type QuestionResponse = {
   totalItems: number;
   items: Question[];
 };
+
+interface Answer {
+  id: string;
+  type: string;
+  answer: string | string[];
+}
+
+export interface SubmittedForm {
+  user: string;
+  form: string;
+  is_submitted: boolean;
+  form_data: Answer[];
+}
