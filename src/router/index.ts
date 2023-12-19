@@ -100,6 +100,14 @@ const router = createRouter({
           component: () => import("@/pages/form/view.vue"),
         },
         {
+          path: "preview",
+          name: "PreviewForm",
+          component: () => import("@/pages/form/preview.vue"),
+          meta: {
+            authRequired: true
+          }
+        },
+        {
           path: "success",
           name: "SuccessForm",
           component: () => import("@/pages/form/success.vue"),
