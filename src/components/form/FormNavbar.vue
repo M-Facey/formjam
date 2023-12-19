@@ -24,7 +24,7 @@ function setSection(section: string) {
       </RouterLink>
 
       <ThemeToggle class="ml-auto mr-3" />
-      <RouterLink :to="`/form/${params.formId}/view?preview=true`">
+      <RouterLink :to="`/form/${params.formId}/preview`">
         <button
           title="View Form"
           class="custom-btn flex gap-x-2 p-2 rounded-lg"
