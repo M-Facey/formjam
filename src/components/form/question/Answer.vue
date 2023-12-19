@@ -70,6 +70,7 @@ onMounted(() => {
     id: nanoid(),
     text: "option",
   });
+  emit("update:modelValue", answers.value);
 });
 </script>
 
@@ -113,7 +114,7 @@ onMounted(() => {
       </button>
     </div>
     <button
-      class="w-fit hover:bg-neutral-200 dark:hover:bg-neutral-800 mt-0.5 mx-auto  py-1 px-4 text-neutral-700 dark:text-neutral-300 rounded-md"
+      class="w-fit hover:bg-neutral-200 dark:hover:bg-neutral-800 mt-0.5 mx-auto py-1 px-4 text-neutral-700 dark:text-neutral-300 rounded-md"
       @click="addAnswer(answers.length)"
     >
       Add Option
