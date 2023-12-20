@@ -22,7 +22,7 @@ export const useSettingsStore = defineStore({
         },
       },
       sessionStorage,
-      { mergeDefaults: false }
+      { mergeDefaults: false },
     ),
   getters: {
     currentView(): string {
