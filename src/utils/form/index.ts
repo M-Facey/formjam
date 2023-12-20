@@ -1,3 +1,4 @@
+import { useTitle } from "@vueuse/core";
 import pb from "@/db/pocketBase";
 import { autosizeTextarea } from "@/utils/textareaAutosize";
 
@@ -38,4 +39,10 @@ export function setupParagraphInputs(inputs: string[]) {
       autosizeTextarea("textarea-" + id);
     });
   }, 10);
+}
+
+export function setPageTitle(formTitle: string) {
+  let pageTitle = formTitle.replaceAll(/<\/?[^>]+(>|$)/g, "");
+  pageTitle = (pageTitle || "Untitled Form") + " | FormJAM";
+  useTitle(pageTitle);
 }

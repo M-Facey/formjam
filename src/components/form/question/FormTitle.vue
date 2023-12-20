@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { onMounted, ref, watch } from "vue";
 import pb from "@/db/pocketBase";
+import { setPageTitle } from "@/utils/form";
 
 import XEditor from "@/components/inputs/Editor.vue";
 
@@ -22,13 +23,8 @@ watch(
       ...formData,
       title: newTitle !== "<p></p>" ? newTitle : "Untitled Form",
     });
-
-    let matches = newTitle.match(/>(.*?)</);
-    if (matches && matches.length > 1)
-      document.title = `${
-        newTitle !== "<p></p>" ? matches?.[1] : "Untitled Form"
-      } | FormJAM`;
-  },
+    setPageTitle(newTitle);
+  }
 );
 
 watch(
@@ -39,15 +35,13 @@ watch(
       ...formData,
       description: newDescription,
     });
-  },
+  }
 );
 
 onMounted(async () => {
   const formData = await pb.collection("forms").getOne(props.formId);
   title.value = formData.title === "Untitled Form" ? "" : formData.title;
   description.value = formData.description;
-  document.title =
-    (title.value.length ? title.value : "Untitled Form") + " | FormJAM";
 });
 </script>
 
