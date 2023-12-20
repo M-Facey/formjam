@@ -12,9 +12,9 @@ import IconLongText from "@/components/icons/question/LongText.vue";
 // prime vue components
 import Checkbox from "primevue/checkbox";
 import RadioButton from "primevue/radiobutton";
-import Message from "primevue/message";
 
 import IconArrowDown from "@/components/icons/controls/ArrowDown.vue";
+import IconAlert from "@/components/icons/misc/Alert.vue";
 
 const route = useRoute();
 
@@ -69,10 +69,15 @@ onMounted(async () => {
 <template>
   <div class="px-5 py-6">
     <form class="w-full max-w-[1000px] flex flex-col gap-3 mx-auto">
-      <Message severity="info"
-        ><b>Please Note:</b> The submissions on the preview page will not be
-        saved to the database.</Message
+      <div
+        class="bg-sky-200/50 dark:bg-neutral-900 flex items-center justify-center gap-x-2 py-3 text-sky-500 rounded-md"
       >
+        <IconAlert class="w-6 h-6" />
+        <p class="font-medium">
+          <b>Please Note:</b> The submissions on the preview page will not be
+          saved to the database.
+        </p>
+      </div>
 
       <div class="flex gap-x-4 pb-2">
         <RouterLink
@@ -117,12 +122,12 @@ onMounted(async () => {
             v-if="question.type === 'short-text'"
             class="flex items-center gap-x-3"
           >
-            <p class="font-rokkitt text-[26px]">T</p>
+            <p class="font-rokkitt text-[26px] dark:text-sky-400">T</p>
             <input
               type="text"
               v-model="formData[index].answer"
               placeholder="Enter your answer here"
-              class="w-full py-2 border-b border-gray-200 hover:border-gray-400 focus:border-sky-500 outline-none"
+              class="w-full bg-transparent py-2 border-b border-gray-200 hover:border-gray-400 focus:border-sky-500 dark:placeholder:text-neutral-400 dark:text-white outline-none"
               @keypress.enter.prevent
             />
           </div>
@@ -131,13 +136,13 @@ onMounted(async () => {
             v-if="question.type === 'paragraph'"
             class="flex items-start gap-x-3"
           >
-            <IconLongText class="w-6 h-6 mt-2.5" />
+            <IconLongText class="w-6 h-6 mt-2.5 dark:text-sky-400" />
             <textarea
               :id="`textarea-${question.id}`"
               placeholder="Enter your answer here"
               v-model="formData[index].answer"
               data-lpignore="true"
-              class="w-full h-8 py-2 border-b border-gray-200 hover:border-gray-400 focus:border-sky-500 resize-none outline-none"
+              class="w-full h-8 bg-transparent py-2 border-b border-gray-200 hover:border-gray-400 focus:border-sky-500 dark:placeholder:text-neutral-400 dark:text-white resize-none outline-none"
             />
           </div>
 
