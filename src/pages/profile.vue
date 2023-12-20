@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import PersonalInfoForm from "@/components/profile/PersonalInfoForm.vue";
-import ChangePassword from "@/components/profile/ChangePassword.vue";
 import Checkbox from "@/components/inputs/Checkbox.vue";
 
 import IconArrowDown from "@/components/icons/controls/ArrowDown.vue";
@@ -23,7 +22,6 @@ const readDeleteInfo = ref(false);
       </RouterLink>
 
       <PersonalInfoForm />
-      <ChangePassword />
 
       <section class="border-t border-neutral-600 mt-5 pt-7">
         <h2
