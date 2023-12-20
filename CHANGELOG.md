@@ -1,5 +1,44 @@
 # Changelog
 
+## [1.9.0](https://github.com/M-Facey/formjam/compare/v1.8.3...v1.9.0) (2023-12-20)
+
+
+### Features
+
+* added preview form page ([fcba406](https://github.com/M-Facey/formjam/commit/fcba406c7024bebd82cd28949646c31c33f94cf5))
+* added preview page to router ([be55bd8](https://github.com/M-Facey/formjam/commit/be55bd8f89ab4111755c5a2f7caa4c299d1c891c))
+* added profile page personal info change ([7fd72c7](https://github.com/M-Facey/formjam/commit/7fd72c7751ac920825ce027b068a805488b2930b))
+* added question duplication ([f04f856](https://github.com/M-Facey/formjam/commit/f04f8568e7902befae28f02eab68731ec39ef5b1))
+* page title changed based on route ([b1b4175](https://github.com/M-Facey/formjam/commit/b1b4175b72854f9d0ceaab11b586365e0a0dac08))
+
+
+### Bug Fixes
+
+* added user type ([1c88b97](https://github.com/M-Facey/formjam/commit/1c88b97438072e7e1722ca778c2a00f409317066))
+
+
+### Miscellaneous
+
+* added `Answer` and `SubmittedForm` types ([5d704c0](https://github.com/M-Facey/formjam/commit/5d704c0ae3a7c039bbdb56ebf02b9e6d29575411))
+* changed localStorage to sessionStorage ([fd2cf2b](https://github.com/M-Facey/formjam/commit/fd2cf2bd8b9e4ffa13b1f6b67386ffc462b42fa0))
+* ensured correct navigation to success page ([778b744](https://github.com/M-Facey/formjam/commit/778b744b728f4069d0675a163d250bb10b0697ba))
+* **main:** formatted codebase ([e05f737](https://github.com/M-Facey/formjam/commit/e05f737ee1cdedd6276f1e1bf7706a86dda3c286))
+* **main:** formatted codebase ([399a1b1](https://github.com/M-Facey/formjam/commit/399a1b1f689b84ded973c1209c7d328e41ad3ed7))
+* **main:** formatted codebase ([33da4dc](https://github.com/M-Facey/formjam/commit/33da4dc63e87d0ee5249bbc6c4a57fcb3c4c5a13))
+* saved initial answer to database when component mounts ([e2fa4f2](https://github.com/M-Facey/formjam/commit/e2fa4f23bcfd25b35e718ac654eb8937616fe251))
+* updated preview url ([f472739](https://github.com/M-Facey/formjam/commit/f472739ea855a153bafa4332eb9632517e0588b0))
+
+
+### Code Refactors
+
+* added form answer and input util functions ([8aeb330](https://github.com/M-Facey/formjam/commit/8aeb330c262111f37d34dd16722f2ffd8e6e2993))
+* moved theme styles from edit page to form layout ([4de71bc](https://github.com/M-Facey/formjam/commit/4de71bc54b8ca7e1c65cc62eb57de8e676f506ee))
+* placed back button beside form title ([1c7a019](https://github.com/M-Facey/formjam/commit/1c7a019367daf529e2982a29d7a7e480b778ce11))
+* removed preview logic & added submit functionality ([58e9035](https://github.com/M-Facey/formjam/commit/58e903572d61ba6c9678bffaf19a05865b2f0aa4))
+* removed unnecessary routing code ([93b44de](https://github.com/M-Facey/formjam/commit/93b44dec9cb67d484b4aac80acbc71c1e59ea4f5))
+* removed unused class styles ([21bf626](https://github.com/M-Facey/formjam/commit/21bf626e5d109d59b20f52e812c3480e9de3b2c6))
+* updated import url for FormQuestionList ([3175eba](https://github.com/M-Facey/formjam/commit/3175eba3c51b008973ba34fc326e21d6cb3a1762))
+
 ## [1.8.3](https://github.com/M-Facey/formjam/compare/v1.8.2...v1.8.3) (2023-12-15)
 
 
