@@ -3,8 +3,8 @@ import pb from "@/db/pocketBase";
 
 export const middleware = (
   to: RouteLocationNormalized,
-  _: RouteLocationNormalized,
-  next: NavigationGuardNext,
+  from: RouteLocationNormalized,
+  next: NavigationGuardNext
 ) => {
   const isAuthenticated = pb.authStore.isValid;
   const authBlackList = ["Login", "Signup", "Home"];
@@ -18,6 +18,13 @@ export const middleware = (
     authBlackList.includes(to.name.toString())
   ) {
     next({ name: "Dashboard" });
+  } else if (
+    to.name === "SuccessForm" &&
+    !(from.name === "PreviewForm" || from.name === "ViewForm")
+  ) {
+    // NOTE: this redirects to the either home or previous page when navigating to the 
+    //        success page from a page that is not the view/preview page.
+    next(from.fullPath);
   } else {
     next();
   }
