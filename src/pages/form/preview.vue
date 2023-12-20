@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { onMounted, ref, computed } from "vue";
-import { useRoute, useRouter } from "vue-router";
+import { useRoute } from "vue-router";
 import { useTitle } from "@vueuse/core";
 import type { Answer } from "@/types/form";
 import { getDefaultAnswer, setupParagraphInputs } from "@/utils/form";
@@ -17,7 +17,6 @@ import Message from "primevue/message";
 import IconArrowDown from "@/components/icons/controls/ArrowDown.vue";
 
 const route = useRoute();
-const router = useRouter();
 
 const formStore = useFormStore();
 const questionStore = useQuestionStore();
@@ -70,29 +69,28 @@ onMounted(async () => {
 <template>
   <div class="px-5 py-6">
     <form class="w-full max-w-[1000px] flex flex-col gap-3 mx-auto">
-      <RouterLink
-        :to="`/form/${route.params.formId}/edit`"
-        class="w-fit custom-btn flex items-center gap-x-2 py-1.5 pl-1.5 pr-3 rounded-md"
-        @click="router.go(-1)"
-      >
-        <IconArrowDown class="w-5 h-5 rotate-90" />
-        Go back for editing
-      </RouterLink>
-
       <Message severity="info"
         ><b>Please Note:</b> The submissions on the preview page will not be
         saved to the database.</Message
       >
 
-      <h1
-        ref="formTitleElem"
-        v-html="formTitle"
-        class="prose prose-2xl text-center"
-      ></h1>
+      <div class="flex gap-x-4 pb-2">
+        <RouterLink
+          :to="`/form/${route.params.formId}/edit`"
+          class="w-fit custom-btn flex items-center px-1 text-white font-medium rounded-lg"
+        >
+          <IconArrowDown class="w-8 h-8 rotate-90" />
+        </RouterLink>
+        <h1
+          ref="formTitleElem"
+          v-html="formTitle"
+          class="prose prose-2xl dark:text-white text-center"
+        ></h1>
+      </div>
 
       <div
         v-for="(question, index) in questionStore.questions"
-        class="w-full flex flex-col border border-gray-300 p-4 mx-auto shadow-md rounded-lg"
+        class="w-full dark:bg-neutral-700 flex flex-col border border-gray-300 dark:border-transparent p-4 mx-auto shadow-md rounded-lg"
       >
         <h2
           v-html="
@@ -103,7 +101,7 @@ onMounted(async () => {
                 : ''
             }`
           "
-          class="flex gap-1 text-xl"
+          class="flex gap-1 text-xl prose prose-p:my-0 dark:text-white"
           :class="{
             'pb-3': !question.description,
           }"
@@ -111,7 +109,7 @@ onMounted(async () => {
         <p
           v-if="question.description"
           v-html="question.description"
-          class="question-description prose prose-p:my-0.3 prose-li:my-0.5 text-gray-600 pb-3 text-sm"
+          class="question-description prose prose-p:my-0.5 prose-li:my-0.5 text-neutral-600 dark:text-neutral-500 pb-3 text-sm"
         ></p>
 
         <div v-if="formData[index]" class="flex-grow">
