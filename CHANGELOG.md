@@ -1,5 +1,25 @@
 # Changelog
 
+## [1.10.0](https://github.com/M-Facey/formjam/compare/v1.9.0...v1.10.0) (2023-12-20)
+
+
+### Features
+
+* added response heading and response section ([8c8124f](https://github.com/M-Facey/formjam/commit/8c8124fa34c35b360c3cee0b812e08880a41b2a6))
+
+
+### Miscellaneous
+
+* added sections to settings store ([31ca2cd](https://github.com/M-Facey/formjam/commit/31ca2cdb5846798424126a795cd67161b9db934b))
+* hid elements in form navbar based on routes ([ce68ce9](https://github.com/M-Facey/formjam/commit/ce68ce9bcab93dc1421c9a67237b750f454fbfd7))
+* removed change password section from profile page ([6696ee4](https://github.com/M-Facey/formjam/commit/6696ee48d463afeb380a5f5700fe466552b1bd40))
+
+
+### Code Refactors
+
+* created page title util function ([c65a3e2](https://github.com/M-Facey/formjam/commit/c65a3e2d3feb8d5e996f3761051fa186413bab12))
+* updated theme styles for text based question types ([a2e0ea4](https://github.com/M-Facey/formjam/commit/a2e0ea45992f2eab50799b3a7bc68b8af13eb1b3))
+
 ## [1.9.0](https://github.com/M-Facey/formjam/compare/v1.8.3...v1.9.0) (2023-12-20)
 
 
