@@ -5,7 +5,7 @@ import { useRoute } from "vue-router";
 import IconEyeOpen from "@/components/icons/input/EyeOpen.vue";
 import ThemeToggle from "@/components/common/ThemeToggle.vue";
 
-const { params } = useRoute();
+const route = useRoute();
 
 const currentSection = ref("Questions");
 function setSection(section: string) {
@@ -15,16 +15,19 @@ function setSection(section: string) {
 
 <template>
   <header class="relative bg-neutral-100 dark:bg-neutral-800">
-    <div class="container flex items-center justify-between px-6 py-3">
+    <div class="container h-[66px] flex items-center justify-between mx-6 py-3">
       <RouterLink to="/" class="flex items-center gap-x-2">
-        <img src="@/assets/images/logo.png" alt="logo" class="max-h-[30px]" />
+        <img src="@/assets/images/logo.png" alt="logo" class="max-h-[40px]" />
         <p class="text-2xl text-neutral-700 dark:text-white">
           Form<span class="text-neutral-400 font-bold">JAM</span>
         </p>
       </RouterLink>
 
       <ThemeToggle class="ml-auto mr-3" />
-      <RouterLink :to="`/form/${params.formId}/preview`">
+      <RouterLink
+        v-if="route.name === 'EditForm'"
+        :to="`/form/${route.params.formId}/preview`"
+      >
         <button
           title="View Form"
           class="custom-btn flex gap-x-2 p-2 rounded-lg"
@@ -36,6 +39,7 @@ function setSection(section: string) {
       </RouterLink>
     </div>
     <div
+      v-if="route.name === 'EditForm'"
       class="flex py-3 bg-sky-100 dark:bg-neutral-700 border-y border-sky-200 dark:border-sky-500"
     >
       <div
