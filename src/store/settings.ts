@@ -2,7 +2,7 @@ import { defineStore } from "pinia";
 import { usePreferredColorScheme, useStorage } from "@vueuse/core";
 
 export const useSettingsStore = defineStore({
-  id: "theme",
+  id: "settings",
   state: () =>
     useStorage(
       "settings",
@@ -14,8 +14,12 @@ export const useSettingsStore = defineStore({
         },
         formData: {
           form_id: "",
-          is_submitted: false
-        }
+          is_submitted: false,
+        },
+        formSections: {
+          editSection: "Questions",
+          responseSection: "Summary",
+        },
       },
       sessionStorage,
       { mergeDefaults: false }
