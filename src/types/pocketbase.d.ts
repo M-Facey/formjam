@@ -51,6 +51,14 @@ interface Form extends BaseCollectionType {
   user: string;
 }
 
+export interface UserType {
+  firstName: string;
+  lastName: string;
+  email: string;
+  password: string;
+  passwordConfirm: string;
+}
+
 export interface TypedPocketBase extends Pocketbase {
   collection(idOrName: string): RecordService;
   collection(idOrName: "answers"): RecordService<Answer>;
